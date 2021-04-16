@@ -6,12 +6,12 @@ class Main extends React.Component {
     /**
      * @public
      * @method render
-     * @returns {React.ReactElement}
+     * @returns {React.element}
      */
     render() {
         return (
             <>
-                <section className="layout layout--main" data-pagetype={this.props.pageType}>
+                <section className="layout layout--main">
                     <Header />
 
                     <div className="layout__body">
@@ -28,11 +28,5 @@ class Main extends React.Component {
         );
     }
 }
-
-// Main.propTypes = {
-//     i18n: PropTypes.instanceOf(Object).isRequired
-// };
-//
-// export default withTranslation()(Main);
 
 export default Main;

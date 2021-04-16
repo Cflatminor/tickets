@@ -1,0 +1,31 @@
+@import "fonts";
+@import "color";
+@import "image";
+@import "margin";
+@import "padding";
+@import "position";
+@import "size";
+@import "loader";
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  & ul {
+    padding-left: 20px;
+  }
+}
+
+.custom-scroll {
+  @include custom-scroll();
+}

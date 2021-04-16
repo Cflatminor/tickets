@@ -1,0 +1,48 @@
+@mixin padding($size, $position: "") {
+    $suffix: "";
+    $classSuffix: "";
+
+    @if (str-length($position) > 0) {
+        $suffix: "-#{$position}";
+        $classSuffix: str-slice($position, 0, 1);
+    }
+
+    .p#{$classSuffix}-#{$size} {
+        padding#{$suffix}: #{$size}px;
+    }
+}
+
+@for $i from 0 through 6 {
+    $size: $i * 4;
+
+    @include padding($size);
+    @include padding($size, "top");
+    @include padding($size, "right");
+    @include padding($size, "bottom");
+    @include padding($size, "left");
+}
+
+@include md {
+    .p-md-20 {
+        padding: 20px;
+    }
+}
+
+@include lg {
+    .p-lg-24 {
+        padding: 24px;
+    }
+    .p-lg-40 {
+        padding: 40px;
+    }
+}
+
+@include xl {
+  .p-xl-24 {
+    padding: 24px;
+  }
+}
+
+.pt-32 {
+    padding-top: 32px;
+}

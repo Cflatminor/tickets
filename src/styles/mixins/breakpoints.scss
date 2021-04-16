@@ -1,0 +1,68 @@
+// before breakpoints
+@mixin before-sm {
+  @media screen and (max-width: $maxXSResolution) {
+    @content;
+  }
+}
+
+@mixin before-md {
+  @media screen and (max-width: $maxSMResolution) {
+    @content;
+  }
+}
+
+@mixin before-lg {
+  @media screen and (max-width: $maxMDResolution) {
+    @content;
+  }
+}
+
+@mixin before-xl {
+  @media screen and (max-width: $maxLGResolution) {
+    @content;
+  }
+}
+
+// screen only sixes
+@mixin sm-only {
+  @media screen and (min-width: $minSMResolution) and (max-width: $maxSMResolution)  {
+    @content;
+  }
+}
+
+@mixin md-only {
+  @media screen and (min-width: $minMDResolution) and (max-width: $maxMDResolution)  {
+    @content;
+  }
+}
+
+@mixin lg-only {
+  @media screen and (min-width: $minLGResolution) and (max-width: $maxLGResolution)  {
+    @content;
+  }
+}
+
+// mobile first breakpoints
+@mixin sm {
+  @media screen and (min-width: $minSMResolution) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: $minMDResolution) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: $minLGResolution) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (min-width: $minXLResolution) {
+    @content;
+  }
+}

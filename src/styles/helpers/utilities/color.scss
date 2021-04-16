@@ -1,0 +1,62 @@
+.bg-white {
+  background-color: $colorWhite;
+}
+
+.bg-gray {
+  background-color: $bodyBackgroundBase;
+}
+.color-green {
+  color: $colorGreen;
+}
+
+.color-link {
+  color: $linkColor;
+}
+
+.color-black {
+  color: $colorBlack;
+}
+
+.color-gray {
+  color: $colorGray;
+}
+
+.color-white {
+  color: $colorWhite;
+}
+
+.color-gray-1 {
+  color: $colorGray1;
+}
+
+.color-pink {
+  color: $colorPink;
+}
+
+.color-orange {
+  color: $colorOrange;
+}
+
+.hover-color-pink {
+  &:hover {
+    color: $colorPink;
+    cursor: pointer;
+  }
+}
+
+.hover-color-white {
+  &:hover {
+    color: $colorWhite;
+    cursor: pointer;
+  }
+}
+
+.link-bordered {
+  text-decoration: none;
+  border-bottom: 1px dashed $colorBlue;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom-color: $colorPink;
+  }
+}

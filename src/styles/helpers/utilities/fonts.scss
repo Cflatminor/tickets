@@ -1,0 +1,91 @@
+.clip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.f-weight-3 {
+  font-weight: 300;
+}
+
+.f-weight-4 {
+  font-weight: 400;
+}
+
+.f-weight-5 {
+  font-weight: 500;
+}
+
+.f-weight-6 {
+  font-weight: 600;
+}
+
+.f-weight-7 {
+  font-weight: 700;
+}
+
+.f-weight-9 {
+  font-weight: 900;
+}
+
+.text-xl {
+  font-size: $fontSizeXL;
+  font-weight: 400;
+}
+
+.line-height-1-5 {
+  line-height: 1.5;
+}
+
+.line-height-1-4 {
+  line-height: 1.4;
+}
+
+.line-height-1 {
+  line-height: 1;
+}
+
+.word-break-word {
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+@include md() {
+  .text-md-center {
+    text-align: center;
+  }
+}
+
+@include lg {
+  .text-lg-left {
+    text-align: left;
+  }
+
+  .text-lg-center {
+    text-align: center;
+  }
+
+  .text-lg-medium {
+    font-size: $fontSizeMedium;
+  }
+
+  .f-weight-lg-5 {
+    font-weight: 500;
+  }
+}

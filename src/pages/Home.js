@@ -40,36 +40,12 @@ class Home extends React.Component {
     }
 
     render() {
-        // let {promoBanner, breadcrumbs, hasError} = this.props;
-
         return (
-            // <ErrorBoundary>
-            //     <MainLayout breadcrumbs={breadcrumbs} promoBanner={promoBanner}>
-            //         {hasError && <Error />}
-            //         {!hasError && <ErrorBoundary>{ this.getView() }</ErrorBoundary>}
-            //     </MainLayout>
-            // </ErrorBoundary>
             <MainLayout>
                 { this.getView() }
             </MainLayout>
         );
     }
 }
-
-// Home.propTypes = {
-//     hasError: PropTypes.bool,
-//     breadcrumbs: PropTypes.instanceOf(Array),
-//     promoBanner: PropTypes.instanceOf(Object),
-//     pageInfo: PropTypes.instanceOf(Object),
-//     initialData: PropTypes.instanceOf(Object)
-// };
-//
-// Home.defaultProps = {
-//     hasError: false,
-//     breadcrumbs: [],
-//     promoBanner: {},
-//     pageInfo: {},
-//     initialData: {}
-// };
 
 export default Home;

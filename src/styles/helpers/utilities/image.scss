@@ -1,0 +1,5 @@
+$imageRepository: "https://i.tickets.ua";
+
+@function build-image-url($url) {
+  @return $imageRepository + $url;
+}
