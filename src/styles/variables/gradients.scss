@@ -1,0 +1,10 @@
+$colorPinkGradient: linear-gradient(0deg, $colorPink, $colorPink), #F1F3F4;
+
+$purpleGradient: linear-gradient(101.06deg, #594FBB 1.01%, #722ea7 99.75%),
+                 linear-gradient(204.54deg, #FF9944 -53.97%, #F64C6B 71.55%),
+                 linear-gradient(218.37deg, #935DEB -6.33%, #F64C6B 75.06%),
+                 radial-gradient(146.75% 380% at 72.93% -46.75%, #337CE9 0%, #7556CB 100%);
+
+$blueGradient: linear-gradient(260.38deg, #128CD0 0%, rgba(10, 67, 125, 0) 97.78%),
+               linear-gradient(0deg, #0A437D, #0A437D),
+               linear-gradient(321.01deg, #007AC3 10.15%, #00B5F0 96.27%);

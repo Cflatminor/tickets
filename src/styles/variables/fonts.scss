@@ -1,0 +1,17 @@
+$fontFamilySans: BlinkMacSystemFont, -apple-system, Roboto, sans-serif;
+$fontFamilyBase: $fontFamilySans;
+
+$fontSizeBase: 14px;
+$fontSizeSmall: round($fontSizeBase * 0.857); // 12px
+$fontSizeMedium: round($fontSizeBase * 1.15); // 16px
+$fontSizeLarge: round($fontSizeBase * 1.286); // 18px
+$fontSizeXL: round($fontSizeBase * 1.428); // 20px
+
+$fontColorBase: $colorGray;
+
+$lineHeightSmall: 1.12;
+$lineHeightBase: 1.286;
+$lineHeightLarge: 1.35;
+
+$lineHeightComputed: $fontSizeBase * $lineHeightBase;
+
