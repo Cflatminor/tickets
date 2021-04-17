@@ -1,5 +1,5 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     future: {
@@ -24,10 +24,7 @@ module.exports = {
                 use: [
                     // "style-loader",
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: path.resolve(__dirname, ".next/static/css/pages/"),
-                        },
+                        loader: MiniCssExtractPlugin.loader
                     },
                     {
                         loader: "css-loader",
@@ -51,7 +48,9 @@ module.exports = {
         });
 
         config.plugins.push(
-            new MiniCssExtractPlugin(),
+            new MiniCssExtractPlugin({
+                filename: "static/css/[name].css" // change this RELATIVE to your output.path!
+            }),
         );
 
         config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));

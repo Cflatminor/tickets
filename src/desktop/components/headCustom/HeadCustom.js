@@ -27,7 +27,7 @@ class HeadCustom extends Head {
         ];
 
         cssFiles.forEach((file) => {
-            // console.log(`${assetPrefix}/_next/${encodeURI(file)}`);
+            console.log(`${assetPrefix}/_next/${encodeURI(file)}`);
             cssLinks.push(
                 <link
                     key={`${file}-preload`}
