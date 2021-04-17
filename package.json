@@ -1,6 +1,6 @@
 {
   "name": "tickets",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server.js",
@@ -21,7 +21,7 @@
     "ismobilejs": "^1.1.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.19",
-    "next": "10.1.3",
+    "next": "^10.1.4-canary.9",
     "next-routes": "^1.4.2",
     "path-to-regexp": "^6.1.0",
     "promise-abortable": "^1.2.6",
