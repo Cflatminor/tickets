@@ -1,0 +1,49 @@
+@import "./src/styles/variables/main";
+@import "./src/styles/mixin/main";
+
+.modal {
+    .modal__title {
+        font-size: 20px;
+    }
+
+    .modal-dialog {
+        max-height: 100%;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+    }
+
+    .modal__body {
+        line-height: 1.5;
+        color: $colorBlack;
+        margin: 0;
+    }
+}
+
+@include before-md {
+    .modal.modal-lg .modal-dialog,
+    .modal.modal-md .modal-dialog,
+    .modal.modal-sm .modal-dialog {
+        width: 100%!important;
+        margin: 0!important;
+
+        .modal-content {
+            border-radius: 0;
+        }
+    }
+
+    .modal.modal-sm.modal-info,
+    .modal.modal-md.modal-info {
+        .modal-dialog {
+            max-width: 450px;
+            width: calc(100% - 24px);
+            margin: 30px auto;
+            height: auto;
+
+            .modal-content {
+                border-radius: 10px;
+            }
+        }
+    }
+}

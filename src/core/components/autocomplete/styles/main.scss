@@ -1,0 +1,73 @@
+@import "./src/styles/variables/main";
+@import "./src/styles/mixin/main";
+
+.autocomplete {
+  $firstShadowColor: rgba(0, 0, 0, 0.12);
+  $secondShadowColor: rgba(0, 0, 0, 0.06);
+  $thirdShadowColor: rgba(0, 0, 0, 0.07);
+
+  .autocomplete__body {
+    background: $colorWhite;
+  }
+
+  .react-autosuggest__container {
+    //padding: 8px 12px 5px 12px;
+    padding: 8px 0 5px 0;
+    position: relative;
+
+    .form-control {
+      border-radius: 20px;
+      font-size: 16px;
+    }
+  }
+
+  .react-autosuggest__suggestions-container {
+    //margin: 5px -12px -5px -12px;
+    margin: 2px 0 0 0;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: 0 1px 10px $firstShadowColor,
+                0 4px 5px $secondShadowColor,
+                0 2px 4px $thirdShadowColor;
+
+    .react-autosuggest__suggestions-list {
+      max-height: 260px;
+      margin-right: 0;
+      margin-left: 0;
+      padding-left: 16px;
+      border-radius: 0;
+      border: none;
+      overflow-y: auto;
+      overflow-x: hidden;
+      @include custom-scroll();
+    }
+
+    .react-autosuggest__section-title {
+      display: block;
+    }
+
+    .react-autosuggest__suggestion--highlighted {
+      cursor: pointer;
+      background-color: $formHoverColor;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0 16px;
+      padding: 6px 20px 10px 20px;
+
+      li {
+        padding: 6px 16px;
+        margin: 0 -16px;
+        font-size: $fontSizeBase;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $colorBlack;
+    }
+  }
+  @import "mediaQueries";
+}
