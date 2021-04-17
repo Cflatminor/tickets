@@ -49,7 +49,7 @@ module.exports = {
 
         config.plugins.push(
             new MiniCssExtractPlugin({
-                filename: "static/css/[name].css" // change this RELATIVE to your output.path!
+                filename: "static/css/[name].css"
             }),
         );
 

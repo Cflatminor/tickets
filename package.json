@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start"
   },
+  "engines": {
+    "node": "14.16"
+  },
   "dependencies": {
     "abort-controller": "^3.0.0",
     "browser-or-node": "^1.2.1",
