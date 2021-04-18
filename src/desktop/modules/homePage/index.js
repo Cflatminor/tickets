@@ -43,9 +43,6 @@ export default {
     getInitialProps(...args) {
         return this.getServerSideProps(...args);
     },
-    getStaticProps(...args) {
-        return this.getInitialProps(...args);
-    },
     getServerSideProps(context, props) {
         // Env.getInstance().setLanguage(props.pageInfo.language);
 

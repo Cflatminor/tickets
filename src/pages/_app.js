@@ -2,7 +2,6 @@ import React from "react";
 import Head from 'next/head';
 import App from "next/app";
 
-import 'styles/reset.css';
 import 'styles/main.module.scss';
 
 class Tickets extends App {
