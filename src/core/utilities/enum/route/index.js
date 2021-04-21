@@ -1,6 +1,6 @@
 import routesConfig from "config/routes";
 
-import Enum from "app/core/utilites/enum/Enum";
+import Enum from "app/core/utilities/enum/Enum";
 
 let routeNameEnum = new Enum({
     fields: routesConfig.routes.map(function (item) {

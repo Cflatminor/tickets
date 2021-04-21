@@ -1,11 +1,25 @@
 import React from "react";
 import Head from 'next/head';
 import App from "next/app";
+import dynamic from "next/dynamic";
+
+import {isNode} from "browser-or-node";
+
+import SourceTypeEnum from "app/core/utilities/enum/sourceType";
+
+let RosselkhozBank = dynamic(import("components/dynamicImports/styles/framework/RosselkhozBank")),
+    AlfaBank = dynamic(import("components/dynamicImports/styles/framework/AlfaBank"));
 
 import 'styles/main.module.scss';
 
 class Tickets extends App {
-    static async getInitialProps(params) {
+    constructor(props) {
+        super(props);
+
+        this.sourceTypeEnum = SourceTypeEnum.getInstance();
+    }
+
+    static getInitialProps(params) {
         let {Component, ctx} = params,
             props = {
                 hasError: false,
@@ -15,6 +29,12 @@ class Tickets extends App {
                     initialData: {}
                 }
             };
+
+        if (isNode && Tickets.ignoredURL.includes(ctx.req.url)) {
+            ctx.res.statusCode = 404;
+
+            return Promise.resolve(props);
+        }
 
         return new Promise((resolve) => {
             resolve(props);
@@ -26,6 +46,33 @@ class Tickets extends App {
             });
         }));
     };
+
+    /**
+     * @private
+     * @method _isRosselkhozBank
+     * @returns {boolean}
+     */
+    _isRosselkhozBank() {
+        return this.sourceTypeEnum.isRosselkhozBank(this._getSourceType());
+    }
+
+    /**
+     * @private
+     * @method _isAlfaBank
+     * @returns {boolean}
+     */
+    _isAlfaBank() {
+        return this.sourceTypeEnum.isAlfaBank(this._getSourceType());
+    }
+
+    /**
+     * @private
+     * @method _getSourceType
+     * @returns {string}
+     */
+    _getSourceType() {
+        return this.props.router.query.sourceType || this.sourceTypeEnum.getRosselkhozBankAsValue();
+    }
 
     render() {
         let {Component, pageProps} = this.props;
@@ -43,10 +90,29 @@ class Tickets extends App {
                     {/*<link rel="manifest" href="/manifest.json"/>*/}
                 </Head>
 
+                {this._isRosselkhozBank() && (
+                    <RosselkhozBank />
+                )}
+
+                {this._isAlfaBank() && (
+                    <AlfaBank />
+                )}
+
                 <Component {...pageProps} />
             </>
         );
     }
 }
+
+/**
+ * @property
+ * @type {string[]}
+ */
+Tickets.ignoredURL = [
+    "/json",
+    "/uk/json",
+    "/favicon.ico",
+    "/uk/favicon.ico"
+];
 
 export default Tickets;

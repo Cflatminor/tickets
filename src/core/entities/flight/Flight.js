@@ -53,16 +53,16 @@ class Flight extends Entity {
      * @returns {FlightPoint}
      */
     getArrival() {
-        return new FlightPoint(this.entity.departure);
+        return new FlightPoint(this.entity.arrival);
     }
 
     /**
      * @public
      * @method getTransfers
-     * @return {FlightPoint[]}
+     * @return {Flight[]}
      */
     getTransfers() {
-        return (this.entity.transfers || []).map((item) => new FlightPoint(item));
+        return (this.entity.transfers || []).map((item) => new Flight(item));
     }
 
     /**
@@ -71,7 +71,7 @@ class Flight extends Entity {
      * @return {string}
      */
     getTotalTime() {
-        return "";
+        return this.entity.totalTime || "";
     }
 }
 
