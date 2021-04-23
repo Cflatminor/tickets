@@ -23,7 +23,9 @@ class Tickets extends App {
         let {Component, ctx} = params,
             props = {
                 hasError: false,
-                pageInfo: {},
+                pageInfo: {
+                    language: Tickets.getLanguageByContext(ctx)
+                },
                 pageProps: {
                     breadcrumbs: [],
                     initialData: {}
@@ -33,11 +35,11 @@ class Tickets extends App {
         if (isNode && Tickets.ignoredURL.includes(ctx.req.url)) {
             ctx.res.statusCode = 404;
 
-            return Promise.resolve(props);
+            return Promise.resolve(props.pageInfo);
         }
 
         return new Promise((resolve) => {
-            resolve(props);
+            resolve(props.pageInfo);
         }).then(() => new Promise((resolve) => {
             Promise.resolve(Component.getInitialProps(ctx, props)).then((initialData) => {
                 props.pageProps.initialData = Object.assign(initialData, props.pageProps.initialData);
@@ -103,6 +105,17 @@ class Tickets extends App {
         );
     }
 }
+
+/**
+ * @static
+ * @method getCurrentUrlByContext
+ * @param context {Object}
+ * @returns {string}
+ */
+Tickets.getLanguageByContext = function (context) {
+    return "ru";
+    // return (context.req && context.req.language) || context.query.subpath || LanguageEnum.getInstance().getRuAsValue();
+};
 
 /**
  * @property
