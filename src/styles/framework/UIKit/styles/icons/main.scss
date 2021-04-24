@@ -1,9 +1,10 @@
 @font-face {
   font-family: "icomoon";
 
-  //src: url("../../fonts/icomoon.eot?v630e0");
-  //src: url("../../fonts/icomoon.eot?v630e0#iefix") format("embedded-opentype"),
-  //  url("../../fonts/icomoon.ttf?v630e0") format("truetype"), url("../../fonts/icomoon.woff?v630e0") format("woff");
+  src: url("./framework/UIKit/fonts/icomoon.eot?v630e0");
+  src: url("./framework/UIKit/fonts/icomoon.eot?v630e0#iefix") format("embedded-opentype"),
+       url("./framework/UIKit/fonts/icomoon.ttf?v630e0") format("truetype"),
+       url("./framework/UIKit/fonts/icomoon.woff?v630e0") format("woff");
 
   /*url('../fonts/icomoon.svg?v630e0#icomoon') format('svg')*/
   font-weight: normal;
