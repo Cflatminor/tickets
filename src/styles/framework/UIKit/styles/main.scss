@@ -10,16 +10,16 @@
   @include fontSmoothing();
 }
 
-//a {
-//  text-decoration: underline;
-//  background-color: transparent;
-//  color: $linkColor;
-//
-//  &:hover {
-//    color: $linkColorHover;
-//    text-decoration: none;
-//  }
-//}
+a {
+  text-decoration: underline;
+  background-color: transparent;
+  color: $linkColor;
+
+  &:hover {
+    color: $linkColorHover;
+    text-decoration: none;
+  }
+}
 
 @import "icons/main";
 //@import "utilities/main.scss";
