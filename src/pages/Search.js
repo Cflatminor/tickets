@@ -31,8 +31,6 @@ class Search extends React.Component {
      * @returns {Object|null}
      */
     getView() {
-        console.log(this.props);
-
         return Module.getView(
             Module.normalizeInitialProps(this.props.initialData, this.props.pageInfo), this.props.pageInfo
         );

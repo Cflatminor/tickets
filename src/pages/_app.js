@@ -35,14 +35,14 @@ class Tickets extends App {
         if (isNode && Tickets.ignoredURL.includes(ctx.req.url)) {
             ctx.res.statusCode = 404;
 
-            return Promise.resolve(props.pageInfo);
+            return Promise.resolve(props);
         }
 
         return new Promise((resolve) => {
             resolve(props.pageInfo);
         }).then(() => new Promise((resolve) => {
             Promise.resolve(Component.getInitialProps(ctx, props)).then((initialData) => {
-                props.pageProps.initialData = Object.assign(initialData, props.pageProps.initialData);
+                props.pageProps.initialData = Object.assign({}, initialData, props.pageProps.initialData);
 
                 resolve(props);
             });
@@ -77,7 +77,7 @@ class Tickets extends App {
     }
 
     render() {
-        let {Component, pageProps} = this.props;
+        let {Component, hasError, pageProps, pageInfo} = this.props;
 
         return (
             <>
@@ -100,7 +100,7 @@ class Tickets extends App {
                     <AlfaBank />
                 )}
 
-                <Component {...pageProps} />
+                <Component hasError={hasError} {...pageProps} pageInfo={pageInfo} />
             </>
         );
     }
