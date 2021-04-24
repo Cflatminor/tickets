@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "abort-controller": "^3.0.0",
+    "bootstrap": "4.4.1",
     "browser-or-node": "^1.2.1",
     "classnames": "^2.2.6",
     "cross-env": "^7.0.3",

@@ -1,0 +1,49 @@
+.text-small {
+  font-size: $fontSizeSmall;
+  line-height: $lineHeightSmall;
+}
+
+.text-medium {
+  font-size: $fontSizeMedium;
+  line-height: $lineHeightBase;
+}
+
+.text-large {
+  font-size: $fontSizeLarge;
+  line-height: $lineHeightLarge;
+}
+
+.text-size--h1,
+.text-size--h2,
+.text-size--h3,
+.text-size--h4,
+.text-size--h5,
+.text-size--h6 {
+  margin-top: 0;
+  margin-bottom: $headersMarginBottom;
+  color: $headersColor;
+}
+
+.text-size--h1 {
+  @include H1Size();
+}
+
+.text-size--h2 {
+  @include H2Size();
+}
+
+.text-size--h3 {
+  @include H3Size();
+}
+
+.text-size--h4 {
+  @include H4Size();
+}
+
+.text-size--h5 {
+  @include H5Size();
+}
+
+.text-size--h6 {
+  @include H6Size();
+}

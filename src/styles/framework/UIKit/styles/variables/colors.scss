@@ -1,0 +1,18 @@
+$colorWhite: rgba(255, 255, 255, 1);
+$colorBlack: #212121;
+$colorDark: lighten($colorBlack, 13%);
+$colorGray: rgba(57, 69, 86, 0.6);
+$colorOrange: rgba(255,104, 10, 1);
+$colorRed: #F33434;
+$colorPink: #FF3366 ;
+$colorGreen: #00A046;
+$colorBlue: #2270EE;
+
+$linkColor: $colorBlue;
+$linkColorHover: $colorBlue;
+
+$errorColorBase: $colorRed;
+
+$bodyBackgroundBase: #FAFAFB;
+
+$borderColorBase: rgba(136, 143, 154, 0.16);

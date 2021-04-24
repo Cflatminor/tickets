@@ -1,0 +1,34 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: $headersMarginBottom;
+  color: $headersColor;
+}
+
+h1 {
+  @include H1Size();
+}
+
+h2 {
+  @include H2Size();
+}
+
+h3 {
+  @include H3Size();
+}
+
+h4 {
+  @include H4Size();
+}
+
+h5 {
+  @include H5Size();
+}
+
+h6 {
+  @include H6Size();
+}

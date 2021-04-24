@@ -1,0 +1,14 @@
+$alertDefaultBackground: #FBFBFB;
+$alertDefaultBorderColor: darken($alertDefaultBackground, 8%);
+
+$alertInfoBackground: #8dc0f91f;
+$alertInfoBorderColor: darken($alertInfoBackground, 6%);
+
+$alertSuccessBackground: #67dd9b1f;
+$alertSuccessBorderColor: darken($alertSuccessBackground, 12%);
+
+$alertWarningBackground: #fdd23e1f;
+$alertWarningBorderColor: darken($alertWarningBackground, 12%);
+
+$alertDangerBackground:  #ff9e9e1f;
+$alertDangerBorderColor: darken($alertDangerBackground, 10%);

@@ -1,0 +1,112 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $modalZIndex;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: $modalBackgroundOverlay;
+  overflow: auto;
+
+  &.modal-sm {
+    .modal-dialog {
+      max-width: $modalSMMaxWidth;
+    }
+  }
+
+  &.modal-md {
+    .modal-dialog {
+      max-width: $modalMDMaxWidth;
+    }
+  }
+
+  &.modal-lg {
+    .modal-dialog {
+      max-width: $modalLGMaxWidth;
+    }
+  }
+
+  .modal-dialog {
+    width: 100%;
+    margin: 30px auto;
+  }
+
+  .modal__header,
+  .modal__body,
+  .modal__footer {
+    padding: $modalBasePadding;
+  }
+
+  .modal__content,
+  .modal__header,
+  .modal__body, {
+    position: relative;
+  }
+
+  .modal-content {
+    width: 100%;
+    @include rounded($borderRadiusLarge);
+    background: $colorWhite;
+  }
+
+  .modal__body {
+    min-height: 40px;
+    max-height: $modalBodyMaxHeight;
+    margin: 0 15px 0 0;
+    padding-top: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    @include resetBtnStyles();
+    cursor: pointer;
+    font-size: $modalCloseButtonFontSize;
+    color: $colorGray;
+  }
+
+  .modal__title {
+    margin: 0;
+    padding-right: 16px;
+    font-size: $modalTitleFontSize;
+    font-weight: 400;
+    color: $colorBlack;
+  }
+}
+
+@media (max-width: $screenXSMax) {
+  .modal {
+    &.modal-sm,
+    &.modal-md,
+    &.modal-lg {
+      .modal-dialog {
+        max-width: 100%;
+        width: calc(100% - 24px);
+      }
+    }
+
+    .modal-dialog {
+      height: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .modal-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @include rounded(0);
+    }
+
+    .modal__body {
+      max-height: initial;
+      height: 100%;
+      margin: 0;
+    }
+  }
+}

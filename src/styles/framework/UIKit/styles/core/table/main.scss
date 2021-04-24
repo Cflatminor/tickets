@@ -1,0 +1,49 @@
+.table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  background-color: $tableBackground;
+
+  caption {
+    padding: $tableCellPadding;
+    font-size: $fontSizeLarge;
+    color: $colorBlack;
+  }
+
+  caption,
+  th,
+  td {
+    text-align: left;
+  }
+
+  thead,
+  tbody,
+  tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: $tableCellPadding;
+        vertical-align: top;
+        line-height: $lineHeightBase;
+        font-size: $fontSizeBase;
+        color: $colorBlack;
+      }
+    }
+  }
+
+  tbody,
+  tfoot {
+    > tr {
+      border-top: 1px solid $borderColorBase;
+    }
+  }
+
+  thead > tr {
+    border-bottom: 2px solid $borderColorBase;
+
+    > th {
+      vertical-align: bottom;
+      font-weight: bold;
+    }
+  }
+}

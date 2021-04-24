@@ -1,0 +1,17 @@
+$screenXS: 480px;
+$screenSM: 768px;
+$screenMD: 992px;
+$screenLG: 1200px;
+
+$screenXSMin: $screenXS;
+$screenSMMin: $screenSM;
+$screenMDMin: $screenMD;
+$screenLGMin: $screenLG;
+
+$screenTablet: $screenSMMin;
+$screenDesktop: $screenMDMin;
+$screenLGDesktop: $screenLGMin;
+
+$screenXSMax: ($screenSMMin - 1);
+$screenSMMax: ($screenMDMin - 1);
+$screenMDMax: ($screenLGMin - 1);

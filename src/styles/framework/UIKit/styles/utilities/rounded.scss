@@ -1,0 +1,9 @@
+@for $k from 3 to 11 {
+  .rounded-#{$k} {
+    @include rounded($k#{px});
+  }
+}
+
+.rounded-100 {
+  @include rounded(100%);
+}

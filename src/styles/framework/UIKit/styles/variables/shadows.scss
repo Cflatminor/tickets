@@ -1,0 +1,43 @@
+$firstShadowColor: rgba(0, 0, 0, 0.12);
+$secondShadowColor: rgba(0, 0, 0, 0.06);
+$thirdShadowColor: rgba(0, 0, 0, 0.07);
+
+$shadow1: 0 1px 3px $firstShadowColor,
+          0 2px 2px $secondShadowColor,
+          0 0 2px $thirdShadowColor;
+
+$shadow2: 0 1px 5px $firstShadowColor,
+          0 3px 4px $secondShadowColor,
+          0 2px 4px $thirdShadowColor;
+
+$shadow3: 0 1px 8px $firstShadowColor,
+          0 3px 4px $secondShadowColor,
+          0 3px 3px $thirdShadowColor;
+
+$shadow4: 0 1px 10px $firstShadowColor,
+          0 4px 5px $secondShadowColor,
+          0 2px 4px $thirdShadowColor;
+
+$shadow5: 0 3px 5px $firstShadowColor,
+          0 1px 18px $secondShadowColor,
+          0 6px 10px $thirdShadowColor;
+
+$shadow6: 0 4px 15px $firstShadowColor,
+          0 3px 14px $secondShadowColor,
+          0 8px 10px $thirdShadowColor;
+
+$shadow7: 0 5px 6px $firstShadowColor,
+          0 3px 16px $secondShadowColor,
+          0 9px 12px $thirdShadowColor;
+
+$shadow8: 0 7px 8px $firstShadowColor,
+          0 5px 22px $secondShadowColor,
+          0 12px 17px $thirdShadowColor;
+
+$shadow9: 0 8px 10px $firstShadowColor,
+          0 6px 30px $secondShadowColor,
+          0 16px 24px $thirdShadowColor;
+
+$shadow10: 0 11px 15px $firstShadowColor,
+           0 9px 46px $secondShadowColor,
+           0 24px 38px $thirdShadowColor;

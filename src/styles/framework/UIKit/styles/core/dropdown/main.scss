@@ -1,0 +1,39 @@
+.dropdown {
+  position: relative;
+
+  .dropdown__items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: $dropDownZIndex;
+    min-width: 215px;
+    max-width: 350px;
+    padding: $paddingVerticalBase 0;
+    margin: 0;
+    @include rounded($borderRadiusLarge);
+    box-shadow: $dropDownShadow;
+    list-style: none;
+    background: $colorWhite;
+
+    .items__item {
+      &:hover {
+        background: $dropDownItemBackground;
+      }
+
+      a {
+        padding: $dropDownItemVerticalPadding $dropDownItemHorizontalPadding;
+        display: block;
+        line-height: $lineHeightLarge;
+        font-size: $fontSizeBase;
+        color: $colorBlack;
+
+        &:link,
+        &:visited,
+        &:active {
+          text-decoration: none;
+          color: $colorBlack;
+        }
+      }
+    }
+  }
+}

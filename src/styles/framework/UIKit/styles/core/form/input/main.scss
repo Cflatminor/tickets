@@ -1,0 +1,82 @@
+@import "fields";
+
+.custom-input--radio,
+.custom-input--checkbox {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 32px;
+  cursor: pointer;
+  font-weight: normal;
+
+  input {
+    display: none !important;
+
+    &:disabled ~ .custom-input__state {
+      &:after {
+        border-color: $inputDisabledBorderColor;
+        background-color: $inputDisabledBackground;
+      }
+
+      .custom-input__animation-bg {
+        background-color: initial;
+      }
+    }
+  }
+
+  .custom-input__state {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+
+    &:after,
+    &:before {
+      box-sizing: initial;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border: $inputBorder;
+      @include transition-all();
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      @include transition-all();
+    }
+
+    &:hover {
+      .custom-input__animation-bg {
+        background-color: $animationBackgroundColor;
+        //rgba(0, 0, 0, 0.05)
+        @include scale(1);
+      }
+    }
+
+    .custom-input__animation-bg {
+      position: absolute;
+      z-index: -1;
+      top: -8px;
+      left: -8px;
+      width: 36px;
+      height: 36px;
+      @include rounded(100%);
+      @include scale(0);
+      @include transition-all();
+    }
+  }
+
+  .custom-input__name {
+    line-height: $lineHeightForRadioButtons;
+  }
+}
+
+@import "radio";
+@import "checkbox";

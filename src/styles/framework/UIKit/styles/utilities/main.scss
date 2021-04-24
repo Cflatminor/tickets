@@ -1,0 +1,9 @@
+@import "text/main.scss";
+@import "clearfix.scss";
+@import "shadows.scss";
+@import "rounded.scss";
+@import "background.scss";
+
+.reset-btn-styles {
+  @include resetBtnStyles();
+}

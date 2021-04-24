@@ -1,0 +1,198 @@
+@mixin fontSmoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+@mixin opacity($value) {
+  opacity: $value;
+
+  filter: "alpha(opacity=#{$value * 100})";
+}
+
+@mixin rounded($value) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin transition-all($duration: 0.2s, $delay: ease) {
+  -webkit-transition: all $duration $delay;
+  -moz-transition: all $duration $delay;
+  -o-transition: all $duration $delay;
+  transition: all $duration $delay;
+}
+
+@mixin rotate($value) {
+  -webkit-transform: rotate($value);
+  -moz-transform: rotate($value);
+  -o-transform: rotate($value);
+  transform: rotate($value);
+}
+
+@mixin scale($value) {
+  -webkit-transform: scale($value);
+  -moz-transform: scale($value);
+  -ms-transform: scale($value);
+  -o-transform: scale($value);
+  transform: scale($value);
+}
+
+@mixin boxSizing($model) {
+  -webkit-box-sizing: $model;
+  -moz-box-sizing: $model;
+  box-sizing: $model;
+}
+
+@mixin placeholder() {
+  &:disabled {
+    &::-moz-placeholder {
+      color: $inputDisabledPlaceholderColor;
+    }
+
+    &:-ms-input-placeholder {
+      color: $inputDisabledPlaceholderColor;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $inputDisabledPlaceholderColor;
+    }
+  }
+
+  &::-moz-placeholder {
+    color: $inputPlaceholderColor;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $inputPlaceholderColor;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $inputPlaceholderColor;
+  }
+}
+
+@mixin resetBtnStyles {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+@mixin defaultButtonStyle() {
+  margin-bottom: 0; // For input.btn
+  border: 1px solid transparent;
+  display: inline-block;
+  cursor: pointer;
+  font-family: $fontFamilyBase;
+  font-weight: normal;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  touch-action: manipulation;
+  background-image: none;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:active {
+    background-image: none;
+  }
+
+  &[disabled] {
+    @include opacity(0.65);
+    cursor: $cursorDisabled;
+    pointer-events: none;
+  }
+
+  .icon {
+    margin-right: 2px;
+  }
+}
+
+@mixin buttonSize($paddingVertical, $paddingHorizontal, $fontSize, $lineHeight, $borderRadius) {
+  padding: $paddingVertical $paddingHorizontal;
+  @include rounded($borderRadius);
+  line-height: $lineHeight;
+  font-size: $fontSize;
+  font-weight: 500;
+}
+
+@mixin buttonColor($color, $background, $borderColor) {
+  border-color: $borderColor;
+  color: $color;
+  background-color: $background;
+
+  &[disabled],
+  &:focus,
+  &:active {
+    border-color: $borderColor;
+    background-color: $background;
+  }
+
+  &:hover {
+    border-color: lighten($borderColor, 5%);
+    box-shadow: $btnShadow;
+    background-color: lighten($background, 5%);
+    color: $color;
+  }
+}
+
+@mixin alert($color, $background, $borderColor) {
+  border: 1px solid $borderColor;
+  color: $color;
+  background-color: $background;
+}
+
+@mixin H1Size () {
+  line-height: $lineHeightBase;
+  font-size: round($fontSizeBase * 2.572);
+  font-weight: 300;
+}
+
+@mixin H2Size () {
+  line-height: $lineHeightBase;
+  font-size: round($fontSizeBase * 2);
+  font-weight: 300;
+}
+
+@mixin H3Size () {
+  line-height: $lineHeightBase;
+  font-size: round($fontSizeBase * 1.857);
+  font-weight: 400;
+}
+
+@mixin H4Size () {
+  line-height: $lineHeightSmall;
+  font-size: round($fontSizeBase * 1.714);
+  font-weight: 400;
+}
+
+@mixin H5Size () {
+  line-height: $lineHeightSmall;
+  font-size: round($fontSizeBase * 1.286);
+  font-weight: 400;
+}
+
+@mixin H6Size () {
+  line-height: $lineHeightSmall;
+  font-size: round($fontSizeBase * 1.143);
+  font-weight: 500;
+}
