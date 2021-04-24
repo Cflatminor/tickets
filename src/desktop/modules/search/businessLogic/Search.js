@@ -9,7 +9,9 @@ class Search {
      * @returns {Promise}
      */
     getInitialProps() {
-        let result = {};
+        let result = {
+            filter: {}
+        };
 
         return new Promise((resolve) => {
             Promise.all([
@@ -29,6 +31,7 @@ class Search {
      */
     normalizeInitialProps(initialData, pageInfo) {
         return {
+            filter: initialData.filter,
             pageInfo
         };
     }
