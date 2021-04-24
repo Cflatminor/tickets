@@ -25,7 +25,7 @@ class Repository {
      * @param query {string}
      * @param success {Function}
      * @param error {Function}
-     * @return {Search}
+     * @return {Search1}
      */
     getItemsByQuery(query, success, error) {
         return this.httpClient

@@ -1,0 +1,29 @@
+.alert-default,
+.alert-info,
+.alert-success,
+.alert-warning,
+.alert-danger {
+  padding: 16px;
+  @include rounded($borderRadiusExtraLarge);
+  font-size: $fontSizeBase;
+}
+
+.alert-default {
+  @include alert($colorBlack, $alertDefaultBackground, $alertDefaultBorderColor);
+}
+
+.alert-info {
+  @include alert($colorBlack, $alertInfoBackground, $alertInfoBorderColor);
+}
+
+.alert-success {
+  @include alert($colorBlack, $alertSuccessBackground, $alertSuccessBorderColor);
+}
+
+.alert-warning {
+  @include alert($colorBlack, $alertWarningBackground, $alertWarningBorderColor);
+}
+
+.alert-danger {
+  @include alert($colorBlack, $alertDangerBackground, $alertDangerBorderColor);
+}

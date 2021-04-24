@@ -1,0 +1,12 @@
+$tabsItemColor: $colorGray;
+
+$tabsActiveItemColor: $colorPink;
+$tabsActiveItemBorderColor: $tabsActiveItemColor;
+
+//$tabsItemBackgroundByHover: lighten($colorBlack, 97%);
+$tabsItemBackgroundByHover: rgba(52, 92, 139, 0.04);
+
+$tabsItemVerticalPadding: ceil($paddingVerticalSmall * 2.3);
+$tabsItemHorizontalPadding: $paddingHorizontalSmall * 2;
+
+$tabsBodyMarginTop: $paddingHorizontalLarge * 2;

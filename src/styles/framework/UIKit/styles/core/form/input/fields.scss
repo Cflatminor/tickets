@@ -1,0 +1,86 @@
+label {
+  display: inline-block;
+  //max-width: 100%;
+  font-weight: bold;
+  color: $fontColorBase;
+
+  .form-control,
+  & + .form-control {
+    margin-top: 5px;
+  }
+}
+
+.form-control {
+  width: 100%;
+  max-width: 100%;
+  height: $inputHeight;
+  padding: $paddingVerticalBase $paddingHorizontalBase;
+  border: $inputBorder;
+  border-radius: $inputBorderRadius;
+  display: block;
+  @include boxSizing(border-box);
+  line-height: $lineHeightBase;
+  font-family: $fontFamilyBase;
+  font-size: $fontSizeBase;
+  color: $inputFontColor;
+  background-color: transparent;
+  background-image: none;
+
+  &:focus {
+    border-color: $inputFocusBorderColor;
+    outline: none;
+  }
+
+  &[disabled],
+  &[readonly] {
+    border-color: $inputDisabledBorderColor;
+    color: $inputDisabledPlaceholderColor;
+    //opacity: 1;
+    cursor: $cursorDisabled;
+    //background-color: $inputDisabledBackground;
+  }
+
+  &.error {
+    border-color: $errorColorBase;
+  }
+
+  @include placeholder();
+}
+
+select.form-control {
+  color: $fontColorBase;
+
+  &[disabled],
+  &[readonly] {
+    color: $inputDisabledPlaceholderColor;
+  }
+}
+
+textarea.form-control {
+  min-height: 150px;
+}
+
+.outlined-text-form {
+  position: relative;
+
+  label {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    outline: none;
+    font-weight: normal;
+    font-size: $fontSizeBase;
+  }
+
+  input:focus + label,
+  input:valid + label {
+    top: -8px;
+    font-size: $fontSizeSmall;
+    background: white;
+    padding: 0 6px;
+  }
+}

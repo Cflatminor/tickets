@@ -1,0 +1,34 @@
+.custom-input--radio {
+  //line-height: $lineHeightLarge;
+
+  input {
+    &:checked ~ .custom-input__state {
+      &:after {
+        border: 2px solid $radioCheckedBorderColor;
+      }
+
+      &:before {
+        border-color: $radioCheckedBorderColor;
+        background: $radioCheckedBackground;
+      }
+    }
+  }
+
+  .custom-input__state {
+    &:after {
+      width: 20px;
+      height: 20px;
+      @include boxSizing(border-box);
+      @include rounded(100%);
+    }
+
+    &:before {
+      width: 8px;
+      height: 8px;
+      margin: 6px 0 0 6px;
+      border: 1px solid transparent;
+      @include boxSizing(border-box);
+      @include rounded(100%);
+    }
+  }
+}

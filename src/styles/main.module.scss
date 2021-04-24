@@ -1,4 +1,9 @@
 //@import "reset.css";
+//@import "~bootstrap/scss/bootstrap-grid.scss";
+//@import "~bootstrap/scss/utilities/flex";
+
+@import "framework/base/main";
+
 @import "variables/main.scss";
 @import "mixin/main.scss";
 @import "helpers/main.scss";

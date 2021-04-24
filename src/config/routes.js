@@ -1,5 +1,5 @@
 const routes = require("next-routes");
 
 module.exports = routes()
-    .add("home", "/:subpath(ua|)?", "Home")
+    .add("search", "/:subpath(ua|)?", "Search")
     .add("about", "/:subpath(ua|)?/about", "About");

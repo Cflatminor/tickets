@@ -1,0 +1,12 @@
+$modalSMMaxWidth: 450px;
+$modalMDMaxWidth: 650px;
+$modalLGMaxWidth: 960px;
+$modalBodyMaxHeight: 450px;
+
+$modalBasePadding: ceil($paddingHorizontalLarge * 2);
+
+$modalTitleFontSize: $fontSizeLarge;
+
+$modalCloseButtonFontSize: ceil($fontSizeLarge * 1.5);
+
+$modalBackgroundOverlay: rgba(0, 0, 0, 0.1);

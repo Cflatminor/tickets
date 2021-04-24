@@ -1,0 +1,35 @@
+$btnShadow: $shadow5;
+$buttonBorderRadius: 50px;
+
+$btnDefaultColor: $colorWhite;
+$btnDefaultBackground: $colorPink;
+$btnDefaultBorderColor: $btnDefaultBackground;
+
+$btnDefaultOutlineColor: $colorPink;
+$btnDefaultOutlineBackground: rgba(0, 0, 0, 0);
+$btnDefaultOutlineHoverBackground: rgba(52, 92, 139, 0.03);
+$btnDefaultOutlineBorderColor: rgba(0, 0, 0, 0.12);
+
+$btnDefaultOutlineDisabledColor: lighten($colorGray, 15%);
+$btnDefaultOutlineDisabledBorderColor: lighten($btnDefaultOutlineBorderColor, 30%);
+
+$btnSuccessColor: $colorWhite;
+$btnSuccessBackground: $colorGreen;
+$btnSuccessBorderColor: $btnSuccessBackground;
+
+$btnDarkColor: $colorWhite;
+$btnDarkBackground: $colorDark;
+$btnDarkBorderColor: $btnDarkBackground;
+
+$btnLinkColor: $linkColor;
+$btnLinkBackground: transparent;
+$btnLinkBorderColor: $btnLinkBackground;
+
+$btnPaddingVerticalSmall: $paddingVerticalSmall;
+$btnPaddingHorizontalSmall: $paddingHorizontalSmall;
+
+$btnPaddingVerticalBase: $paddingVerticalBase;
+$btnPaddingHorizontalBase: $paddingHorizontalBase;
+
+$btnPaddingVerticalLarge: $paddingVerticalLarge;
+$btnPaddingHorizontalLarge: $paddingHorizontalLarge;

@@ -1,0 +1,24 @@
+$inputHeight: $lineHeightComputed + ($paddingVerticalBase * 2) + 2;
+$lineHeightForRadioButtons: 1.5;
+
+$inputBorder: 1px solid darken($borderColorBase, 50%);
+
+$inputBorderRadius: 10px;
+
+$inputFontColor: $colorBlack;
+
+$inputPlaceholderColor: $fontColorBase;
+$inputDisabledPlaceholderColor: lighten($fontColorBase, 40%);
+
+$inputDisabledBackground: lighten($colorBlack, 85%);
+$inputDisabledBorderColor: darken($inputDisabledBackground, 10%);
+
+$inputFocusBorderColor: lighten($colorPink, 10%);
+
+$checkboxCheckedBorderColor: $colorPink;
+$checkboxCheckedBackground: $checkboxCheckedBorderColor;
+
+$radioCheckedBorderColor: $colorPink;
+$radioCheckedBackground: $radioCheckedBorderColor;
+
+$animationBackgroundColor: lighten(rgba(52, 92, 139, 0.8), 60%);

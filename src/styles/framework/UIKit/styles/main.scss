@@ -1,0 +1,26 @@
+@import "variables/main.scss";
+@import "mixins/main.scss";
+
+.body {
+  font-family: $fontFamilyBase;
+  font-size: $fontSizeBase;
+  line-height: $lineHeightBase;
+  color: $fontColorBase;
+  background-color: $bodyBackgroundBase;
+  @include fontSmoothing();
+}
+
+a {
+  text-decoration: underline;
+  background-color: transparent;
+  color: $linkColor;
+
+  &:hover {
+    color: $linkColorHover;
+    text-decoration: none;
+  }
+}
+
+@import "icons/main";
+//@import "utilities/main.scss";
+//@import "core/main.scss";

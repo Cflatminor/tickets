@@ -23,7 +23,9 @@ class Tickets extends App {
         let {Component, ctx} = params,
             props = {
                 hasError: false,
-                pageInfo: {},
+                pageInfo: {
+                    language: Tickets.getLanguageByContext(ctx)
+                },
                 pageProps: {
                     breadcrumbs: [],
                     initialData: {}
@@ -37,10 +39,10 @@ class Tickets extends App {
         }
 
         return new Promise((resolve) => {
-            resolve(props);
+            resolve(props.pageInfo);
         }).then(() => new Promise((resolve) => {
             Promise.resolve(Component.getInitialProps(ctx, props)).then((initialData) => {
-                props.pageProps.initialData = Object.assign(initialData, props.pageProps.initialData);
+                props.pageProps.initialData = Object.assign({}, initialData, props.pageProps.initialData);
 
                 resolve(props);
             });
@@ -75,7 +77,7 @@ class Tickets extends App {
     }
 
     render() {
-        let {Component, pageProps} = this.props;
+        let {Component, hasError, pageProps, pageInfo} = this.props;
 
         return (
             <>
@@ -98,11 +100,22 @@ class Tickets extends App {
                     <AlfaBank />
                 )}
 
-                <Component {...pageProps} />
+                <Component hasError={hasError} {...pageProps} pageInfo={pageInfo} />
             </>
         );
     }
 }
+
+/**
+ * @static
+ * @method getCurrentUrlByContext
+ * @param context {Object}
+ * @returns {string}
+ */
+Tickets.getLanguageByContext = function (context) {
+    return "ru";
+    // return (context.req && context.req.language) || context.query.subpath || LanguageEnum.getInstance().getRuAsValue();
+};
 
 /**
  * @property

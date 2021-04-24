@@ -1,0 +1,33 @@
+.custom-input--checkbox {
+  input {
+    &:checked ~ .custom-input__state {
+      &:after {
+        border: 1px solid $checkboxCheckedBorderColor;
+        background-color: $checkboxCheckedBackground;
+      }
+
+      &:before {
+        top: 2px;
+        @include opacity(1);
+        @include rotate(40deg);
+      }
+    }
+  }
+
+  .custom-input__state {
+    &:after {
+      @include rounded($borderRadiusBase);
+    }
+
+    &:before {
+      top: 4px;
+      left: 6px;
+      width: 5px;
+      height: 10px;
+      opacity: 0;
+      border-left: 0 solid transparent;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+    }
+  }
+}
