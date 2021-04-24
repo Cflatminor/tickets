@@ -4,31 +4,49 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server.js",
-    "build": "next build",
-    "start": "next start"
+    "build": "cross-env NODE_ENV=production next build",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "hook": "cp hooks/pre-commit .git/hooks/pre-commit"
   },
   "engines": {
     "node": "14.16"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run hook"
+    }
+  },
+  "license": "ISC",
   "dependencies": {
+    "@next/bundle-analyzer": "^9.1.4",
+    "@zeit/next-css": "^0.2.1-canary.4",
+    "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-source-maps": "0.0.3",
     "abort-controller": "^3.0.0",
+    "bootstrap": "4.4.1",
     "browser-or-node": "^1.2.1",
     "classnames": "^2.2.6",
-    "cross-env": "^7.0.3",
-    "css-loader": "^5.2.1",
+    "cross-env": "^7.0.2",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
     "ismobilejs": "^1.1.1",
-    "isomorphic-fetch": "^3.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.19",
-    "next": "^10.1.4-canary.9",
+    "next": "9.5.0",
+    "next-compose-plugins": "^2.2.0",
+    "next-fonts": "^0.19.0",
+    "next-i18next": "^7.0.1",
     "next-routes": "^1.4.2",
+    "next-transpile-modules": "^4.0.0",
     "path-to-regexp": "^6.1.0",
     "promise-abortable": "^1.2.6",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "sass": "^1.32.8",
-    "style-loader": "^2.0.0"
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-autosuggest": "^10.0.2",
+    "react-dom": "^16.12.0",
+    "sass": "^1.26.10",
+    "swiper": "^5.4.5",
+    "webpack": "^4.44.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.3",
@@ -46,9 +64,8 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.3",
-    "mini-css-extract-plugin": "^1.5.0",
     "node-sass": "^4.13.0",
     "raw-loader": "^4.0.0",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^8.0.0"
   }
 }
