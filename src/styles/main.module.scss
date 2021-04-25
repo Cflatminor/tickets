@@ -11,7 +11,8 @@
 .body {
   font-size: $fontSizeBase;
   font-family: $fontFamilyBase;
-  background: $bodyBackgroundBase;
+  //background: $bodyBackgroundBase;
+  //background: $colorWhite;
   @include fontSmoothing();
 }
 
