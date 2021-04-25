@@ -11,9 +11,12 @@ class HeadCustom extends Head {
     // }
 
     getCssLinks(documentFiles) {
-        const { assetPrefix } = this.context;
-        const allFiles = documentFiles.allFiles;
-        const cssFiles = allFiles && allFiles.length ? allFiles.filter((f) => /.*\.css$/.test(f)) : [];
+        // const { assetPrefix } = this.context;
+        // const allFiles = documentFiles.allFiles;
+        // const cssFiles = allFiles && allFiles.length ? allFiles.filter((f) => /.*\.css$/.test(f)) : [];
+
+        const {assetPrefix, files} = this.context._documentProps;
+        const cssFiles = files && files.length ? files.filter((f) => /.*\.css$/.test(f)) : [];
 
         const cssLinks = [
             // <link
