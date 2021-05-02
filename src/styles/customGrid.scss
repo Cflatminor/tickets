@@ -1,0 +1,128 @@
+@import "./variables/main";
+
+.row {
+  margin-right: -4px;
+  margin-left: -4px;
+
+  .col,
+  [class^="col-"] {
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+
+  &.row--vertical-margins {
+    margin-bottom: -8px;
+
+    & >.col,
+    & > [class^="col-"] {
+      margin-bottom: 8px;
+    }
+  }
+
+  &.row--no-horizontal-margins {
+    margin-right: -15px;
+    margin-left: -15px;
+
+    & > .col,
+    & > [class^="col-"] {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+[class^="container-"] {
+  max-width: $maxContainerWidth;
+}
+
+
+@include before-md {
+  .row {
+    &.row--no-horizontal-sm-margins {
+      margin-right: -15px;
+      margin-left: -15px;
+
+      & > .col,
+      & > [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@include before-xl {
+  .row {
+    &.row--no-horizontal-margins-before-xl {
+      margin-right: -15px;
+      margin-left: -15px;
+
+      & > .col,
+      & > [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@include before-lg {
+  .row {
+    &.row--no-horizontal-margins-before-lg {
+      margin-right: -15px;
+      margin-left: -15px;
+
+      & > .col,
+      & > [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@include md {
+  .row {
+    margin-right: -8px;
+    margin-left: -8px;
+
+    .col,
+    [class^="col-"] {
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+
+    &.row--vertical-margins {
+      margin-bottom: -12px;
+
+      & >.col,
+      & > [class^="col-"] {
+        margin-bottom: 12px;
+      }
+    }
+
+    &.row--no-horizontal-margins {
+      margin-right: -19px;
+      margin-left: -19px;
+
+      .col, [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $maxContainerWidth) {
+  .row {
+    &.row--no-horizontal-margins {
+      margin-right: -8px;
+      margin-left: -8px;
+
+      .col, [class^="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
