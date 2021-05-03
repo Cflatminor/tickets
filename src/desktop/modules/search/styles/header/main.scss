@@ -1,0 +1,70 @@
+.search__header {
+  background: #85b0ff;
+  color: $colorWhite;
+  padding: 16px 0; // todo temp
+}
+
+.search__title {
+  h1 {
+    color: inherit;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+
+/*********************/
+.temp { // todo classname
+  .temp__form {
+    height: 70px;
+  }
+
+  input,
+  label {
+    background: #2E3035;
+    color: inherit;
+  }
+
+  .outlined-text-form {
+    &:first-child {
+      input {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+    }
+
+    &:last-child {
+      input {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+
+  input {
+    border: 2px solid transparent;
+    border-radius: 0;
+    height: 100%;
+
+    &:focus {
+      border: 2px solid #FFCC00;
+
+      + label {
+        background: transparent;
+        color: inherit;
+      }
+    }
+  }
+}
+
+.outlined-text-form {
+  width: 100%;
+}
+
+.to-search-results {
+  border-radius: 8px;
+  min-width: 150px;
+  margin-left: 12px;
+  font-size: 22px;
+}
