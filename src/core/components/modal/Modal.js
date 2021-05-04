@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import classnames from "classnames";
 
-import Dom from "app/core/utilites/dom";
+import Dom from "app/core/utilities/dom";
 import ModalDialog from "app/core/services/modalDialog";
 
 class Modal extends React.Component {

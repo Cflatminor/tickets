@@ -1,4 +1,4 @@
-import LocalStorage from "app/core/utilites/storage/localStorage/LocalStorage";
+import LocalStorage from "app/core/utilities/storage/localStorage/LocalStorage";
 
 let localStorage = new LocalStorage();
 

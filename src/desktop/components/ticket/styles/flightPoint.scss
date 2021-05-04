@@ -1,0 +1,20 @@
+.flight-point {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+
+  .flight-point__time {
+    margin-bottom: 5px;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 28px;
+    color: $colorBlack;
+  }
+}
+
+@include md() {
+  .flight-point {
+    flex-direction: column;
+  }
+}

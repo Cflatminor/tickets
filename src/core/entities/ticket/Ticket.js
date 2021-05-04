@@ -24,19 +24,19 @@ class Ticket extends Entity {
 
     /**
      * @public
-     * @method getForwardFlight
+     * @method getForwardFlights
      * @returns {Flight[]}
      */
-    getForwardFlight() {
+    getForwardFlights() {
         return (this.entity.forward || []).map((item) => new Flight(item));
     }
 
     /**
      * @public
-     * @method getBackwardFlight
+     * @method getBackwardFlights
      * @returns {Flight[]}
      */
-    getBackwardFlight() {
+    getBackwardFlights() {
         return (this.entity.backward || []).map((item) => new Flight(item));
     }
 

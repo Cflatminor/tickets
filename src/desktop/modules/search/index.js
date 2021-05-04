@@ -1,5 +1,7 @@
 import React from "react";
 
+import Env from "app/core/environment";
+
 import Repository from "./businessLogic/repository/Repository";
 import Presenter from "./businessLogic/Presenter";
 import Search from "./businessLogic/Search";
@@ -34,7 +36,7 @@ let search = new Search({
 
 export default {
     getView(initialData, pageInfo) {
-        // Env.getInstance().setLanguage(pageInfo.language);
+        Env.getInstance().setLanguage(pageInfo.language);
 
         return <View options={{initialData, presenter}} />;
     },

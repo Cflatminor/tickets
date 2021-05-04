@@ -109,5 +109,7 @@ export default {
     home: "Головна",
     allSearchResults: "Всі результати пошуку",
     informed: "Ознайомлений",
-    asList: "Списком"
+    asList: "Списком",
+    transfers: "Пересадки",
+    inTransit: "В дорозі"
 };

@@ -1,5 +1,5 @@
 import Env from "app/core/environment";
-import LanguageEnum from "app/core/utilites/enum/language";
+import LanguageEnum from "app/core/utilities/enum/language";
 
 import stringsRU from "./strings/ru";
 import stringsUA from "./strings/ua";

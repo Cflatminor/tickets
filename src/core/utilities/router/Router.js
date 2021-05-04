@@ -1,7 +1,7 @@
 import _ from "lodash";
 import {routes, Router as NextRouter} from "config/routes";
 
-import Observer from "app/core/utilites/observer/Observer";
+import Observer from "app/core/utilities/observer/Observer";
 
 class Router {
     constructor() {
