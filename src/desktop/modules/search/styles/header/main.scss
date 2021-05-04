@@ -1,15 +1,16 @@
 .search__header {
   background: #85b0ff;
   color: $colorWhite;
-  padding: 16px 0;
+  padding: 70px 0 65px 0;
 }
 
 .search__title {
-  h1 {
-    color: inherit;
-  }
+  margin: 0 0 24px 0;
+  font-size: 44px;
+  color: inherit;
+}
 
-  p {
-    font-size: 20px;
-  }
+.search__subtitle {
+  margin: 0;
+  font-size: 20px;
 }
