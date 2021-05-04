@@ -46,6 +46,31 @@ class ArrivalDate extends React.Component {
      * @returns {React.ReactElement}
      */
     render() {
+        const MONTHS = [
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь'
+        ];
+        const WEEKDAYS_LONG = [
+            'Воскресение',
+            'Понедельник',
+            'Вторник',
+            'Среда',
+            'Четверг',
+            'Пятница',
+            'Суббота'
+        ];
+        const WEEKDAYS_SHORT = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+
         return (
             <div className="outlined-text-form">
                 <input
@@ -65,6 +90,9 @@ class ArrivalDate extends React.Component {
                 <Datepicker
                     className={classnames("", {"d-none": !this.state.isSelectingDate})}
                     onDayClick={this._onDateSelect}
+                    months={MONTHS}
+                    weekdaysLong={WEEKDAYS_LONG}
+                    weekdaysShort={WEEKDAYS_SHORT}
                 />
             </div>
         );

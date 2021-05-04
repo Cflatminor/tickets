@@ -1,6 +1,6 @@
 import React from "react";
 
-import Destination from "./Destination";
+import DestinationPoint from "./DestinationPoint";
 import DeparturePoint from "./DeparturePoint";
 import ArrivalDate from "./ArrivalDate";
 import DepartureDate from "./DepartureDate";
@@ -17,7 +17,7 @@ class Route extends React.Component {
                                 <div className="route__inputs d-flex w-100">
                                     <DeparturePoint />
 
-                                    <Destination />
+                                    <DestinationPoint />
 
                                     <ArrivalDate />
 

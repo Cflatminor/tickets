@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 import Autocomplete from "core/components/autocomplete/Autocomplete";
 
-class DeparturePoint extends React.Component {
+class DestinationPoint extends React.Component {
     constructor(props) {
         super(props);
 
@@ -18,7 +18,9 @@ class DeparturePoint extends React.Component {
 
     _getItemsByQuery(query, success) {
         let items = ["qw", "qwe", "qwer", "qwert", "qwerty", "qwertyu"],
-            result = items.filter((item) => item.includes(query)).map((item) => ({getName: () => item}));
+            result = items
+                .filter((item) => item.includes(query))
+                .map((item) => ({getName: () => item}));
 
         if (query.length > 2) {
             success(result);
@@ -54,11 +56,11 @@ class DeparturePoint extends React.Component {
                 />
 
                 <label>
-                    Откуда <span className="icon icon-cart-check" />
+                    Куда <span className="icon icon-cart-check" />
                 </label>
             </div>
         );
     }
 }
 
-export default DeparturePoint;
+export default DestinationPoint;
