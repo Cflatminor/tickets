@@ -1,3 +1,116 @@
 @import "./src/styles/variables/main";
 @import "./src/styles/mixin/main";
 
+.ticket {
+  @import "flight";
+  @import "flightPoint";
+  @import "flightTransfer";
+
+  max-width: 900px;
+  min-height: 170px;
+  //border: 1px solid red;
+  display: flex;
+  border-radius: 10px;
+  background: $colorWhite;
+
+  .ticket__body {
+    width: 100%;
+    max-width: 80%;
+    display: flex;
+  }
+
+  .ticket__footer {
+    width: 100%;
+    max-width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ticket__flights {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $borderColorBase;
+  }
+
+  .ticket__flight {
+    flex-direction: column;
+  }
+
+  .ticket__buy-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ticket__forward-flights,
+  .ticket__backward-flights {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticket__backward-flights {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid $borderColorBase;
+  }
+
+  .price {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .ticket__to-buy {
+    margin-top: 15px;
+  }
+}
+
+
+@include before-md() {
+  .ticket {
+    flex-direction: column;
+
+    .ticket__body,
+    .ticket__footer {
+      max-width: 100%;
+    }
+
+    .ticket__footer {
+      padding: 0 24px;
+    }
+
+    .ticket__flights {
+      max-width: 100%;
+      border: none;
+    }
+
+    .ticket__buy-block {
+      width: 100%;
+      padding: 24px 0;
+      border-top: 1px solid $borderColorBase;
+      flex-direction: row;
+      justify-content: space-between;
+
+      button {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@include md() {
+  .ticket {
+    .ticket__flight {
+      flex-direction: row;
+    }
+
+    .flight__about-route {
+      display: block;
+    }
+  }
+}

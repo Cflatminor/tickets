@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import Queue from "app/core/utilites/queue/Queue";
+import Queue from "app/core/utilities/queue/Queue";
 
 class RequestQueue {
     constructor() {

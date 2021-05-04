@@ -1,6 +1,6 @@
 import Entity from "app/core/entities/Entity";
 import AirlineCompany from "app/core/entities/airlineCompany/AirlineCompany";
-import FlightPoint from "app/core/entities/flightPoint/FlightPoint";
+import FlightPoint from "app/core/entities/flight/FlightPoint";
 import Baggage from "app/core/entities/baggage/Baggage";
 
 class Flight extends Entity {

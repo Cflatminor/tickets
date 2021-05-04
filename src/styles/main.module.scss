@@ -1,6 +1,6 @@
 //@import "reset.css";
-//@import "~bootstrap/scss/bootstrap-grid.scss";
-//@import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/bootstrap-grid.scss";
+@import "~bootstrap/scss/utilities/flex";
 
 @import "framework/base/main";
 
@@ -8,11 +8,10 @@
 @import "mixin/main.scss";
 @import "helpers/main.scss";
 
-.body {
+body {
   font-size: $fontSizeBase;
   font-family: $fontFamilyBase;
-  //background: $bodyBackgroundBase;
-  //background: $colorWhite;
+  background: $bodyBackgroundBase;
   @include fontSmoothing();
 }
 

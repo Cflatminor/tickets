@@ -1,6 +1,6 @@
 import Env from "app/core/environment";
 import Resource from "app/core/resource";
-import Strings from "app/core/utilites/strings";
+import Strings from "app/core/utilities/strings";
 
 import Translator from "./Translator";
 
