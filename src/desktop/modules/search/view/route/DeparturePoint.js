@@ -1,63 +1,58 @@
 import React from "react";
-// import Autosuggest from "react-autosuggest";
+import classnames from "classnames";
+
+import Autocomplete from "core/components/autocomplete/Autocomplete";
 
 class DeparturePoint extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.state = {
-        // value: "",
-        // isDisabled: false
-        // suggestions: [],
-        // selectedSuggestion: null
-        // };
+        this.state = {
+            isFocused: false
+        };
 
-        // this._onChange = this._onChange.bind(this);
-        this._getSuggestions = this._getSuggestions.bind(this);
-        this._getSuggestionValue = this._getSuggestionValue.bind(this);
-        this._renderSuggestion = this._renderSuggestion.bind(this);
+        this._getItemsByQuery = this._getItemsByQuery.bind(this);
+        this._onFocus = this._onFocus.bind(this);
+        this._onBlur = this._onBlur.bind(this);
     }
 
-    _getSuggestions() {
-        return [{value: "a"}, {value: "ab"}, {value: "abc"}, {value: "abcd"}];
+    _getItemsByQuery(query, success) {
+        let items = ["qw", "qwe", "qwer", "qwert", "qwerty", "qwertyu"],
+            result = items.filter((item) => item.includes(query)).map((item) => ({getName: () => item}));
+
+        if (query.length > 2) {
+            success(result);
+        } else {
+            success([]);
+        }
     }
 
-    _getSuggestionValue(suggestion) {
-        return suggestion.value;
+    _onFocus() {
+        this.setState({
+            isFocused: true
+        });
     }
 
-    _renderSuggestion(suggestion) {
-        return (
-            <a href="#">{suggestion.value}</a>
-        );
+    _onBlur() {
+        this.setState({
+            isFocused: false
+        });
     }
 
-    // _onChange(event, { newValue }) {
-    //     this.setState({
-    //         value: newValue
-    //     });
-    // }
-
+    /**
+     * @public
+     * @method render
+     * @returns {React.ReactElement}
+     */
     render() {
-        // const inputProps = {
-        //     placeholder: 'Поиск препарата',
-        //     value: this.state.value,
-        //     disabled: this.state.isDisabled,
-        //     onChange: this._onChange
-        //     // onFocus: this.props.focus,
-        //     // onKeyPress: this.onSearchKeyPress
-        // };
-
         return (
-            <div className="outlined-text-form">
-                <input type="text" className="form-control" required />
-                {/*<Autosuggest*/}
-                {/*    suggestions={this._getSuggestions}*/}
-                {/*    getSuggestionValue={this._getSuggestionValue}*/}
-                {/*    onSuggestionsFetchRequested={() => {}}*/}
-                {/*    renderSuggestion={this._renderSuggestion}*/}
-                {/*    inputProps={inputProps}*/}
-                {/*/>*/}
+            <div className={classnames("outlined-text-form", {focused: this.state.isFocused})}>
+                {/*<input type="text" className="form-control" required />*/}
+                <Autocomplete
+                    getItemsByQuery={this._getItemsByQuery}
+                    onFocus={this._onFocus}
+                    _onBlur={this._onBlur}
+                />
 
                 <label>
                     Откуда <span className="icon icon-cart-check" />

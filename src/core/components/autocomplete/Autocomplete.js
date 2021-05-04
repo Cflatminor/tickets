@@ -126,8 +126,18 @@ class Autocomplete extends React.Component {
      * @returns {string}
      */
     renderItem(item) {
+        let string = item.getName().split("").reverse(),
+            lastChars = string.splice(0, (string.length - this.state.queryString.length)).reverse().join("");
+
         return (
-            <a href="#">{ item.getName() }</a>
+            <a href="#">
+                <span className="item__query f-weight-9">
+                    { this.state.queryString }
+                </span>
+                <span className="item__last-chars">
+                    { lastChars }
+                </span>
+            </a>
         );
     }
 
@@ -140,6 +150,8 @@ class Autocomplete extends React.Component {
             autoFocus: true,
             placeholder: this.placeholder,
             value: this.state.queryString,
+            onFocus: this.props.onFocus,
+            onBlur: this.props.onBlur,
             onChange: this.changeQuery,
             className: "form-control"
         }
@@ -154,7 +166,7 @@ class Autocomplete extends React.Component {
                         onSuggestionSelected={this.selectItem}
                         getSuggestionValue={this.getItemName}
                         renderSuggestion={this.renderItem}
-                        alwaysRenderSuggestions={true}
+                        alwaysRenderSuggestions={false}
                         inputProps={inputProps}
                     />
                 </div>
@@ -167,13 +179,17 @@ Autocomplete.propTypes = {
     placeholder: PropTypes.string,
     queryString: PropTypes.string,
     selectItem: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     getItemsByQuery: PropTypes.func.isRequired
 };
 
 Autocomplete.defaultProps = {
     placeholder: "выбрать",
     queryString: "",
-    selectItem: () => {}
+    selectItem: () => {},
+    onFocus: () => {},
+    onBlur: () => {}
 };
 
 export default Autocomplete;

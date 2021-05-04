@@ -55,6 +55,7 @@ module.exports = withPlugins(
 
             Object.assign(config.resolve.alias, {
                 app: path.resolve(__dirname, "./src"),
+                core: path.resolve(__dirname, "./src/core"),
                 desktop: path.resolve(__dirname, "./src/desktop"),
                 components: path.resolve(__dirname, "./src/desktop/components"),
                 config: path.resolve(__dirname, "./src/config"),
