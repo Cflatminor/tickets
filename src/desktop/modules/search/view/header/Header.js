@@ -31,12 +31,12 @@ class Header extends React.Component {
                     </div>
                 </div>
 
-                <div className="search__temp temp">
+                <div className="search__route route">
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col">
-                                <div className="temp__form d-flex">
-                                    <div className="temp__inputs d-flex w-100">
+                                <div className="route__form d-flex">
+                                    <div className="route__inputs d-flex w-100">
                                         <DeparturePoint />
 
                                         <Destination />
