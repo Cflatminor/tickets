@@ -35,7 +35,16 @@ class FlightPoint extends Entity {
      * @returns {string}
      */
     getTime() {
-        return "";
+        return this.entity.time || "";
+    }
+
+    /**
+     * @public
+     * @method getDate
+     * @returns {string}
+     */
+    getDate() {
+        return this.entity.date || "";
     }
 
     /**
@@ -44,7 +53,7 @@ class FlightPoint extends Entity {
      * @returns {string}
      */
     getTotalTime() {
-        return "";
+        return this.entity.totalTime || "";
     }
 }
 

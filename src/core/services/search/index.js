@@ -1,6 +1,6 @@
 import Env from "app/core/environment";
 
-import HttpClient from "app/core/utilites/httpClient/HttpClient";
+import HttpClient from "app/core/utilities/httpClient/HttpClient";
 
 import Repository from "./repository/Repository";
 import Search from "./Search";

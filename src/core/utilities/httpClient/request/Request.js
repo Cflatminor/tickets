@@ -1,9 +1,9 @@
 import Promise from "promise-abortable";
 
 import Env from "app/core/environment";
-import Observer from "app/core/utilites/observer/Observer";
-import LocalStorage from "app/core/utilites/storage/localStorage";
-import LocalStorageNameEnum from "app/core/utilites/enum/localStorageName";
+import Observer from "app/core/utilities/observer/Observer";
+import LocalStorage from "app/core/utilities/storage/localStorage";
+import LocalStorageNameEnum from "app/core/utilities/enum/localStorageName";
 
 import HttpDataType from "../HttpDataType";
 import HttpResponseType from "../HttpResponseType";

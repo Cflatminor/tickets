@@ -1,0 +1,38 @@
+.flight-transfer {
+  .flight-transfer__route {
+    border-top: 2px solid #D9DBE9;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .flight-transfer__transfer-count {
+    text-align: center;
+  }
+
+  .flight-transfer__start-flight-point,
+  .flight-transfer__end-flight-point {
+    width: 8px;
+    height: 8px;
+    margin-top: -5px;
+    border-radius: 100%;
+    background: #D9DBE9;
+  }
+
+  .flight-transfer__transit-flight-point {
+    margin-top: -5px;
+
+    .transit-flight-point__marker {
+      width: 8px;
+      height: 8px;
+      margin: auto;
+      border-radius: 100%;
+      border: 1px solid $colorBlack;
+      background: $colorWhite;
+    }
+
+    .transit-flight-point__airport-code {
+      margin-top: 5px;
+      color: $colorGreen;
+    }
+  }
+}

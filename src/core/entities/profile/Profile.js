@@ -1,7 +1,7 @@
 import Entity from "app/core/entities/Entity";
 import Image from "app/core/entities/image/Image";
 import Bonus from "app/core/entities/bonus/Bonus";
-import Strings from "app/core/utilites/strings";
+import Strings from "app/core/utilities/strings";
 
 class Profile extends Entity {
     constructor(props) {

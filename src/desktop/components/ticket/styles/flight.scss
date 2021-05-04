@@ -1,0 +1,77 @@
+.flight {
+  width: 100%;
+  display: flex;
+
+  .flight__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flight__airline-company,
+  .flight__aircraft-identifier {
+    margin-right: 24px;
+  }
+
+  .flight__body,
+  .flight__departure,
+  .flight__about-route,
+  .flight__arrival {
+    margin-top: 20px;
+  }
+
+  .flight__airline-company,
+  .flight__aircraft-identifier,
+  .flight__departure,
+  .flight__arrival {
+    flex-shrink: 0;
+  }
+
+  .flight__airline-company {
+    width: 120px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      max-height: 56px;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  .flight__about-route {
+    width: 100%;
+    //outline: 1px solid red;
+  }
+
+  .flight__total-time {
+    text-align: center;
+  }
+
+  .flight__transfers {
+    margin-top: 10px;
+  }
+}
+
+@include md() {
+  .flight {
+    .flight__body {
+      flex-direction: row;
+    }
+
+    .flight__body,
+    .flight__departure,
+    .flight__arrival {
+      margin-top: 0;
+    }
+
+    .flight__about-route {
+      max-width: 200px;
+      margin: 0 40px;
+      //outline: 1px solid red;
+    }
+  }
+}

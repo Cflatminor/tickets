@@ -1,0 +1,39 @@
+@import "./src/styles/variables/main";
+
+.price {
+  display: inline-block;
+  font-size: 36px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.87);  // TODO
+  font-weight: 500;
+  white-space: nowrap;
+
+  &.price--old {
+    font-size: 22px;
+    color: $colorGray;
+
+    .price__value {
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: 48%;
+        background-color: $colorLightRed;
+      }
+    }
+  }
+
+  .price__value {
+    margin-right: 0.3ch;
+  }
+
+  .price__currency {
+    font-size: 70%;
+  }
+}

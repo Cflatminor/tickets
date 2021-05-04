@@ -10,7 +10,7 @@ import SourceTypeEnum from "app/core/utilities/enum/sourceType";
 let RosselkhozBank = dynamic(import("components/dynamicImports/styles/framework/RosselkhozBank")),
     AlfaBank = dynamic(import("components/dynamicImports/styles/framework/AlfaBank"));
 
-import 'styles/main.module.scss';
+import "styles/main.module.scss";
 
 class Tickets extends App {
     constructor(props) {

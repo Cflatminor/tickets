@@ -8,7 +8,7 @@
     }
 
     .p#{$classSuffix}-#{$size} {
-        padding#{$suffix}: #{$size}px;
+        padding#{$suffix}: #{$size}px !important;
     }
 }
 

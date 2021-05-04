@@ -1,4 +1,4 @@
-import Observer from "app/core/utilites/observer/Observer";
+import Observer from "app/core/utilities/observer/Observer";
 
 import ModalDialog from "./ModalDialog";
 

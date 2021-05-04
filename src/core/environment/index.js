@@ -1,4 +1,4 @@
-import LanguageEnum from "app/core/utilites/enum/language";
+import LanguageEnum from "app/core/utilities/enum/language";
 
 import Env from "./Env";
 

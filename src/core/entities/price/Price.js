@@ -12,6 +12,24 @@ class Price extends Entity {
 
     /**
      * @public
+     * @method getCurrency
+     * @returns {string}
+     */
+    getCurrency() {
+        return this.entity.currency?.description || "";
+    }
+
+    /**
+     * @public
+     * @method getCurrencyCode
+     * @returns {string}
+     */
+    getCurrencyCode() {
+        return this.entity.currency?.code || "";
+    }
+
+    /**
+     * @public
      * @method getCurrent
      * @returns {number}
      */
