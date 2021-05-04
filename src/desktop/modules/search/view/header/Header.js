@@ -1,16 +1,12 @@
 import React from "react";
 
-// import Datepicker from "t-datepicker";
+import Destination from "./Destination";
+import DeparturePoint from "./DeparturePoint";
+import ArrivalDate from "./ArrivalDate";
+import DepartureDate from "./DepartureDate";
+import Passengers from "./Passengers";
 
 class Header extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
-    componentDidMount() {
-        // console.log(Datepicker);
-    }
-
     /**
      * @public
      * @method render
@@ -41,45 +37,15 @@ class Header extends React.Component {
                             <div className="col">
                                 <div className="temp__form d-flex">
                                     <div className="temp__inputs d-flex w-100">
-                                        <div className="outlined-text-form">
-                                            <input type="text" className="form-control" required />
+                                        <DeparturePoint />
 
-                                            <label htmlFor="user-name">
-                                                Откуда <span className="icon icon-cart-check" />
-                                            </label>
-                                        </div>
+                                        <Destination />
 
-                                        <div className="outlined-text-form">
-                                            <input type="text" className="form-control" required />
+                                        <ArrivalDate />
 
-                                            <label htmlFor="user-name">
-                                                Куда <span className="icon icon-cart-check" />
-                                            </label>
-                                        </div>
+                                        <DepartureDate />
 
-                                        <div className="outlined-text-form">
-                                            <input type="text" className="form-control" required />
-
-                                            <label htmlFor="user-name">
-                                                Туда <span className="icon icon-cart-check" />
-                                            </label>
-                                        </div>
-
-                                        <div className="outlined-text-form">
-                                            <input type="text" className="form-control" required />
-
-                                            <label htmlFor="user-name">
-                                                Обратно <span className="icon icon-cart-check" />
-                                            </label>
-                                        </div>
-
-                                        <div className="outlined-text-form">
-                                            <input type="text" className="form-control" required />
-
-                                            <label htmlFor="user-name">
-                                                1 пассажир <span className="icon icon-cart-check" />
-                                            </label>
-                                        </div>
+                                        <Passengers />
                                     </div>
 
                                     <button
