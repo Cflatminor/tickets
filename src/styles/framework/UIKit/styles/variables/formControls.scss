@@ -13,12 +13,12 @@ $inputDisabledPlaceholderColor: lighten($fontColorBase, 40%);
 $inputDisabledBackground: lighten($colorBlack, 85%);
 $inputDisabledBorderColor: darken($inputDisabledBackground, 10%);
 
-$inputFocusBorderColor: lighten($colorPink, 10%);
+$inputFocusBorderColor: lighten($colorGreen, 10%);
 
-$checkboxCheckedBorderColor: $colorPink;
+$checkboxCheckedBorderColor: $colorGreen;
 $checkboxCheckedBackground: $checkboxCheckedBorderColor;
 
-$radioCheckedBorderColor: $colorPink;
+$radioCheckedBorderColor: $colorGreen;
 $radioCheckedBackground: $radioCheckedBorderColor;
 
 $animationBackgroundColor: lighten(rgba(52, 92, 139, 0.8), 60%);

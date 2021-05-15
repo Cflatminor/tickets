@@ -2,11 +2,16 @@
 @import "./src/styles/mixin/main";
 //@import "./src/styles/helpers/main";
 
+@import "~nouislider/distribute/nouislider.css";
+
 @import "./src/desktop/layouts/main/styles/main";
 @import "./src/desktop/components/price/styles/main";
+@import "./src/desktop/components/timeSlider/styles/main";
 @import "./src/desktop/components/ticket/styles/main";
 
 .search {
+  @import "filter/main";
+
   .search__header {
     background: #1D1E20;
     color: $colorWhite;
@@ -16,39 +21,8 @@
     color: inherit;
   }
 
-  /*********************/
-  .temp {
-    height: 70px;
-
-    input,
-    label {
-      background: #2E3035;
-      color: inherit;
-    }
-
-    .outlined-text-form {
-      &:first-child {
-        input {
-          border-top-left-radius: 8px;
-          border-bottom-left-radius: 8px;
-        }
-      }
-    }
-
-    input {
-      height: 100%;
-
-      &:focus {
-        + label {
-          background: #2E3035;
-          color: inherit;
-        }
-      }
-    }
-  }
-
-  button {
-    border-radius: 8px;
+  .search__body {
+    margin-top: 150px;
   }
 
 }

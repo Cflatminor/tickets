@@ -7,8 +7,8 @@ import {isNode} from "browser-or-node";
 
 import SourceTypeEnum from "app/core/utilities/enum/sourceType";
 
-let RosselkhozBank = dynamic(import("components/dynamicImports/styles/framework/RosselkhozBank")),
-    AlfaBank = dynamic(import("components/dynamicImports/styles/framework/AlfaBank"));
+// let RosselkhozBank = dynamic(import("components/dynamic/styles/framework/RosselkhozBank")),
+//     AlfaBank = dynamic(import("components/dynamic/styles/framework/AlfaBank"));
 
 import "styles/main.module.scss";
 
@@ -92,13 +92,13 @@ class Tickets extends App {
                     {/*<link rel="manifest" href="/manifest.json"/>*/}
                 </Head>
 
-                {this._isRosselkhozBank() && (
-                    <RosselkhozBank />
-                )}
+                {/*{this._isRosselkhozBank() && (*/}
+                {/*    <RosselkhozBank />*/}
+                {/*)}*/}
 
-                {this._isAlfaBank() && (
-                    <AlfaBank />
-                )}
+                {/*{this._isAlfaBank() && (*/}
+                {/*    <AlfaBank />*/}
+                {/*)}*/}
 
                 <Component hasError={hasError} {...pageProps} pageInfo={pageInfo} />
             </>
