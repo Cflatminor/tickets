@@ -139,6 +139,7 @@ class Ticket extends React.Component {
                         />
 
                         <button
+                            type="button"
                             className="btn-default btn-md ticket__to-buy"
                             onClick={this._select}
                         >

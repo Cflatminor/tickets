@@ -2,6 +2,7 @@
 @import "./src/styles/mixin/main";
 //@import "./src/styles/helpers/main";
 
+@import '~react-day-picker/lib/style.css';
 @import "~nouislider/distribute/nouislider.css";
 
 @import "./src/desktop/layouts/main/styles/main";
@@ -10,21 +11,9 @@
 @import "./src/desktop/components/ticket/styles/main";
 
 .search {
+  @import "header/main";
+  @import "route/main";
   @import "filter/main";
-
-  .search__header {
-    background: #1D1E20;
-    color: $colorWhite;
-  }
-
-  .search__title {
-    color: inherit;
-  }
-
-  .search__body {
-    margin-top: 150px;
-  }
-
 }
 
 //@import "mediaQueries";
