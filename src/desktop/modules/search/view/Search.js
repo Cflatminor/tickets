@@ -5,12 +5,19 @@ import TicketEntity from "app/core/entities/ticket/Ticket";
 import Ticket from "components/ticket/Ticket";
 
 import Header from "./header/Header";
+import Filter from "./filter/Filter";
 
 class Search extends React.Component {
     constructor(props) {
         super(props);
 
-        this.tickets = [
+        /**
+         * @property _filter
+         * @type {Filter}
+         */
+        this._filter = props.options.initialData.filter;
+
+        this._tickets = [
             {
                 "id": "jbdfklm",
                 "sticker": {
@@ -67,24 +74,24 @@ class Search extends React.Component {
                                 "aircraftNumber": "Airbus A321",
                                 "baggage": {},
                                 "departure": {
-                                    "countryName": "",
-                                    "cityName": "",
+                                    "countryName": "Страна вылета",
+                                    "cityName": "Город вылета",
                                     "airport": {
-                                        "name": "",
-                                        "code": ""
-                                    },
-                                    "time": "",
-                                    "date": ""
-                                },
-                                "arrival": {
-                                    "countryName": "",
-                                    "cityName": "",
-                                    "airport": {
-                                        "name": "",
+                                        "name": "Название аэропорта",
                                         "code": "DDD"
                                     },
-                                    "time": "",
-                                    "date": ""
+                                    "time": "17:45",
+                                    "date": "23.05.2021"
+                                },
+                                "arrival": {
+                                    "countryName": "Страна прибытия",
+                                    "cityName": "Город прибытия",
+                                    "airport": {
+                                        "name": "Название аэропорта",
+                                        "code": "DDD"
+                                    },
+                                    "time": "15:45",
+                                    "date": "23.05.2021"
                                 },
                                 "totalTime": "2ч (общее время пересадки)"
                             },
@@ -100,24 +107,24 @@ class Search extends React.Component {
                                 "aircraftNumber": "Airbus A321",
                                 "baggage": {},
                                 "departure": {
-                                    "countryName": "",
-                                    "cityName": "",
+                                    "countryName": "Страна вылета",
+                                    "cityName": "Город вылета",
                                     "airport": {
-                                        "name": "",
-                                        "code": ""
-                                    },
-                                    "time": "",
-                                    "date": ""
-                                },
-                                "arrival": {
-                                    "countryName": "",
-                                    "cityName": "",
-                                    "airport": {
-                                        "name": "",
+                                        "name": "Название аэропорта",
                                         "code": "RGK"
                                     },
-                                    "time": "",
-                                    "date": ""
+                                    "time": "20:45",
+                                    "date": "23.05.2021"
+                                },
+                                "arrival": {
+                                    "countryName": "Страна прибытия",
+                                    "cityName": "Город прибытия",
+                                    "airport": {
+                                        "name": "Airport name",
+                                        "code": "RGK"
+                                    },
+                                    "time": "18:45",
+                                    "date": "23.05.2021"
                                 },
                                 "totalTime": "2ч (общее время пересадки)"
                             }
@@ -176,24 +183,24 @@ class Search extends React.Component {
                                 "aircraftNumber": "Airbus A321",
                                 "baggage": {},
                                 "departure": {
-                                    "countryName": "",
-                                    "cityName": "",
+                                    "countryName": "Страна вылета",
+                                    "cityName": "Город вылета",
                                     "airport": {
-                                        "name": "",
-                                        "code": ""
-                                    },
-                                    "time": "",
-                                    "date": ""
-                                },
-                                "arrival": {
-                                    "countryName": "",
-                                    "cityName": "",
-                                    "airport": {
-                                        "name": "",
+                                        "name": "Название аэропорта",
                                         "code": "fff"
                                     },
-                                    "time": "",
-                                    "date": ""
+                                    "time": "20:45",
+                                    "date": "28.05.2021"
+                                },
+                                "arrival": {
+                                    "countryName": "Страна прибытия",
+                                    "cityName": "Город прибытия",
+                                    "airport": {
+                                        "name": "Название аэропорта",
+                                        "code": "fff"
+                                    },
+                                    "time": "18:45",
+                                    "date": "28.05.2021"
                                 },
                                 "totalTime": "2ч (общее время пересадки)"
                             }
@@ -219,7 +226,7 @@ class Search extends React.Component {
      * @returns {Ticket[]}
      */
     _getTickets() {
-        return this.tickets.map((item) => new TicketEntity(item));
+        return this._tickets.map((item) => new TicketEntity(item));
     }
 
     /**
@@ -238,7 +245,19 @@ class Search extends React.Component {
             <section className="search">
                 <Header />
 
-                {this._renderTickets()}
+                <div className="search__body">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-3">
+                                <Filter filter={this._filter} />
+                            </div>
+
+                            <div className="col-lg-9">
+                                {this._renderTickets()}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         );
     }

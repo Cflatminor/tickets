@@ -18,6 +18,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
     "@next/bundle-analyzer": "^9.1.4",
     "@zeit/next-css": "^0.2.1-canary.4",
     "@zeit/next-sass": "^1.0.1",
@@ -38,6 +39,7 @@
     "next-i18next": "^7.0.1",
     "next-routes": "^1.4.2",
     "next-transpile-modules": "^4.0.0",
+    "nouislider-react": "^3.3.9",
     "path-to-regexp": "^6.1.0",
     "promise-abortable": "^1.2.6",
     "prop-types": "^15.7.2",

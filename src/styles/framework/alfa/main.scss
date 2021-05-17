@@ -1,5 +1,7 @@
 @import "variables/main.scss";
 
+@import "./src/styles/framework/base/main";
+
 .body {
   background-color: $bodyBackgroundBase !important;
 }

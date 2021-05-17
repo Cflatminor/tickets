@@ -1,11 +1,11 @@
 $btnShadow: $shadow5;
-$buttonBorderRadius: 50px;
+$buttonBorderRadius: $borderRadiusXLarge;
 
-$btnDefaultColor: $colorWhite;
-$btnDefaultBackground: $colorPink;
+$btnDefaultColor: $colorBlack;
+$btnDefaultBackground: $colorYellow;
 $btnDefaultBorderColor: $btnDefaultBackground;
 
-$btnDefaultOutlineColor: $colorPink;
+$btnDefaultOutlineColor: $colorYellow;
 $btnDefaultOutlineBackground: rgba(0, 0, 0, 0);
 $btnDefaultOutlineHoverBackground: rgba(52, 92, 139, 0.03);
 $btnDefaultOutlineBorderColor: rgba(0, 0, 0, 0.12);
