@@ -7,6 +7,14 @@ import DepartureDate from "./DepartureDate";
 import Passengers from "./Passengers";
 
 class Route extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            // route: {}
+        };
+    }
+
     render() {
         return (
             <div className="search__route route">

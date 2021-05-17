@@ -25,6 +25,7 @@ class Autocomplete extends React.Component {
         };
 
         this.changeQuery = this.changeQuery.bind(this);
+        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.selectItem = this.selectItem.bind(this);
         this.renderItem = this.renderItem.bind(this);
         this.getItemsByQuery = this.getItemsByQuery.bind(this);
@@ -103,10 +104,22 @@ class Autocomplete extends React.Component {
     }
 
     /**
+     * @method onSuggestionsClearRequested
+     * @returns {Autocomplete}
+     */
+    onSuggestionsClearRequested() {
+        this.setState({
+            items: []
+        });
+
+        return this;
+    }
+
+    /**
      * @method selectItem
      * @param event {Object}
      * @param opts {Object}
-     * @returns {}
+     * @returns {boolean}
      */
     selectItem(event, opts) {
         this.item = opts.suggestion;
@@ -162,7 +175,7 @@ class Autocomplete extends React.Component {
                     <Autosuggest
                         suggestions={this.state.items}
                         onSuggestionsFetchRequested={this.getItemsByQuery}
-                        // onSuggestionsClearRequested={() => {}}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                         onSuggestionSelected={this.selectItem}
                         getSuggestionValue={this.getItemName}
                         renderSuggestion={this.renderItem}

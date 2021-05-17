@@ -33,10 +33,12 @@ class DeparturePoint extends React.Component {
         });
     }
 
-    _onBlur() {
-        this.setState({
-            isFocused: false
-        });
+    _onBlur(event) {
+        if (!event.target.value.length) {
+            this.setState({
+                isFocused: false
+            });
+        }
     }
 
     /**
@@ -48,9 +50,10 @@ class DeparturePoint extends React.Component {
         return (
             <div className={classnames("outlined-text-form", {focused: this.state.isFocused})}>
                 <Autocomplete
+                    placeholder=""
                     getItemsByQuery={this._getItemsByQuery}
                     onFocus={this._onFocus}
-                    _onBlur={this._onBlur}
+                    onBlur={this._onBlur}
                 />
 
                 <label>

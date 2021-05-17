@@ -7,31 +7,56 @@
 
   input,
   label {
-    background: #2E3035;
+    //background: #2E3035;
     color: inherit;
   }
 
   .outlined-text-form {
     &:first-child {
-      input {
+      input,
+      .form-control {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
       }
     }
 
     &:last-child {
-      input {
+      input,
+      .form-control {
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
       }
     }
 
+    &:not(:last-child) {
+      margin-right: 1px;
+    }
+
     label {
-      top: 26px;
+      //top: 26px;
     }
   }
 
-  input {
+  .DayPickerInput {
+    width: 100%;
+    height: 100%;
+
+    input {
+      padding: 8px 12px;
+      width: 100%;
+      height: 100%;
+
+      &:focus {
+        //border: 2px solid #FFCC00;
+        outline: none;
+      }
+    }
+  }
+
+  input,
+  //.DayPickerInput,
+  .form-control {
+    background: $colorBlack;
     border: 2px solid transparent;
     border-radius: 0;
     height: 100%;
@@ -57,10 +82,34 @@
     width: 100%;
 
     &.focused {
+      &.passengers {
+        .form-control {
+          border: 2px solid #FFCC00;
+        }
+      }
+
       label {
         padding: 0 6px;
         font-size: 12px;
         top: 12px;
+      }
+
+      &.passengers {
+        label {
+          font-size: 14px;
+          left: 4px;
+          top: 17px;
+        }
+      }
+    }
+
+    &.passengers {
+      input:focus {
+        & + label {
+          font-size: 14px;
+          left: 4px;
+          top: 17px;
+        }
       }
     }
   }
@@ -121,6 +170,107 @@
 
     .item__last-chars {
       font-weight: 400;
+    }
+  }
+
+  // passengers
+  .passengers {
+    position: relative;
+
+    p {
+      margin: 0;
+    }
+
+    label {
+      position: absolute;
+      top: 17px;
+    }
+
+    .form {
+      position: absolute;
+      top: 74px;
+      padding: 20px;
+      left: 0;
+      background: $colorWhite;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      color: $colorBlack;
+      min-width: 250px;
+    }
+
+    .passengers__count {
+      border-bottom: 1px solid #D9DBE9;
+      //padding-bottom: 20px;
+
+      .categories__item {
+        margin-bottom: 20px;
+
+        .item__title,
+        .item__description {
+          display: block;
+        }
+
+        .item__title {
+          font-size: 14px;
+          color: $colorBlack;
+          font-weight: 700;
+        }
+
+        .item__description {
+          font-size: 12px;
+          color: $colorGray;
+          font-weight: 400;
+        }
+
+        .item__counter {
+          margin-left: 12px;
+        }
+      }
+
+      .counter__count {
+        margin: 0 8px;
+      }
+
+      .counter__decrease,
+      .counter__increase {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        width: 32px;
+        height: 32px;
+        background: #EFF0F7;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    .passengers__type {
+      padding-top: 24px;
+
+      label {
+        padding: 0;
+        margin: 0;
+        pointer-events: all;
+        cursor: pointer;
+        position: static;
+        display: flex;
+        align-items: center;
+        line-height: 100%;
+
+        & + label {
+          margin-top: 18px;
+        }
+      }
+
+      input {
+        margin: 0 6px 0 0;
+        pointer-events: all;
+        display: inline-block;
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 }
