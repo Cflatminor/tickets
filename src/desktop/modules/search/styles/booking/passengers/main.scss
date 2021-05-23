@@ -1,0 +1,27 @@
+.passengers {
+  .passengers__header {
+    font-size: $fontSizeXL;
+    color: $colorBlack;
+  }
+
+  .passengers__footer {
+    margin-top: 25px;
+  }
+
+  .person {
+    margin: 0 -24px;
+    padding: 32px 24px;
+
+    &:nth-child(even) {
+      background: lighten($colorBlack, 77%);
+    }
+
+    & + .person {
+      //margin-top: 32px;
+    }
+
+    .person__header {
+      color: $colorBlack;
+    }
+  }
+}

@@ -46,11 +46,12 @@ export default {
     lastName: "Фамилия",
     middleName: "Отчество",
     birthday: "Дата рождения",
+    nationality: "Гражданство",
     gender: "Пол",
-    ru: "Русский",
-    ua: "Украинский",
     male: "Мужской",
     female: "Женский",
+    ru: "Русский",
+    ua: "Украинский",
     change: "Изменить",
     show: {
         default: "Показать",
@@ -91,6 +92,7 @@ export default {
     prices: "Цены",
     emptySearchResult: "Ничего не найдено, попробуйте изменить запрос",
     select: "Выбрать",
+    selectYourGender: "Укажите ваш пол",
     apply: "Применить",
     accept: "Принять",
     removeSelection: "Сбросить выбор",
@@ -111,5 +113,7 @@ export default {
     informed: "Ознакомлен",
     asList: "Списком",
     transfers: "Пересадки",
-    inTransit: "В пути"
+    inTransit: "В пути",
+    oneWayFlight: "Рейс в одну сторону",
+    roundTripFlight: "Рейс в обе сторону",
 };

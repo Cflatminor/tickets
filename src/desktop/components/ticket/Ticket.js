@@ -15,7 +15,7 @@ class Ticket extends React.Component {
 
         this._stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
 
-        this._select = this._select.bind(this._select);
+        this._select = this._select.bind(this);
     }
 
     /**
@@ -33,7 +33,7 @@ class Ticket extends React.Component {
      * @private
      */
     _select() {
-        this.props.select();
+        this.props.select(this._getItem());
 
         return this;
     }

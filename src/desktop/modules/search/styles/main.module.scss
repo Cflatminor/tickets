@@ -14,6 +14,11 @@
   @import "header/main";
   @import "route/main";
   @import "filter/main";
+  @import "booking/main";
+
+  .search__body {
+    margin-top: 50px;
+  }
 }
 
 //@import "mediaQueries";

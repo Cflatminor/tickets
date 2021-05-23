@@ -1,1 +1,9 @@
 @import "utilities/main.scss";
+
+.page-section {
+  padding: 24px;
+
+  & + .page-section {
+    margin-top: 24px;
+  }
+}

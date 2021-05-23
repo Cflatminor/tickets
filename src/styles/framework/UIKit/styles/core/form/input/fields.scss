@@ -80,7 +80,7 @@ textarea.form-control {
   input:valid + label {
     top: -8px;
     font-size: $fontSizeSmall;
-    background: transparent;
+    background: $colorWhite;
     padding: 0 6px;
   }
 }

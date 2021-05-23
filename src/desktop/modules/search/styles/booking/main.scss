@@ -1,0 +1,105 @@
+.booking {
+  @import "passengers/main";
+
+  .about-flight__header {
+    display: flex;
+    align-items: center;
+  }
+
+  .booking__to-cancel {
+    margin-right: 10px;
+    cursor: pointer;
+
+    .icon {
+      font-size: $fontSizeXL * 1.5;
+      color: $colorGray;
+    }
+  }
+
+  .about-flight__title {
+    font-weight: 700;
+    font-size: $fontSizeXL;
+    color: $colorBlack;
+  }
+
+  .booking__checkout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .checkout__total {
+      font-size: $fontSizeXL;
+      color: $colorBlack;
+    }
+
+    .price {
+      margin-left: 10px;
+      font-weight: 700;
+      font-size: $fontSizeXL * 1.2;
+    }
+  }
+
+  .ticket {
+    max-width: 100%;
+
+    .ticket__body {
+      max-width: 100%;
+    }
+
+    .ticket__footer {
+      display: none;
+    }
+
+    .ticket__flights {
+      border-right: none;
+    }
+
+    .flight__about-route {
+      max-width: 100%;
+    }
+  }
+
+  //.passengers {
+  //  margin-top: 50px;
+  //}
+
+  .person {
+    .person__fields {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .person__field {
+      margin: 16px 16px 0 0;
+      flex-shrink: 0;
+      flex-basis: 100%;
+      //flex-basis: calc(25% - 16px);
+    }
+  }
+}
+
+.booking {
+  @include sm() {
+    .person {
+      .person__field {
+        flex-basis: calc(50% - 16px);
+      }
+    }
+  };
+
+  @include md() {
+    .person {
+      .person__field {
+        flex-basis: calc(33.3% - 16px);
+      }
+    }
+  };
+
+  @include lg() {
+    .person {
+      .person__field {
+        flex-basis: calc(25% - 16px);
+      }
+    }
+  };
+}

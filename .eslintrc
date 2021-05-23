@@ -13,15 +13,12 @@
         "alias": {
           "app": "./src",
           "desktop": "./src/desktop",
-          "actions": "./src/actions",
           "components": "./src/desktop/components",
           "config": "./src/config",
           "pages": "./src/pages",
-          "reducers": "./src/reducers",
-          "sagas": "./src/sagas",
-          "services": "./src/services",
+          "services": "./src/core/services",
           "styles": "./src/styles",
-          "utilites": "./src/utilites"
+          "utilites": "./src/core/utilites"
         },
         "extensions": [".js", ".jsx"]
       }

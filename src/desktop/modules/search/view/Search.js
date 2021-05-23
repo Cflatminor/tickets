@@ -6,6 +6,8 @@ import Ticket from "components/ticket/Ticket";
 
 import Header from "./header/Header";
 import Filter from "./filter/Filter";
+import Offers from "./offers/Offers";
+import Booking from "./booking/Booking";
 
 class Search extends React.Component {
     constructor(props) {
@@ -218,6 +220,22 @@ class Search extends React.Component {
                 }
             }
         ];
+
+        this.state = {
+            ticket: null
+        }
+
+        this._selectTicket = this._selectTicket.bind(this);
+        this._cancelBooking = this._cancelBooking.bind(this);
+    }
+
+    /**
+     * @method _hasTicket
+     * @returns {boolean}
+     * @private
+     */
+    _hasTicket() {
+        return Boolean(this.state.ticket);
     }
 
     /**
@@ -230,14 +248,47 @@ class Search extends React.Component {
     }
 
     /**
-     * @method _renderTickets
-     * @returns {Array}
+     * @method _getCurrentTicket
+     * @returns {null|Ticket}
      * @private
      */
-    _renderTickets() {
-        return this._getTickets().map((item) => (
-            <Ticket key={item.getId()} item={item} />
-        ));
+    _getCurrentTicket() {
+        return this.state.ticket;
+    }
+
+    /**
+     * @method _setCurrentTicket
+     * @param ticket {Ticket}
+     * @returns {Search}
+     * @private
+     */
+    _setCurrentTicket(ticket) {
+        this.setState({ticket});
+
+        return this;
+    }
+
+    /**
+     * @method _selectTicket
+     * @param ticket {Ticket}
+     * @returns {Search}
+     * @private
+     */
+    _selectTicket(ticket) {
+        this._setCurrentTicket(ticket);
+
+        return this;
+    }
+
+    /**
+     * @method _cancelBooking
+     * @returns {Search}
+     * @private
+     */
+    _cancelBooking() {
+        this._setCurrentTicket(null);
+
+        return this;
     }
 
     render() {
@@ -246,17 +297,20 @@ class Search extends React.Component {
                 <Header />
 
                 <div className="search__body">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-lg-3">
-                                <Filter filter={this._filter} />
-                            </div>
+                    {!this._hasTicket() && (
+                        <Offers
+                            filter={this._filter}
+                            items={this._getTickets()}
+                            select={this._selectTicket}
+                        />
+                    )}
 
-                            <div className="col-lg-9">
-                                {this._renderTickets()}
-                            </div>
-                        </div>
-                    </div>
+                    {this._hasTicket() && (
+                        <Booking
+                            ticket={this._getCurrentTicket()}
+                            cancel={this._cancelBooking}
+                        />
+                    )}
                 </div>
             </section>
         );
