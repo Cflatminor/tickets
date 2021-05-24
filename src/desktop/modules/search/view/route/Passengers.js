@@ -37,12 +37,8 @@ class Passengers extends React.Component {
 
     componentDidMount() {
         window.document.addEventListener("click", (e) => {
-            // this.setState({
-            //     isSelectingPassengers: false
-            // });
             let form = window.document.querySelector(".outlined-text-form.passengers");
-            // e.stopPropagation();
-            // this._toggleSelectPassengers(false);
+
             if (e.target.closest(".outlined-text-form.passengers") !== form) {
                 this._toggleSelectPassengers(false);
             }
@@ -55,9 +51,9 @@ class Passengers extends React.Component {
      * @returns {Passengers}
      */
     _toggleSelectPassengers(state) {
-        this.setState((prevState) => ({
+        this.setState({
             isSelectingPassengers: state
-        }));
+        });
 
         return this;
     }
@@ -123,7 +119,7 @@ class Passengers extends React.Component {
     }
 
     _selectType(type) {
-        let typeTranslated;
+        let typeTranslated = "";
 
         switch (type) {
             case "economy": typeTranslated = "Эконом"; break;
@@ -159,7 +155,7 @@ class Passengers extends React.Component {
 
                 <label>
                     <p>
-                        { this.state.totalPassengersCount } пассажир <span className="icon icon-cart-check" />
+                        { this.state.totalPassengersCount } пассажир
                     </p>
 
                     <p>
@@ -256,20 +252,56 @@ class Passengers extends React.Component {
                     </div>
 
                     <div className="passengers__type">
-                        <label onClick={() => this._selectType("economy")}>
-                            <input type="radio" name="type" defaultChecked />
-                            Эконом
-                        </label>
+                        <div className="position-relative">
+                            <label className="custom-input--radio" onClick={() => this._selectType("economy")}>
+                                <input type="radio" value="Эконом" name="type" defaultChecked />
 
-                        <label onClick={() => this._selectType("comfort")}>
-                            <input type="radio" name="type" />
-                            Комфорт
-                        </label>
+                                <span className="custom-input__state">
+                                    <span className="custom-input__animation_bg" />
+                                </span>
 
-                        <label onClick={() => this._selectType("business")}>
-                            <input type="radio" name="type" />
-                            Бизнес
-                        </label>
+                                <span className="custom-input__name">Эконом</span>
+                            </label>
+                        </div>
+
+                        <div className="position-relative">
+                            <label className="custom-input--radio" onClick={() => this._selectType("comfort")}>
+                                <input type="radio" value="Комфорт" name="type" />
+
+                                <span className="custom-input__state">
+                                    <span className="custom-input__animation_bg" />
+                                </span>
+
+                                <span className="custom-input__name">Комфорт</span>
+                            </label>
+                        </div>
+
+                        <div className="position-relative">
+                            <label className="custom-input--radio" onClick={() => this._selectType("business")}>
+                                <input type="radio" value="Бизнес" name="type" />
+
+                                <span className="custom-input__state">
+                                    <span className="custom-input__animation_bg" />
+                                </span>
+
+                                <span className="custom-input__name">Бизнес</span>
+                            </label>
+                        </div>
+
+                        {/*<label onClick={() => this._selectType("economy")}>*/}
+                        {/*    <input type="radio" name="type" defaultChecked />*/}
+                        {/*    Эконом*/}
+                        {/*</label>*/}
+
+                        {/*<label onClick={() => this._selectType("comfort")}>*/}
+                        {/*    <input type="radio" name="type" />*/}
+                        {/*    Комфорт*/}
+                        {/*</label>*/}
+
+                        {/*<label onClick={() => this._selectType("business")}>*/}
+                        {/*    <input type="radio" name="type" />*/}
+                        {/*    Бизнес*/}
+                        {/*</label>*/}
                     </div>
                 </div>
             </div>

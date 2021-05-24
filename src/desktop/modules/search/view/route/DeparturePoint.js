@@ -57,7 +57,7 @@ class DeparturePoint extends React.Component {
                 />
 
                 <label>
-                    Откуда <span className="icon icon-cart-check" />
+                    Откуда
                 </label>
             </div>
         );

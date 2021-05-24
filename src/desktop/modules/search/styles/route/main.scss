@@ -5,10 +5,13 @@
     height: 70px;
   }
 
-  input,
   label {
+    color: $colorGray;
+  }
+
+  input {
     //background: #2E3035;
-    color: inherit;
+    color: $colorBlack;
   }
 
   .outlined-text-form {
@@ -29,11 +32,13 @@
     }
 
     &:not(:last-child) {
-      margin-right: 1px;
+      border-right: 1px solid $colorGray1;
     }
 
     label {
       //top: 26px;
+      top: 10px;
+      left: 8px;
     }
   }
 
@@ -56,10 +61,11 @@
   input,
   //.DayPickerInput,
   .form-control {
-    background: $colorBlack;
+    background: $colorWhite;
     border: 2px solid transparent;
     border-radius: 0;
     height: 100%;
+    padding-top: 14px;
 
     &:focus {
       border: 2px solid #FFCC00;
@@ -114,6 +120,38 @@
     }
   }
 
+  .clear-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: #EFF0F7;
+    display: block;
+    top: calc(50% - 12px);
+    right: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 2px;
+      height: 60%;
+      display: block;
+      background: #808080;
+      position: absolute;
+      top: 20%;
+      left: calc(50% - 1px);
+    }
+
+    &::before {
+      transform: rotateZ(45deg);
+    }
+
+    &::after {
+      transform: rotateZ(-45deg);
+    }
+  }
+
   .to-search-results {
     border-radius: 8px;
     min-width: 150px;
@@ -136,6 +174,10 @@
       color: $colorWhite;
       background: $colorGreen !important;
     }
+  }
+
+  .DayPicker-Caption {
+    color: $colorBlack;
   }
 
   .DayPicker-Day--today {
@@ -195,6 +237,7 @@
   // passengers
   .passengers {
     position: relative;
+    cursor: pointer;
 
     p {
       margin: 0;
@@ -203,13 +246,17 @@
     label {
       position: absolute;
       top: 17px;
+
+      p:first-child {
+        color: $colorBlack;
+      }
     }
 
     .form {
       position: absolute;
-      top: 74px;
+      top: 70px;
       padding: 20px;
-      left: 0;
+      right: 0;
       z-index: 12;
       background: $colorWhite;
       box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
@@ -265,6 +312,10 @@
       }
     }
 
+    .custom-input__name {
+      margin-left: 26px;
+    }
+
     .passengers__type {
       padding-top: 24px;
 
@@ -290,6 +341,10 @@
         cursor: pointer;
         width: 14px;
         height: 14px;
+      }
+
+      & > div:not(:last-child) {
+        margin-bottom: 16px;
       }
     }
   }

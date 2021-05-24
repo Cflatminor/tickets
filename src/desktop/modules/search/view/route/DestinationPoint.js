@@ -59,7 +59,7 @@ class DestinationPoint extends React.Component {
                 />
 
                 <label>
-                    Куда <span className="icon icon-cart-check" />
+                    Куда
                 </label>
             </div>
         );
