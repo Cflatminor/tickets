@@ -46,7 +46,7 @@ export default {
     lastName: "Прізвище",
     middleName: "По батькові",
     birthday: "Дата народження",
-    nationality: "Громадянство",
+    citizenship: "Громадянство",
     gender: "Стать",
     ru: "Російська",
     ua: "Українська",

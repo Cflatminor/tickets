@@ -46,7 +46,7 @@ export default {
     lastName: "Фамилия",
     middleName: "Отчество",
     birthday: "Дата рождения",
-    nationality: "Гражданство",
+    citizenship: "Гражданство",
     gender: "Пол",
     male: "Мужской",
     female: "Женский",
@@ -116,4 +116,7 @@ export default {
     inTransit: "В пути",
     oneWayFlight: "Рейс в одну сторону",
     roundTripFlight: "Рейс в обе сторону",
+    adult: "Взрослый",
+    child: "Ребенок",
+    baby: "Младенец"
 };

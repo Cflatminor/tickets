@@ -13,9 +13,16 @@ class Booking extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            forceValidate: false
+        };
+
         this._stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
 
+        this._forceChangePassengers = this._forceChangePassengers.bind(this);
+        this._changePassengers = this._changePassengers.bind(this);
         this._cancel = this._cancel.bind(this);
+        this._toBuy = this._toBuy.bind(this);
     }
 
     /**
@@ -25,6 +32,15 @@ class Booking extends React.Component {
      */
     _hasBackwardFlights() {
         return Boolean(this._getTicket().getBackwardFlights().length);
+    }
+
+    /**
+     * @method _isForceValidate
+     * @returns {boolean}
+     * @private
+     */
+    _isForceValidate() {
+        return this.state.forceValidate;
     }
 
     /**
@@ -46,12 +62,55 @@ class Booking extends React.Component {
     }
 
     /**
+     * @method _setForceValidateState
+     * @param state {boolean}
+     * @param callback {Function}
+     * @returns {Booking}
+     * @private
+     */
+    _setForceValidateState(state, callback = () => {}) {
+        this.setState({forceValidate: state}, callback);
+
+        return this;
+    }
+
+    /**
      * @method _getTitle
      * @returns {string}
      * @private
      */
     _getTitle() {
         return this._hasBackwardFlights() ? this._stringsResource.roundTripFlight : this._stringsResource.oneWayFlight;
+    }
+
+    _getPassengers(callback) {
+
+    }
+
+    /**
+     * @method _changePassengers
+     * @param passengers {Object}
+     * @param email {string}
+     * @returns {Booking}
+     * @private
+     */
+    _forceChangePassengers(passengers, email) {
+        console.log("_forceChangePassengers", passengers, email);
+
+        return this;
+    }
+
+    /**
+     * @method _changePassengers
+     * @param passengers {Object}
+     * @param email {string}
+     * @returns {Booking}
+     * @private
+     */
+    _changePassengers(passengers, email) {
+        console.log(passengers, email);
+
+        return this;
     }
 
     /**
@@ -61,6 +120,19 @@ class Booking extends React.Component {
      */
     _cancel() {
         this.props.cancel();
+
+        return this;
+    }
+
+    /**
+     * @method _toBuy
+     * @returns {Booking}
+     * @private
+     */
+    _toBuy() {
+        this._setForceValidateState(true, () => {
+            this._setForceValidateState(false);
+        });
 
         return this;
     }
@@ -95,7 +167,11 @@ class Booking extends React.Component {
                                 </div>
 
                                 <div className="page-section bg-white">
-                                    <Passengers />
+                                    <Passengers
+                                        forceValidate={this._isForceValidate()}
+                                        change={this._changePassengers}
+                                        forceChange={this._forceChangePassengers}
+                                    />
                                 </div>
 
                                 <div className="page-section bg-white">
@@ -112,6 +188,7 @@ class Booking extends React.Component {
                                             <button
                                                 type="button"
                                                 className="btn-success btn-md"
+                                                onClick={this._toBuy}
                                             >
                                                 {this._stringsResource.buy}
                                             </button>
