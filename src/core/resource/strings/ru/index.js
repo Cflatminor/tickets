@@ -118,5 +118,6 @@ export default {
     roundTripFlight: "Рейс в обе сторону",
     adult: "Взрослый",
     child: "Ребенок",
-    baby: "Младенец"
+    baby: "Младенец",
+    ticketRules: "Правила билетов"
 };
