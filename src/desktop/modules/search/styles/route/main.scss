@@ -16,6 +16,10 @@
 
   .outlined-text-form {
     &:first-child {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      overflow: hidden;
+
       input,
       .form-control {
         border-top-left-radius: 8px;
@@ -88,9 +92,14 @@
     width: 100%;
 
     &.focused {
-      &.passengers {
+      &.passengers,
+      &.departure-point {
         .form-control {
           border: 2px solid #FFCC00;
+        }
+
+        input:focus {
+          //border: none;
         }
       }
 
@@ -122,7 +131,7 @@
 
   .city-code {
     position: absolute;
-    top: 24px;
+    top: 26px;
     right: 12px;
     color: #808080;
     font-size: 13px;
@@ -218,7 +227,7 @@
 
   .react-autosuggest__suggestion {
     &:not(:last-child) {
-      border-bottom: 1px solid rgba(217, 219, 233, 1);
+      //border-bottom: 1px solid rgba(217, 219, 233, 1);
     }
 
     a {

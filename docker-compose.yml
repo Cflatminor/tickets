@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  tickets:
+    name: a24-front
+
+services:
+  node:
+    image: ${HUB}/node:${TAG}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./.env:/app/.env
+    networks:
+      - tickets
+    restart: unless-stopped

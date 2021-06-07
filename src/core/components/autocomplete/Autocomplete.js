@@ -1,4 +1,6 @@
-/* eslint-disable */
+// /* eslint-disable */
+
+// todo "autocomplete/type/sections"
 import React from "react";
 import PropTypes from "prop-types";
 import Autosuggest from "react-autosuggest";
@@ -7,56 +9,27 @@ class Autocomplete extends React.Component {
     constructor(props) {
         super(props);
 
+        this.item = null;
+
         /**
          * @property placeholder
          * @type {string}
          */
         this.placeholder = props.placeholder;
 
-        /**
-         * @property item
-         * @type {Object}
-         */
-        this.item = null;
-
         this.state = {
-            queryString: props.queryString,
+            query: props.query,
             items: []
         };
 
-        this.changeQuery = this.changeQuery.bind(this);
+        this.selectItem = this.selectItem.bind(this);
+        this.getItemsByQuery = this.getItemsByQuery.bind(this);
+        this.setItems = this.setItems.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.selectItem = this.selectItem.bind(this);
-        this.renderItem = this.renderItem.bind(this);
-        this.getItemsByQuery = this.getItemsByQuery.bind(this);
-        this.getItemName = this.getItemName.bind(this);
-        this.setItems = this.setItems.bind(this);
-    }
-
-    /**
-     * @protected
-     * @method componentDidUpdate
-     * @param prevProps {Object}
-     * @returns {void}
-     */
-    componentDidUpdate(prevProps) {
-        if (prevProps.queryString !== this.props.queryString) {
-            this.setState(() => {
-                return {
-                    queryString: this.props.queryString,
-                    items: []
-                };
-            });
-        }
-    }
-
-    /**
-     * @method getItemName
-     * @param item {Object}
-     * @returns {string}
-     */
-    getItemName(item) {
-        return (item && item.getName()) || "";
+        this.renderSuggestion = this.renderSuggestion.bind(this);
+        this.renderSectionTitle = this.renderSectionTitle.bind(this);
     }
 
     /**
@@ -65,13 +38,22 @@ class Autocomplete extends React.Component {
      * @returns {Autocomplete}
      */
     getItemsByQuery(opts) {
-        let itemName = this.getItemName(this.item);
-
-        if (!itemName.length || (itemName !== opts.value)) {
-            this.props.getItemsByQuery(opts.value, this.setItems);
-        }
+        // let itemName = this.getItemName(this.item);
+        //
+        // if (!itemName.length || (itemName !== opts.value)) {
+        //     this.props.getItemsByQuery(opts.value, this.setItems);
+        // }
+        this.props.getItemsByQuery(opts.value, this.setItems);
 
         return this;
+    }
+
+    getSuggestionValue(suggestion) {
+        return suggestion.getName();
+    }
+
+    getSectionSuggestions(section) {
+        return section.getAirports();
     }
 
     /**
@@ -87,32 +69,18 @@ class Autocomplete extends React.Component {
         return this;
     }
 
-    /**
-     * @method changeQuery
-     * @param event {Object}
-     * @param opts {Object}
-     * @returns {Autocomplete}
-     */
-    changeQuery(event, opts) {
-        this.setState(function () {
-            return {
-                queryString: opts.newValue
-            };
+    onChange(event, opts) {
+        this.setState({
+            query: opts.newValue
         });
 
         return this;
     }
 
-    /**
-     * @method onSuggestionsClearRequested
-     * @returns {Autocomplete}
-     */
     onSuggestionsClearRequested() {
         this.setState({
             items: []
         });
-
-        return this;
     }
 
     /**
@@ -133,73 +101,56 @@ class Autocomplete extends React.Component {
         return false;
     }
 
-    /**
-     * @method renderItem
-     * @param item {Object}
-     * @returns {string}
-     */
-    renderItem(item) {
-        let string = item.getName().split("").reverse(),
-            lastChars = string.splice(0, (string.length - this.state.queryString.length)).reverse().join("");
-
-        return (
-            <a href="#">
-                <span className="item__query f-weight-9">
-                    { this.state.queryString }
-                </span>
-                <span className="item__last-chars">
-                    { lastChars }
-                </span>
-            </a>
-        );
+    renderSuggestion(suggestion) {
+        return this.props.renderSuggestion(suggestion);
     }
 
-    /**
-     * @method render
-     * @returns {string}
-     */
+    renderSectionTitle(section) {
+        return this.props.renderSectionTitle(section);
+    }
+
     render() {
-        let inputProps = {
-            autoFocus: true,
+        const inputProps = {
             placeholder: this.placeholder,
-            value: this.state.queryString,
+            value: this.state.query,
+            onChange: this.onChange,
+            // autoFocus: true,
             onFocus: this.props.onFocus,
             onBlur: this.props.onBlur,
-            onChange: this.changeQuery,
             className: "form-control"
-        }
+        };
 
         return (
-            <div className="autocomplete">
-                <div className="autocomplete__body">
-                    <Autosuggest
-                        suggestions={this.state.items}
-                        onSuggestionsFetchRequested={this.getItemsByQuery}
-                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                        onSuggestionSelected={this.selectItem}
-                        getSuggestionValue={this.getItemName}
-                        renderSuggestion={this.renderItem}
-                        alwaysRenderSuggestions={false}
-                        inputProps={inputProps}
-                    />
-                </div>
-            </div>
+            <Autosuggest
+                multiSection
+                suggestions={this.state.items}
+                onSuggestionsFetchRequested={this.getItemsByQuery}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                getSuggestionValue={this.getSuggestionValue}
+                renderSuggestion={this.renderSuggestion}
+                renderSectionTitle={this.renderSectionTitle}
+                getSectionSuggestions={this.getSectionSuggestions}
+                onSuggestionSelected={this.selectItem}
+                inputProps={inputProps}
+            />
         );
     }
 }
 
 Autocomplete.propTypes = {
     placeholder: PropTypes.string,
-    queryString: PropTypes.string,
+    query: PropTypes.string,
     selectItem: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
-    getItemsByQuery: PropTypes.func.isRequired
+    getItemsByQuery: PropTypes.func.isRequired,
+    renderSuggestion: PropTypes.func.isRequired,
+    renderSectionTitle: PropTypes.func.isRequired
 };
 
 Autocomplete.defaultProps = {
     placeholder: "выбрать",
-    queryString: "",
+    query: "",
     selectItem: () => {},
     onFocus: () => {},
     onBlur: () => {}
