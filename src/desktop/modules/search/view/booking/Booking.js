@@ -7,6 +7,7 @@ import Resource from "app/core/resource";
 import Price from "components/price/Price";
 import Ticket from "components/ticket/Ticket";
 
+import TicketRules from "./ticketRules/TicketRules";
 import Passengers from "./passengers/Passengers";
 
 class Booking extends React.Component {
@@ -164,6 +165,10 @@ class Booking extends React.Component {
                                             <Ticket item={this._getTicket()} />
                                         </div>
                                     </div>
+                                </div>
+
+                                <div className="page-section p-0 bg-white">
+                                    <TicketRules ticket={this._getTicket()} />
                                 </div>
 
                                 <div className="page-section bg-white">
