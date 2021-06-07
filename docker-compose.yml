@@ -2,7 +2,7 @@ version: '3.7'
 
 networks:
   tickets:
-    name: a24-front
+    name: tickets
 
 services:
   node:
