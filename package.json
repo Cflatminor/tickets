@@ -39,7 +39,7 @@
     "next-i18next": "^7.0.1",
     "next-routes": "^1.4.2",
     "next-transpile-modules": "^4.0.0",
-    "nouislider-react": "^3.3.9",
+    "nouislider-react": "^3.4.0",
     "path-to-regexp": "^6.1.0",
     "promise-abortable": "^1.2.6",
     "prop-types": "^15.7.2",
