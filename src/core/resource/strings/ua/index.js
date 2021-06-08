@@ -1,5 +1,6 @@
 export default {
     plural: {
+        passengers: ['пассажир', 'пассажира', 'пассажирів'],
         days: ["день", "дні", "днів"],
         hours: ["година", "години", "годин"],
         minutes: ["хвилина", "хвилини", "хвилин"],
@@ -16,7 +17,7 @@ export default {
     validation: {
         enterCorrectPhoneNumber: "Вкажіть коректний номер телефону",
         enterCorrectEmail: "Вкажіть коректну email-адресу",
-        mustBeCompleted: "Обов'язково має бути заповнено",
+        mustBeCompleted: "Обов'язково має бути заповнено"
     },
     pageNotFound: "Сторінку не знайдено",
     viewAll: "Переглянути все",

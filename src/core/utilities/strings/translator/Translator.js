@@ -25,7 +25,8 @@ class Translator {
      * @private
      */
     _getStringsResource() {
-        return this.Resource.getStrings(this.Env.getLanguage());
+        // return this.Resource.getStrings(this.Env.getLanguage());
+        return this.Resource.getStrings("ru");
     }
 
     /**
@@ -37,6 +38,7 @@ class Translator {
         let strings = this._getStringsResource().plural;
 
         return {
+            passengers: strings.passengers || [],
             days: strings.days || [],
             hours: strings.hours || [],
             minutes: strings.minutes || [],

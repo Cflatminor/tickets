@@ -54,45 +54,56 @@ class Route extends React.Component {
             }
         ];
 
-        // this.state = {
-        //     arrivalDate: "",
-        //     departureDate: "",
-        //     departurePoint: {},
-        //     destinationPoint: {},
-        //     passengers: {}
-        // };
+        this.state = {
+            // arrivalDate: "",
+            // departureDate: "",
+            departurePoint: {
+                getName: () => "",
+                getCode: () => "",
+                getAirports: () => []
+            },
+            destinationPoint: {
+                getName: () => "",
+                getCode: () => "",
+                getAirports: () => []
+            }
+            // passengers: {}
+        };
 
         this._getItemsByQuery = this._getItemsByQuery.bind(this);
+        this._setDeparturePoint = this._setDeparturePoint.bind(this);
+        this._setDestinationPoint = this._setDestinationPoint.bind(this);
+        this._swapPoints = this._swapPoints.bind(this);
     }
 
-    // /**
-    //  * @private
-    //  * @method _setDeparture
-    //  * @param point {Object}
-    //  * @returns {Route}
-    //  */
-    // _setDeparture(point) {
-    //     this.setState({
-    //         departurePoint: point
-    //     });
-    //
-    //     return this;
-    // }
-    //
-    // /**
-    //  * @private
-    //  * @method _setDestinationPoint
-    //  * @param point {Object}
-    //  * @returns {Route}
-    //  */
-    // _setDestinationPoint(point) {
-    //     this.setState({
-    //         destinationPoint: point
-    //     });
-    //
-    //     return this;
-    // }
-    //
+    /**
+     * @private
+     * @method _setDeparturePoint
+     * @param point {Object}
+     * @returns {Route}
+     */
+    _setDeparturePoint(point) {
+        this.setState({
+            departurePoint: point
+        });
+
+        return this;
+    }
+
+    /**
+     * @private
+     * @method _setDestinationPoint
+     * @param point {Object}
+     * @returns {Route}
+     */
+    _setDestinationPoint(point) {
+        this.setState({
+            destinationPoint: point
+        });
+
+        return this;
+    }
+
     // /**
     //  * @private
     //  * @method _setArrivalDate
@@ -121,22 +132,44 @@ class Route extends React.Component {
     //     return this;
     // }
 
+    _swapPoints() {
+        this.setState((prevState) => ({
+            destinationPoint: prevState.departurePoint,
+            departurePoint: prevState.destinationPoint
+        }));
+
+        return this;
+    }
+
     _getItemsByQuery(query, success) {
         if (query.length < 3) {
             success([]);
         }
 
         if (query.length > 2) {
-            let result = this.airports
-                .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
-                .map((item) => ({ // todo autosuggestEntity
-                    getName: () => item.name,
-                    getCode: () => item.code,
-                    getAirports: () => item.airports.map((airport) => ({
-                        getName: () => airport.name,
-                        getCode: () => airport.code
-                    }))
-                }));
+            let result = [],
+                matched = this.airports
+                    .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
+                    .map((item) => ({
+                        getName: () => item.name,
+                        getCode: () => item.code,
+                        isAirport: () => false,
+                        airports: item.airports.map((airport) => ({
+                            isAirport: () => true,
+                            getName: () => airport.name,
+                            getCode: () => airport.code
+                        }))
+                    }));
+
+            matched.forEach((city) => {
+                result.push(city);
+
+                if (city.airports && city.airports.length) {
+                    city.airports.forEach((airport) => {
+                        result.push(airport);
+                    });
+                }
+            });
 
             success(result);
         } else {
@@ -152,9 +185,19 @@ class Route extends React.Component {
                         <div className="col">
                             <div className="route__form d-flex">
                                 <div className="route__inputs d-flex w-100">
-                                    <DeparturePoint getItemsByQuery={this._getItemsByQuery} />
+                                    <DeparturePoint
+                                        getItemsByQuery={this._getItemsByQuery}
+                                        setPoint={this._setDeparturePoint}
+                                        point={this.state.departurePoint}
+                                    />
 
-                                    <DestinationPoint getItemsByQuery={this._getItemsByQuery} />
+                                    <DestinationPoint
+                                        getItemsByQuery={this._getItemsByQuery}
+                                        setPoint={this._setDestinationPoint}
+                                        point={this.state.destinationPoint}
+                                    />
+
+                                    {/*<span onClick={this._swapPoints}>x</span>*/}
 
                                     <ArrivalDate />
 

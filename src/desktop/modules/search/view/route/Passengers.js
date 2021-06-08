@@ -1,9 +1,23 @@
 import React from "react";
 import classnames from "classnames";
 
+import Translator from "app/core/utilities/strings/translator";
+
 class Passengers extends React.Component {
     constructor(props) {
         super(props);
+
+        /**
+         * @property Translator
+         * @type {Translator}
+         */
+        this.Translator = Translator;
+
+        /**
+         * @property translator
+         * @type {Translator}
+         */
+        this.translator = this.Translator.getInstance();
 
         // this.types = [
         //     "economy", "comfort", "business"
@@ -26,6 +40,7 @@ class Passengers extends React.Component {
         };
 
         this._toggleSelectPassengers = this._toggleSelectPassengers.bind(this);
+        this._getPluralTitleOfPassengers = this._getPluralTitleOfPassengers.bind(this);
         this._selectType = this._selectType.bind(this);
         this._increaseAdultCount = this._increaseAdultCount.bind(this);
         this._decreaseAdultCount = this._decreaseAdultCount.bind(this);
@@ -43,6 +58,10 @@ class Passengers extends React.Component {
                 this._toggleSelectPassengers(false);
             }
         });
+    }
+
+    _getPluralTitleOfPassengers() {
+        return this.translator.plural(this.state.totalPassengersCount, this.Translator.stringKeys.passengers);
     }
 
     /**
@@ -155,7 +174,7 @@ class Passengers extends React.Component {
 
                 <label>
                     <p>
-                        { this.state.totalPassengersCount } пассажир
+                        { this.state.totalPassengersCount } { this._getPluralTitleOfPassengers() }
                     </p>
 
                     <p>
@@ -304,6 +323,8 @@ class Passengers extends React.Component {
                         {/*</label>*/}
                     </div>
                 </div>
+
+                <span className="icon icon-chevron-down" />
             </div>
         );
     }
