@@ -1,7 +1,7 @@
 class HttpClientError {
     /**
      * @constructor
-     * @param request {HttpClientRequest}
+     * @param request {Request}
      * @param message {string}
      * @param statusCode {int}
      * @returns {void}
@@ -43,7 +43,7 @@ class HttpClientError {
 
     /**
      * @method getRequest
-     * @returns {HttpClientRequest}
+     * @returns {Request}
      */
     getRequest() {
         return this.request;

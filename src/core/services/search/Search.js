@@ -24,6 +24,22 @@ class Search {
 
         return this;
     }
+
+    /**
+     * @public
+     * @method getFlightPoint
+     * @param query {string}
+     * @param success {Function}
+     * @param error {Function}
+     * @return {Search}
+     */
+    getFlightPoint(query, success, error) {
+        if (query && _.isFunction(success) && _.isFunction(error)) {
+            this.Repository.getFlightPoint(query.trim().toLowerCase(), success, error);
+        }
+
+        return this;
+    }
 }
 
 export default Search;

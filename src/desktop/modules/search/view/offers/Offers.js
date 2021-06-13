@@ -13,6 +13,15 @@ class Offers extends React.Component {
     }
 
     /**
+     * @method _hasFilter
+     * @returns {boolean}
+     * @private
+     */
+    _hasFilter() {
+        return Boolean(this.props.filter);
+    }
+
+    /**
      * @private
      * @method _getTickets
      * @returns {Ticket[]}
@@ -55,7 +64,9 @@ class Offers extends React.Component {
                     <div className="container-fluid">
                         <div className="row">
                             <div className="col-lg-3">
-                                <Filter filter={this.props.filter} />
+                                {this._hasFilter() && (
+                                    <Filter filter={this.props.filter} />
+                                )}
                             </div>
 
                             <div className="col-lg-9">
@@ -70,12 +81,13 @@ class Offers extends React.Component {
 }
 
 Offers.propTypes = {
-    filter: PropTypes.instanceOf(Object).isRequired,
+    filter: PropTypes.instanceOf(Object),
     items: PropTypes.instanceOf(Array),
     select: PropTypes.func
 };
 
 Offers.defaultProps = {
+    filter: null,
     items: [],
     select: () => {}
 };

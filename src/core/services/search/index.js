@@ -12,9 +12,17 @@ let search = new Search({
                 HttpClient
             },
             urls: {
-                getItemsByQuery: {
-                    domain: Env.getInstance().getBitrixHost(),
-                    path: "/bitrix/templates/apteka24/ajax.php"
+                // getItemsByQuery: {
+                //     domain: Env.getInstance().getSearchServiceHost(),
+                //     path: "/bitrix/templates/apteka24/ajax.php"
+                // },
+                getFlightPoint: {
+                    domain: Env.getInstance().getSearchServiceHost(),
+                    // path: "/flight-point",
+                    path: "/todos",
+                    query: {
+                        query: ""
+                    }
                 }
             }
         })

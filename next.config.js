@@ -37,7 +37,13 @@ module.exports = withPlugins(
         },
         // rewrites: async () => nextI18NextRewrites(localeSubpaths),
         publicRuntimeConfig: {
-            getPublicHost: process.env.NEXT_PUBLIC_HOST
+            getPublicHost: process.env.NEXT_PUBLIC_HOST,
+            getCDNHost: process.env.NEXT_PUBLIC_CDN_HOST,
+            getBucketName: process.env.NEXT_PUBLIC_BUCKET_NAME,
+            getStaticResourcesHost: process.env.NEXT_PUBLIC_STATIC_RESOURCES_HOST,
+            getHttpClientRequestTimeout: process.env.NEXT_PUBLIC_REQUEST_TIMEOUT,
+            getScriptsLoadTimeout: process.env.NEXT_PUBLIC_SCRIPTS_LOAD_TIMEOUT,
+            getSearchServiceHost: process.env.NEXT_SEARCH_SERVICE_HOST,
         },
         assetPrefix: process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_STATIC_RESOURCES_HOST : "",
         webpack(config) {

@@ -15,6 +15,7 @@ class Booking extends React.Component {
         super(props);
 
         this.state = {
+            rules: {},
             forceValidate: false
         };
 
@@ -24,6 +25,10 @@ class Booking extends React.Component {
         this._changePassengers = this._changePassengers.bind(this);
         this._cancel = this._cancel.bind(this);
         this._toBuy = this._toBuy.bind(this);
+    }
+
+    componentDidMount() {
+        this._getTicketRules();
     }
 
     /**
@@ -63,14 +68,14 @@ class Booking extends React.Component {
     }
 
     /**
-     * @method _setForceValidateState
-     * @param state {boolean}
-     * @param callback {Function}
+     * @method _getTicketRules
      * @returns {Booking}
      * @private
      */
-    _setForceValidateState(state, callback = () => {}) {
-        this.setState({forceValidate: state}, callback);
+    _getTicketRules() {
+        this.props.getTicketRules(this.props.ticket, (rules) => {
+            this.setState({rules});
+        });
 
         return this;
     }
@@ -84,8 +89,17 @@ class Booking extends React.Component {
         return this._hasBackwardFlights() ? this._stringsResource.roundTripFlight : this._stringsResource.oneWayFlight;
     }
 
-    _getPassengers(callback) {
+    /**
+     * @method _setForceValidateState
+     * @param state {boolean}
+     * @param callback {Function}
+     * @returns {Booking}
+     * @private
+     */
+    _setForceValidateState(state, callback = () => {}) {
+        this.setState({forceValidate: state}, callback);
 
+        return this;
     }
 
     /**
@@ -168,7 +182,7 @@ class Booking extends React.Component {
                                 </div>
 
                                 <div className="page-section p-0 bg-white">
-                                    <TicketRules ticket={this._getTicket()} />
+                                    <TicketRules ticket={this._getTicket()} rules={this.state.rules} />
                                 </div>
 
                                 <div className="page-section bg-white">
@@ -220,10 +234,12 @@ class Booking extends React.Component {
 
 Booking.propTypes = {
     ticket: PropTypes.instanceOf(Object).isRequired,
+    getTicketRules: PropTypes.func,
     cancel: PropTypes.func
 };
 
 Booking.defaultProps = {
+    getTicketRules: () => {},
     cancel: () => {}
 };
 

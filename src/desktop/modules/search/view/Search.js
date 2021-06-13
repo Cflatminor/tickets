@@ -1,6 +1,12 @@
 import React from "react";
 
-import TicketEntity from "app/core/entities/ticket/Ticket";
+import classNames from "classnames";
+
+import ServiceClassEnum from "app/core/utilities/enum/serviceClass";
+
+import RouteEntity from "app/core/entities/route/Route";
+
+import SearchService from "app/core/services/search";
 
 import Ticket from "components/ticket/Ticket";
 
@@ -19,214 +25,40 @@ class Search extends React.Component {
          */
         this._filter = props.options.initialData.filter;
 
-        this._tickets = [
-            {
-                "id": "jbdfklm",
-                "sticker": {
-                    "description": "ЛОУКОСТ|ЛУЧШАЯ ЦЕНА|САМЫЙ БЫСТРЫЙ"
-                },
-                "forward": [
-                    {
-                        "id": 1,
-                        "airlineCompany": {
-                            "logo": {
-                                src: {
-                                    original: "https://static.tickets.ua/img/logos_s/TK.png?780da6a93cce40cbc11d59f963a7272c454c4d6a"
-                                },
-                                alt: "Turkish Airlines",
-                                title: "Turkish Airlines"
-                            },
-                            "name": "Turkish Airlines",
-                            "description": "",
-                            "rating": 5
-                        },
-                        "flightNumber": "PC-1552",
-                        "aircraftNumber": "Airbus A321",
-                        "baggage": {},
-                        "departure": {
-                            "countryName": "Украина",
-                            "cityName": "Киев",
-                            "airport": {
-                                "name": "Борисполь",
-                                "code": "КВР"
-                            },
-                            "time": "12:45",
-                            "date": "12.04.21"
-                        },
-                        "arrival": {
-                            "countryName": "Турция",
-                            "cityName": "Стамбул",
-                            "airport": {
-                                "name": "Аэропорт Стамбула",
-                                "code": "IST"
-                            },
-                            "time": "15:45",
-                            "date": "12.04.21"
-                        },
-                        "transfers": [
-                            {
-                                "id": 3,
-                                "airlineCompany": {
-                                    "logo": {},
-                                    "name": "",
-                                    "description": "",
-                                    "rating": 5
-                                },
-                                "flightNumber": "PC-1552",
-                                "aircraftNumber": "Airbus A321",
-                                "baggage": {},
-                                "departure": {
-                                    "countryName": "Страна вылета",
-                                    "cityName": "Город вылета",
-                                    "airport": {
-                                        "name": "Название аэропорта",
-                                        "code": "DDD"
-                                    },
-                                    "time": "17:45",
-                                    "date": "23.05.2021"
-                                },
-                                "arrival": {
-                                    "countryName": "Страна прибытия",
-                                    "cityName": "Город прибытия",
-                                    "airport": {
-                                        "name": "Название аэропорта",
-                                        "code": "DDD"
-                                    },
-                                    "time": "15:45",
-                                    "date": "23.05.2021"
-                                },
-                                "totalTime": "2ч (общее время пересадки)"
-                            },
-                            {
-                                "id": 5,
-                                "airlineCompany": {
-                                    "logo": {},
-                                    "name": "",
-                                    "description": "",
-                                    "rating": 5
-                                },
-                                "flightNumber": "PC-1552",
-                                "aircraftNumber": "Airbus A321",
-                                "baggage": {},
-                                "departure": {
-                                    "countryName": "Страна вылета",
-                                    "cityName": "Город вылета",
-                                    "airport": {
-                                        "name": "Название аэропорта",
-                                        "code": "RGK"
-                                    },
-                                    "time": "20:45",
-                                    "date": "23.05.2021"
-                                },
-                                "arrival": {
-                                    "countryName": "Страна прибытия",
-                                    "cityName": "Город прибытия",
-                                    "airport": {
-                                        "name": "Airport name",
-                                        "code": "RGK"
-                                    },
-                                    "time": "18:45",
-                                    "date": "23.05.2021"
-                                },
-                                "totalTime": "2ч (общее время пересадки)"
-                            }
-                        ],
-                        "totalTime": "18ч 45мин"
-                    }
-                ],
-                "backward": [
-                    {
-                        "id": 2,
-                        "airlineCompany": {
-                            "logo": {
-                                src: {
-                                    original: "https://static.tickets.ua/img/logos_s/TK.png?780da6a93cce40cbc11d59f963a7272c454c4d6a"
-                                },
-                                alt: "Turkish Airlines",
-                                title: "Turkish Airlines"
-                            },
-                            "name": "Turkish Airlines",
-                            "description": "",
-                            "rating": 5
-                        },
-                        "flightNumber": "PC-1552",
-                        "aircraftNumber": "Airbus A321",
-                        "baggage": {},
-                        "departure": {
-                            "countryName": "Турция",
-                            "cityName": "Стамбул",
-                            "airport": {
-                                "name": "Аэропорт Стамбула",
-                                "code": "IST"
-                            },
-                            "time": "12:45",
-                            "date": "12.04.21"
-                        },
-                        "arrival": {
-                            "countryName": "Украина",
-                            "cityName": "Киев",
-                            "airport": {
-                                "name": "Борисполь",
-                                "code": "КВР"
-                            },
-                            "time": "10:45",
-                            "date": "15.04.21"
-                        },
-                        "transfers": [
-                            {
-                                "id": 4,
-                                "airlineCompany": {
-                                    "logo": {},
-                                    "name": "",
-                                    "description": "",
-                                    "rating": 5
-                                },
-                                "flightNumber": "PC-1552",
-                                "aircraftNumber": "Airbus A321",
-                                "baggage": {},
-                                "departure": {
-                                    "countryName": "Страна вылета",
-                                    "cityName": "Город вылета",
-                                    "airport": {
-                                        "name": "Название аэропорта",
-                                        "code": "fff"
-                                    },
-                                    "time": "20:45",
-                                    "date": "28.05.2021"
-                                },
-                                "arrival": {
-                                    "countryName": "Страна прибытия",
-                                    "cityName": "Город прибытия",
-                                    "airport": {
-                                        "name": "Название аэропорта",
-                                        "code": "fff"
-                                    },
-                                    "time": "18:45",
-                                    "date": "28.05.2021"
-                                },
-                                "totalTime": "2ч (общее время пересадки)"
-                            }
-                        ],
-                        "totalTime": "18ч 45мин"
-                    }
-                ],
-                "price": {
-                    "current": 3000,
-                    "old": 3450,
-                    "currency": {
-                        "code": "uah",
-                        "description": "грн"
-                    }
-                }
-            }
-        ];
-
         this.state = {
+            loading: false,
+            tickets: [],
+            filter: null,
             ticket: null
         }
 
+        /**
+         * @property _serviceClassEnum
+         * @type {Enum}
+         */
+        this._serviceClassEnum = ServiceClassEnum.getInstance();
+
+        this._getTicketRules = this._getTicketRules.bind(this);
         this._selectTicket = this._selectTicket.bind(this);
         this._cancelBooking = this._cancelBooking.bind(this);
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this._getTickets();
+
+            SearchService
+                .getInstance()
+                .getFlightPoint(
+                    "stambul",
+                    (items) => {
+                        console.log(items);
+                    },
+                    (e) => {
+                        console.log(e);
+                    }
+                );
+        }, 2000);
     }
 
     /**
@@ -239,12 +71,75 @@ class Search extends React.Component {
     }
 
     /**
+     * @method _hasTickets
+     * @returns {boolean}
      * @private
+     */
+    _hasTickets() {
+        return Boolean(this.state.tickets.length);
+    }
+
+    /**
+     * @method _toggleLoader
+     * @param state {boolean}
+     * @returns {Search}
+     * @private
+     */
+    _toggleLoader(state) {
+        this.setState({loading: state});
+
+        return this;
+    }
+
+    /**
+     * @method _getPresenter
+     * @returns {Presenter}
+     * @private
+     */
+    _getPresenter() {
+        return this.props.options.presenter;
+    }
+
+    /**
      * @method _getTickets
-     * @returns {Ticket[]}
+     * @returns {Search}
+     * @private
      */
     _getTickets() {
-        return this._tickets.map((item) => new TicketEntity(item));
+        this
+            ._toggleLoader(true)
+            ._getPresenter()
+            .getTicketsByRoute(this._buildRoute(), (items, filter) => {
+                this
+                    ._setTickets(items)
+                    ._setFilter(filter)
+                    ._toggleLoader(false);
+            }, () => {
+                this._toggleLoader(false);
+            });
+
+        return this;
+    }
+
+    /**
+     * @private
+     * @method _getTicketsFromState
+     * @returns {Ticket[]}
+     */
+    _getTicketsFromState() {
+        return this.state.tickets;
+    }
+
+    /**
+     * @method _setTickets
+     * @param items {Ticket[]}
+     * @returns {Search}
+     * @private
+     */
+    _setTickets(items) {
+        this.setState({tickets: items});
+
+        return this;
     }
 
     /**
@@ -266,6 +161,60 @@ class Search extends React.Component {
         this.setState({ticket});
 
         return this;
+    }
+
+    /**
+     * @method _getTicketRules
+     * @param ticket {Ticket}
+     * @param callback {Function}
+     * @returns {Search}
+     * @private
+     */
+    _getTicketRules(ticket, callback) {
+        this
+            ._toggleLoader(true)
+            ._getPresenter()
+            .getTicketRules(
+                ticket,
+                (rules) => {
+                    callback(rules);
+                    this._toggleLoader(false);
+                },
+                () => {
+                    this._toggleLoader(false);
+                }
+            );
+
+        return this;
+    }
+
+    /**
+     * @method
+     * @param filter {Filter}
+     * @returns {Search}
+     * @private
+     */
+    _setFilter(filter) {
+        this.setState({filter});
+
+        return this;
+    }
+
+    /**
+     * @method _buildRoute
+     * @returns {Route}
+     * @private
+     */
+    _buildRoute() {
+        return new RouteEntity()
+            .setDepartureAirportCode("IST")
+            .setDepartureDate("20.06.21")
+            .setArrivalAirportCode("SVG")
+            .setArrivalDate("25.06.21")
+            .setAdultPassengersCount(2)
+            .setChildPassengersCount(1)
+            .setBabyPassengersCount(0)
+            .setServiceClass(this._serviceClassEnum.getComfortAsValue());
     }
 
     /**
@@ -291,16 +240,21 @@ class Search extends React.Component {
         return this;
     }
 
+    /**
+     * @public
+     * @method render
+     * @returns {React.element}
+     */
     render() {
         return (
             <section className="search">
                 <Header />
 
-                <div className="search__body">
-                    {!this._hasTicket() && (
+                <div className={classNames("search__body", {loading: this.state.loading})}>
+                    {!this._hasTicket() && this._hasTickets() && (
                         <Offers
-                            filter={this._filter}
-                            items={this._getTickets()}
+                            filter={this.state.filter}
+                            items={this._getTicketsFromState()}
                             select={this._selectTicket}
                         />
                     )}
@@ -308,6 +262,7 @@ class Search extends React.Component {
                     {this._hasTicket() && (
                         <Booking
                             ticket={this._getCurrentTicket()}
+                            getTicketRules={this._getTicketRules}
                             cancel={this._cancelBooking}
                         />
                     )}

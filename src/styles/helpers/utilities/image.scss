@@ -1,4 +1,4 @@
-$imageRepository: "https://i.tickets.ua";
+$imageRepository: "https://i.apteka24.ua";
 
 @function build-image-url($url) {
   @return $imageRepository + $url;

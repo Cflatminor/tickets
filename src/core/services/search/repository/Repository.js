@@ -25,13 +25,34 @@ class Repository {
      * @param query {string}
      * @param success {Function}
      * @param error {Function}
-     * @return {Search1}
+     * @return {Repository}
      */
     getItemsByQuery(query, success, error) {
         return this.httpClient
             .setBaseUrl(this.urls.getItemsByQuery.domain)
             .request({
                 path: this.urls.getItemsByQuery.path,
+                method: this.HttpClient.methods.GET,
+                query: {query}
+            })
+            .then((response) => {
+                success(response.data || []);
+            }, error);
+    }
+
+    /**
+     * @public
+     * @method getFlightPoint
+     * @param query {string}
+     * @param success {Function}
+     * @param error {Function}
+     * @return {Repository}
+     */
+    getFlightPoint(query, success, error) {
+        return this.httpClient
+            .setBaseUrl(this.urls.getFlightPoint.domain)
+            .request({
+                path: this.urls.getFlightPoint.path,
                 method: this.HttpClient.methods.GET,
                 query: {query}
             })

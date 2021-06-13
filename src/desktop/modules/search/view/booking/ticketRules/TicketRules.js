@@ -10,187 +10,6 @@ class TicketRules extends React.Component {
     constructor(props) {
         super(props);
 
-        this.rules = {
-            1: `
-                16.PENALTIES.
-                CHANGES
-                ANY TIME
-                CHANGES PERMITTED FOR REISSUE/REVALIDATION.
-                NOTE - TEXT BELOW NOT VALIDATED FOR AUTOPRICING.
-                REPRICING CONDITIONS-
-                --------------------
-                A-BEFORE DEPARTURE-
-                ITINERARY MUST BE RE-PRICED USING CURRENT FARES
-                IN EFFECT ON THE DATE THE TICKET IS REISSUED
-                THE ITINERARY MUST MEET ALL RULE PROVISIONS OF
-                THE NEWLY TICKETED FARE INCLUDING ADVANCE
-                PURCHASE
-                --AP MEANS-
-                TKT MUST BE PURCHASED A MINIMUM NUMBER OF DAYS
-                BEFORE THE FLIGHT DEPARTS
-                -
-                A CHANGE IS A DATE/FLIGHT/ROUTING CHANGE.
-                -
-                REFUND/REISSUE CHARGE ONLY APPLIES FOR
-                ADULT/CHILD AND INFANT OCCUPYING A SEAT. THESE
-                CHARGES WILL NOT APPLY FOR INFANT NOT OCCUPYING A
-                SEAT. HOWEVER IF NONREF INFORMATION IS AVAILABLE
-                ON TICKET THAT MEANS TICKET CANNOT BE REFUNDED.
-                -
-                NEW FARE MAY BE LOWER EQUAL OR HIGHER. WHEN THE
-                NEW
-                -
-                ITINERARY RESULTS IN A HIGHER
-                FARE THE DIFFERENCE WILL BE COLLECTED AND THE
-                CHANGE FEE WILL BE APPLIED.
-                -
-                CHARGES SHALL NOT BE WAIVED FOR MEDICAL
-                REASON
-                -
-                WHERE THIS FARE IS COMBINED WITH ANOTHER FARE AND
-                ONLY ONE FARE COMPONENT IS CHANGED THE PENALTY
-                CONDITIONS OF THE CHANGED FARE COMPONENT WILL
-                APPLY
-                WHEN MORE THAN ONE FARE COMPONENT IS BEING
-                CHANGED THE HIGHEST PENALTY OF ALL CHANGED FARE
-                COMPONENTS WILL APPLY
-                -
-                FOR DOMESTIC TURKEY SECTORS - WITHOUT CHARGE
-                -
-                -
-                B-AFTER DEPARTURE-
-                -
-                THE ITINERARY MUST BE RE-PRICED USING HISTORICAL
-                FARES IN EFFECT ON THE ORIGINAL TICKETING DATE.
-                THE NEW ITINERARY MUST MEET ALL THE RULE
-                PROVISIONS OF THE NEWLY TICKETED FARES SUCH THAT
-                THE RECALCULATED FARE COULD HAVE BEEN USED FOR
-                THE NEW ITINERARY IF PURCHASED ON THE ORIGINAL
-                TICKET ISSUE DATE
-                - A CHANGE IS A DATE/FLIGHT/ROUTING CHANGE.
-                -
-                CHARGE APPLIES PER TRANSACTION - PER PERSON FOR
-                ADULT CHILD AND INFANT WITH SEAT.
-                INFANTS WITHOUT A SEAT ARE NOT CHARGED THE FEE
-                -
-                NEW FARE MAY BE LOWER EQUAL OR HIGHER. WHEN THE
-                NEW
-                -
-                ITINERARY RESULTS IN A HIGHER
-                FARE THE DIFFERENCE WILL BE COLLECTED AND THE
-                CHANGE FEE WILL BE APPLIED.
-                -
-                WHERE THIS FARE IS COMBINED WITH ANOTHER FARE AND
-                ONLY ONE FARE COMPONENT IS CHANGED THE PENALTY
-                CONDITIONS OF THE CHANGED FARE COMPONENT WILL
-                APPLY
-                WHEN MORE THAN ONE FARE COMPONENT IS BEING
-                CHANGED THE HIGHEST PENALTY OF ALL CHANGED FARE
-                COMPONENTS WILL APPLY
-                --
-                CHARGES SHALL NOT BE WAIVED FOR MEDICAL
-                REASON
-                -
-                -
-                FOR DOMESTIC TURKEY SECTORS - WITHOUT CHARGE
-                -
-                -
-                NOTE-
-                SEQUENTIAL USE OF FLIGHT COUPONS - THIS FARE IS
-                ONLY VALID IF THE FLIGHTS ARE TAKEN IN THE BOOKED
-                SEQUENCE. OTHERWISE THE FARE WILL BE RECALCULATED
-                BASED ON THE ACTUAL FLIGHT ROUTING.
-                --
-                ANY TIME-
-                --
-                REVALIDATION/REBOOKING/REROUTING MUST BE
-                FINALIZED BEFORE DEPARTURE OF THE ORIGINAL FLIGHT
-                BEING CHANGED PROVIDED ALL CONDITIONS EXCEPT
-                ADVANCE PURCHASE ARE COMPLIED WITH.
-                --
-                REISSUE/REBOOKING-
-                --
-                RESERVATION NEEDS TO CANCELLED AND TICKET NEEDS
-                TO REISSUED BEFORE THE ORIGINAL FLIGHT OTHERWISE
-                IS ACCEPTED AS NO SHOW
-                --
-                REFUND-
-                --
-                FOR ANY REFUND REQUESTS AFTER SCHEDULED FLIGHT
-                DEPARTURE TIME RESERVATION HISTORY SHOULD BE
-                CHECKED. IF FLIGHT RESERVATION HAS NOT BEEN
-                CANCELLED BEFORE SCHEDULED FLIGHT DEPARTURE TIME
-                FARE RULES APPY AND AUTOMATED REFUND CAN BE USED.
-                HOWEVER IF FLIGHT RESERVATION HAS BEEN CANCELLED
-                BEFORE SCHEDULED FLIGHT DEPARTURE TIME THEN NO
-                SHOW PENALTY SHOULD NOT BE CHARGED AND THUS THE
-                TICKET SHOULD BE REFUNDED MANUALLY.
-                --
-                ANY TIME
-                CHARGE EUR 60.00 FOR NO-SHOW.
-                NOTE - TEXT BELOW NOT VALIDATED FOR AUTOPRICING.
-                --
-                REISSUE/REBOOKING-
-                --
-                RESERVATION NEEDS TO CANCELLED AND TICKET NEEDS
-                TO REISSUED BEFORE THE ORIGINAL FLIGHT OTHERWISE
-                IS ACCEPTED AS NO SHOW
-                --
-                CHARGES SHALL NOT BE WAIVED FOR MEDICAL REASON -
-                --
-                WHEN THE CHANGE REQUEST IS MADE IN THE EVENT OF N
-                NO SHOW REISSUE AND NO SHOW CHARGES MUST BE C
-                COLLECTED TOGETHER
-                --
-                CANCELLATIONS
-                TICKET IS NON-REFUNDABLE IN CASE OF NO-SHOW.
-                NOTE - TEXT BELOW NOT VALIDATED FOR AUTOPRICING.
-                --
-                REFUND-
-                --
-                FOR ANY REFUND REQUESTS AFTER SCHEDULED FLIGHT
-                DEPARTURE TIME RESERVATION HISTORY SHOULD BE
-                CHECKED. IF FLIGHT RESERVATION HAS NOT BEEN
-                CANCELLED BEFORE SCHEDULED FLIGHT DEPARTURE TIME
-                FARE RULES APPY AND AUTOMATED REFUND CAN BE USED.
-                HOWEVER IF FLIGHT RESERVATION HAS BEEN CANCELLED
-                BEFORE SCHEDULED FLIGHT DEPARTURE TIME THEN NO
-                SHOW PENALTY SHOULD NOT BE CHARGED AND THUS THE
-                TICKET SHOULD BE REFUNDED MANUALLY.
-                --
-                NOT PERMITTED EVEN FOR MEDICAL REASON
-                FOR NON REFUNDABLE TICKETS THE -YR- SURCHARGE
-                WILL NOT BE REFUNDED.
-                BEFORE DEPARTURE
-                TICKET IS NON-REFUNDABLE IN CASE OF CANCEL/REFUND.
-                NOTE - TEXT BELOW NOT VALIDATED FOR AUTOPRICING.
-                NOT PERMITTED EVEN FOR MEDICAL REASON
-                FOR NON REFUNDABLE TICKETS THE -YR- SURCHARGE
-                WILL NOT BE REFUNDED.
-                -
-                -
-                WHEN FARES ARE COMBINED THE MOST RESTRICTIVE
-                CONDITIONS APPLY
-                -
-                THE ORIGINAL NON-REFUNDABLE AMOUNT REMAINS
-                NON-REFUNDABLE.
-                AFTER DEPARTURE
-                TICKET IS NON-REFUNDABLE IN CASE OF CANCEL/REFUND.
-                NOTE - TEXT BELOW NOT VALIDATED FOR AUTOPRICING.
-                NOT PERMITTED EVEN FOR MEDICAL REASON
-                FOR NON REFUNDABLE TICKETS THE -YR- SURCHARGE
-                WILL NOT BE REFUNDED.
-                -
-                -
-                WHEN FARES ARE COMBINED THE MOST RESTRICTIVE
-                CONDITIONS APPLY
-                -
-                THE ORIGINAL NON-REFUNDABLE AMOUNT REMAINS
-                NON-REFUNDABLE.            
-            `,
-            2: "правила для рейса Стамбул - Киев"
-        };
-
         this.state = {
             flight: this._getDefaultFlight(),
             isActive: false
@@ -258,7 +77,7 @@ class TicketRules extends React.Component {
      * @private
      */
     _getRules() {
-        return this.state.flight ? this.rules[this.state.flight.getId()] : "";
+        return this.state.flight ? this.props.rules[this.state.flight.getId()] : "";
     }
 
     /**
@@ -343,11 +162,12 @@ class TicketRules extends React.Component {
 }
 
 TicketRules.propTypes = {
-    ticket: PropTypes.instanceOf(Object).isRequired
+    ticket: PropTypes.instanceOf(Object).isRequired,
+    rules: PropTypes.instanceOf(Object)
 };
 
-// TicketRules.defaultProps = {
-//     ticket: []
-// };
+TicketRules.defaultProps = {
+    rules: {}
+};
 
 export default TicketRules;

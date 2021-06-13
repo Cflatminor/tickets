@@ -62,15 +62,15 @@ class TimeFilter extends React.Component {
                 <div className="time-filter__header">
                     Время вылета и прибытия
 
-                    <div>
-                        <button type="button" className="btn-default btn-md">
-                            Туда
-                        </button>
+                    {/*<div>*/}
+                    {/*    <button type="button" className="btn-default btn-md">*/}
+                    {/*        Туда*/}
+                    {/*    </button>*/}
 
-                        <button type="button" className="btn-default btn-md">
-                            Обратно
-                        </button>
-                    </div>
+                    {/*    <button type="button" className="btn-default btn-md">*/}
+                    {/*        Обратно*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
                 </div>
 
                 <div className="time-filter__body">
@@ -84,15 +84,15 @@ class TimeFilter extends React.Component {
                         />
                     </div>
 
-                    <div className="time-filter__backward-flight">
-                        <TimeRange
-                            flight={this._getBackwardFlight()}
-                        />
+                    {/*<div className="time-filter__backward-flight">*/}
+                    {/*    <TimeRange*/}
+                    {/*        flight={this._getBackwardFlight()}*/}
+                    {/*    />*/}
 
-                        <TimeRange
-                            flight={this._getBackwardFlight()}
-                        />
-                    </div>
+                    {/*    <TimeRange*/}
+                    {/*        flight={this._getBackwardFlight()}*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
             </div>
         );
