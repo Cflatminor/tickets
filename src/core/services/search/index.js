@@ -1,5 +1,7 @@
 import Env from "app/core/environment";
 
+import AirportEntity from "app/core/entities/airport/Airport"
+
 import HttpClient from "app/core/utilities/httpClient/HttpClient";
 
 import Repository from "./repository/Repository";
@@ -25,7 +27,8 @@ let search = new Search({
                     }
                 }
             }
-        })
+        }),
+        AirportEntity
     }
 });
 

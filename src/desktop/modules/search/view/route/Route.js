@@ -1,58 +1,21 @@
 import React from "react";
 
+import ServiceClassEnum from "app/core/utilities/enum/serviceClass";
+
+import RouteEntity from "app/core/entities/route/Route"
+
+import SearchService from "app/core/services/search"
+
 import DestinationPoint from "./DestinationPoint";
 import DeparturePoint from "./DeparturePoint";
 import ArrivalDate from "./ArrivalDate";
 import DepartureDate from "./DepartureDate";
 import Passengers from "./Passengers";
+import PropTypes from "prop-types";
 
 class Route extends React.Component {
     constructor(props) {
         super(props);
-
-        this.airports = [
-            {
-                country_code: "TR",
-                code: "IST",
-                name: "Стамбул",
-                airports: [
-                    {
-                        full_name: "Стамбул Новый аэропорт, Стамбул",
-                        code: "IST",
-                        name: "Стамбул Новый аэропорт"
-                    },
-                    {
-                        full_name: "Сабиха Гёкчен, Стамбул",
-                        code: "SAW",
-                        name: "Сабиха Гёкчен"
-                    }
-                ]
-            },
-            {
-                country_code: "RU",
-                code: "STW",
-                name: "Ставрополь",
-                airports: [
-                    {
-                        full_name: "Ставрополь, Ставрополь",
-                        code: "STW",
-                        name: "Ставрополь"
-                    }
-                ]
-            },
-            {
-                country_code: "NO",
-                code: "SVG",
-                name: "Ставангер",
-                airports: [
-                    {
-                        full_name: "Сула, Ставангер",
-                        code: "SVG",
-                        name: "Сула"
-                    }
-                ]
-            }
-        ];
 
         this.state = {
             // arrivalDate: "",
@@ -70,10 +33,32 @@ class Route extends React.Component {
             // passengers: {}
         };
 
+        /**
+         * @private
+         * @property _searchService
+         * @type {Search}
+         */
+        this._searchService = SearchService.getInstance();
+
+        /**
+         * @private
+         * @property _serviceClassEnum
+         * @type {Enum}
+         */
+        this._serviceClassEnum = ServiceClassEnum.getInstance();
+
+        /**
+         * @private
+         * @property _RouteEntity
+         * @type {Route}
+         */
+        this._RouteEntity = RouteEntity;
+
         this._getItemsByQuery = this._getItemsByQuery.bind(this);
         this._setDeparturePoint = this._setDeparturePoint.bind(this);
         this._setDestinationPoint = this._setDestinationPoint.bind(this);
         this._swapPoints = this._swapPoints.bind(this);
+        this._createRoute = this._createRoute.bind(this);
     }
 
     /**
@@ -142,39 +127,43 @@ class Route extends React.Component {
     }
 
     _getItemsByQuery(query, success) {
-        if (query.length < 3) {
-            success([]);
-        }
-
         if (query.length > 2) {
-            let result = [],
-                matched = this.airports
-                    .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
-                    .map((item) => ({
-                        getName: () => item.name,
-                        getCode: () => item.code,
-                        isAirport: () => false,
-                        airports: item.airports.map((airport) => ({
-                            isAirport: () => true,
-                            getName: () => airport.name,
-                            getCode: () => airport.code
-                        }))
-                    }));
+            this._searchService.getFlightPoint(query, (items) => {
+                let result = [];
 
-            matched.forEach((city) => {
-                result.push(city);
+                items.forEach((item) => {
+                    result.push(item);
 
-                if (city.airports && city.airports.length) {
-                    city.airports.forEach((airport) => {
+                    item.getAirports().forEach((airport) => {
                         result.push(airport);
                     });
-                }
-            });
+                });
 
-            success(result);
+                success(result)
+            }, () => {});
         } else {
             success([]);
         }
+    }
+
+    /**
+     * @method _createRoute
+     * @return {Route}
+     */
+    _createRoute() {
+        this.props.confirm(
+            new this._RouteEntity()
+                .setDepartureAirportCode(this.state.departurePoint.getCode())
+                .setDepartureDate("20.06.21")
+                .setArrivalAirportCode(this.state.destinationPoint.getCode())
+                .setArrivalDate("25.06.21")
+                .setAdultPassengersCount(2)
+                .setChildPassengersCount(1)
+                .setBabyPassengersCount(0)
+                .setServiceClass(this._serviceClassEnum.getComfortAsValue())
+        );
+
+        return this;
     }
 
     render() {
@@ -187,19 +176,22 @@ class Route extends React.Component {
                                 <div className="route__inputs d-flex w-100">
                                     <DeparturePoint
                                         getItemsByQuery={this._getItemsByQuery}
-                                        setPoint={this._setDeparturePoint}
+                                        setPoint={this._setDeparturePoint}//todo "setPoint" - это что за событие такое ?
                                         point={this.state.departurePoint}
                                     />
 
                                     <DestinationPoint
                                         getItemsByQuery={this._getItemsByQuery}
-                                        setPoint={this._setDestinationPoint}
+                                        setPoint={this._setDestinationPoint}//todo Destination ? серьезно, откуда это взялось ? на всех вокзалах написано Departure и Arrival
                                         point={this.state.destinationPoint}
                                     />
 
                                     {/*<span onClick={this._swapPoints}>x</span>*/}
 
-                                    <ArrivalDate />
+
+                                    <ArrivalDate
+                                        //todo где события ?
+                                    />
 
                                     <DepartureDate />
 
@@ -209,6 +201,7 @@ class Route extends React.Component {
                                 <button
                                     className="btn-default btn-lg to-search-results"
                                     type="button"
+                                    onClick={this._createRoute}
                                 >
                                     Найти
                                 </button>
@@ -220,5 +213,13 @@ class Route extends React.Component {
         );
     }
 }
+
+Route.propTypes = {
+    confirm: PropTypes.func
+};
+
+Route.defaultProps = {
+    confirm: () => {}
+};
 
 export default Route;

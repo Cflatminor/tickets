@@ -1,8 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Route from "../route/Route";
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this._searchTickets = this._searchTickets.bind(this);
+    }
+
+    /**
+     * @method _searchTickets
+     * @param route {Route}
+     * @return {Header}
+     * @private
+     */
+    _searchTickets(route) {
+        this.props.searchTickets(route);
+
+        return this;
+    }
+
     /**
      * @public
      * @method render
@@ -25,10 +44,18 @@ class Header extends React.Component {
                     </div>
                 </div>
 
-                <Route />
+                <Route confirm={this._searchTickets} />
             </header>
         );
     }
 }
+
+Header.propTypes = {
+    searchTickets: PropTypes.func
+};
+
+Header.defaultProps = {
+    searchTickets: () => {}
+};
 
 export default Header;

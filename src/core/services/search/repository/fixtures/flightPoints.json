@@ -1,0 +1,43 @@
+[
+  {
+    "country_code": "TR",
+    "code": "IST",
+    "name": "Стамбул",
+    "airports": [
+      {
+        "full_name": "Стамбул Новый аэропорт, Стамбул",
+        "code": "IST",
+        "name": "Стамбул Новый аэропорт"
+      },
+      {
+        "full_name": "Сабиха Гёкчен, Стамбул",
+        "code": "SAW",
+        "name": "Сабиха Гёкчен"
+      }
+    ]
+  },
+  {
+    "country_code": "RU",
+    "code": "STW",
+    "name": "Ставрополь",
+    "airports": [
+      {
+        "full_name": "Ставрополь, Ставрополь",
+        "code": "STW",
+        "name": "Ставрополь"
+      }
+    ]
+  },
+  {
+    "country_code": "NO",
+    "code": "SVG",
+    "name": "Ставангер",
+    "airports": [
+      {
+        "full_name": "Сула, Ставангер",
+        "code": "SVG",
+        "name": "Сула"
+      }
+    ]
+  }
+]

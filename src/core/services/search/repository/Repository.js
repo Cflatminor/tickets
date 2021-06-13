@@ -1,5 +1,9 @@
+import flightPoints from "./fixtures/flightPoints.json"
+
 class Repository {
     constructor(props) {
+        this.flightPoints = flightPoints;
+
         /**
          * @property urls
          * @type {Object}
@@ -57,7 +61,8 @@ class Repository {
                 query: {query}
             })
             .then((response) => {
-                success(response.data || []);
+                // success(response.data || []);
+                success(this.flightPoints);
             }, error);
     }
 }

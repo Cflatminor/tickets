@@ -6,7 +6,57 @@ class Search {
          * @property Repository
          * @type {Repository}
          */
-        this.Repository = props.dependencies.Repository;
+        this._Repository = props.dependencies.Repository;
+
+        this._AirportEntity = props.dependencies.AirportEntity;
+
+        this._buildFlightPoint = this._buildFlightPoint.bind(this);
+    }
+
+    /**
+     * @method _buildFlightPoint
+     * @param point {Object}
+     * @returns {Object}
+     * @private
+     */
+    _buildFlightPoint(point) {
+        let self = this;
+
+        return {
+            hasAirports: true,
+            /**
+             * @public
+             * @method getName
+             * @returns {string}
+             */
+            getName() {
+                return point.name || "";
+            },
+            /**
+             * @public
+             * @method getCode
+             * @returns {string}
+             */
+            getCode() {
+                return point.code || "";
+            },
+            /**
+             * @public
+             * @method getCountryCode
+             * @returns {string}
+             */
+            getCountryCode() {
+                return point.country_code || "";
+            },
+            /**
+             * @public
+             * @method getAirports
+             * @returns {Airport[]}
+             */
+            getAirports() {
+                return point.airports.map((airport) => new self._AirportEntity(airport))
+            }
+        };
     }
 
     /**
@@ -19,7 +69,7 @@ class Search {
      */
     getItemsByQuery(query, success, error) {
         if (query && _.isFunction(success) && _.isFunction(error)) {
-            this.Repository.getItemsByQuery(query.trim().toLowerCase(), success, error);
+            this._Repository.getItemsByQuery(query.trim().toLowerCase(), success, error);
         }
 
         return this;
@@ -35,7 +85,13 @@ class Search {
      */
     getFlightPoint(query, success, error) {
         if (query && _.isFunction(success) && _.isFunction(error)) {
-            this.Repository.getFlightPoint(query.trim().toLowerCase(), success, error);
+            this._Repository.getFlightPoint(
+                query.trim().toLowerCase(),
+                (items) => {
+                    success(items.map(this._buildFlightPoint));
+                },
+                error
+            );
         }
 
         return this;

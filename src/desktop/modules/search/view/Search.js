@@ -2,12 +2,6 @@ import React from "react";
 
 import classNames from "classnames";
 
-import ServiceClassEnum from "app/core/utilities/enum/serviceClass";
-
-import RouteEntity from "app/core/entities/route/Route";
-
-import SearchService from "app/core/services/search";
-
 import Ticket from "components/ticket/Ticket";
 
 import Header from "./header/Header";
@@ -32,33 +26,10 @@ class Search extends React.Component {
             ticket: null
         }
 
-        /**
-         * @property _serviceClassEnum
-         * @type {Enum}
-         */
-        this._serviceClassEnum = ServiceClassEnum.getInstance();
-
+        this._getTicketsByRoute = this._getTicketsByRoute.bind(this);
         this._getTicketRules = this._getTicketRules.bind(this);
         this._selectTicket = this._selectTicket.bind(this);
         this._cancelBooking = this._cancelBooking.bind(this);
-    }
-
-    componentDidMount() {
-        setTimeout(() => {
-            this._getTickets();
-
-            SearchService
-                .getInstance()
-                .getFlightPoint(
-                    "stambul",
-                    (items) => {
-                        console.log(items);
-                    },
-                    (e) => {
-                        console.log(e);
-                    }
-                );
-        }, 2000);
     }
 
     /**
@@ -101,15 +72,16 @@ class Search extends React.Component {
     }
 
     /**
-     * @method _getTickets
+     * @method _getTicketsByRoute
+     * @param route {Route}
      * @returns {Search}
      * @private
      */
-    _getTickets() {
+    _getTicketsByRoute(route) {
         this
             ._toggleLoader(true)
             ._getPresenter()
-            .getTicketsByRoute(this._buildRoute(), (items, filter) => {
+            .getTicketsByRoute(route, (items, filter) => {
                 this
                     ._setTickets(items)
                     ._setFilter(filter)
@@ -201,23 +173,6 @@ class Search extends React.Component {
     }
 
     /**
-     * @method _buildRoute
-     * @returns {Route}
-     * @private
-     */
-    _buildRoute() {
-        return new RouteEntity()
-            .setDepartureAirportCode("IST")
-            .setDepartureDate("20.06.21")
-            .setArrivalAirportCode("SVG")
-            .setArrivalDate("25.06.21")
-            .setAdultPassengersCount(2)
-            .setChildPassengersCount(1)
-            .setBabyPassengersCount(0)
-            .setServiceClass(this._serviceClassEnum.getComfortAsValue());
-    }
-
-    /**
      * @method _selectTicket
      * @param ticket {Ticket}
      * @returns {Search}
@@ -248,7 +203,7 @@ class Search extends React.Component {
     render() {
         return (
             <section className="search">
-                <Header />
+                <Header searchTickets={this._getTicketsByRoute} />
 
                 <div className={classNames("search__body", {loading: this.state.loading})}>
                     {!this._hasTicket() && this._hasTickets() && (
