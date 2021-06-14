@@ -4,7 +4,7 @@ let serviceClass = new Enum({
     fields: [
         {key: "economy", value: "1"},
         {key: "comfort", value: "2"},
-        {key: "business", value: "3"},
+        {key: "business", value: "3"}
     ]
 });
 

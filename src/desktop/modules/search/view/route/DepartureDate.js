@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import PropTypes from "prop-types";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 import Strings from "core/utilities/strings";
@@ -40,6 +41,8 @@ class ArrivalDate extends React.Component {
             isEmpty: !input.value.trim()
             // isValidDay: typeof selectedDay !== 'undefined',
             // isDisabled: modifiers.disabled === true,
+        }, () => {
+            this.props.setDate(selectedDate);
         });
     }
 
@@ -138,5 +141,9 @@ class ArrivalDate extends React.Component {
         );
     }
 }
+
+ArrivalDate.propTypes = {
+    setDate: PropTypes.func.isRequired
+};
 
 export default ArrivalDate;

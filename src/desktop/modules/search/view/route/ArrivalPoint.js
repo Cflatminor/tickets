@@ -4,12 +4,12 @@ import classnames from "classnames";
 
 import Autocomplete from "core/components/autocomplete/Autocomplete";
 
-class DestinationPoint extends React.Component {
+class ArrivalPoint extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedItem: this.props.point,
+            selectedItem: this.props.airport,
             isFocused: false
         };
 
@@ -30,7 +30,7 @@ class DestinationPoint extends React.Component {
     }
 
     _setEmptyItem() {
-        this.props.setPoint({
+        this.props.setAirportCode({
             getName: () => "",
             getCode: () => "",
             getAirports: () => []
@@ -40,7 +40,7 @@ class DestinationPoint extends React.Component {
     }
 
     _selectItem(item) {
-        this.props.setPoint(item);
+        this.props.setAirportCode(item);
 
         return this;
     }
@@ -81,7 +81,7 @@ class DestinationPoint extends React.Component {
             <div className={classnames("outlined-text-form", {focused: this.state.isFocused})}>
                 <Autocomplete
                     placeholder=""
-                    id="destination-autocomplete"
+                    id="arrival-autocomplete"
                     getItemsByQuery={this._getItemsByQuery}
                     selectItem={this._selectItem}
                     onFocus={this._onFocus}
@@ -94,17 +94,17 @@ class DestinationPoint extends React.Component {
                 </label>
 
                 <span className="city-code">
-                    { this.props.point.getCode() }
+                    { this.props.airport.getCode() }
                 </span>
             </div>
         );
     }
 }
 
-DestinationPoint.propTypes = {
+ArrivalPoint.propTypes = {
     getItemsByQuery: PropTypes.func.isRequired,
-    setPoint: PropTypes.func.isRequired,
-    point: PropTypes.instanceOf(Object).isRequired
+    setAirportCode: PropTypes.func.isRequired,
+    airport: PropTypes.instanceOf(Object).isRequired
 };
 
-export default DestinationPoint;
+export default ArrivalPoint;

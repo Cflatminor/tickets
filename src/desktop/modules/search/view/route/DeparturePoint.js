@@ -9,7 +9,7 @@ class DeparturePoint extends React.Component {
         super(props);
 
         this.state = {
-            selectedItem: this.props.point,
+            selectedItem: this.props.airport,
             isFocused: false
         };
 
@@ -30,7 +30,7 @@ class DeparturePoint extends React.Component {
     }
 
     _setEmptyItem() {
-        this.props.setPoint({
+        this.props.setAirportCode({
             getName: () => "",
             getCode: () => "",
             getAirports: () => []
@@ -40,7 +40,7 @@ class DeparturePoint extends React.Component {
     }
 
     _selectItem(item) {
-        this.props.setPoint(item);
+        this.props.setAirportCode(item);
 
         return this;
     }
@@ -94,7 +94,7 @@ class DeparturePoint extends React.Component {
                 </label>
 
                 <span className="city-code">
-                    { this.props.point.getCode() }
+                    { this.props.airport.getCode() }
                 </span>
             </div>
         );
@@ -103,8 +103,8 @@ class DeparturePoint extends React.Component {
 
 DeparturePoint.propTypes = {
     getItemsByQuery: PropTypes.func.isRequired,
-    setPoint: PropTypes.func.isRequired,
-    point: PropTypes.instanceOf(Object).isRequired
+    setAirportCode: PropTypes.func.isRequired,
+    airport: PropTypes.instanceOf(Object).isRequired
 };
 
 export default DeparturePoint;

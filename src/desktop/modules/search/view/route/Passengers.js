@@ -1,7 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classnames from "classnames";
 
 import Translator from "app/core/utilities/strings/translator";
+import ServiceClassEnum from "app/core/utilities/enum/serviceClass";
 
 class Passengers extends React.Component {
     constructor(props) {
@@ -19,6 +21,13 @@ class Passengers extends React.Component {
          */
         this.translator = this.Translator.getInstance();
 
+        /**
+         * @private
+         * @property _serviceClassEnum
+         * @type {Enum}
+         */
+        this._serviceClassEnum = ServiceClassEnum.getInstance();
+
         // this.types = [
         //     "economy", "comfort", "business"
         // ];
@@ -30,7 +39,7 @@ class Passengers extends React.Component {
         };
 
         this.state = {
-            type: "Эконом",
+            type: "economy",
             isSelectingPassengers: false,
             adultPassengersCount: 1,
             childPassengersCount: 0,
@@ -81,7 +90,9 @@ class Passengers extends React.Component {
         this.setState((prevState) => ({
             adultPassengersCount: prevState.adultPassengersCount + 1,
             totalPassengersCount: prevState.totalPassengersCount + 1
-        }));
+        }), () => {
+            this.props.setAdultPassengers(this.state.adultPassengersCount);
+        });
 
         return this;
     }
@@ -91,7 +102,9 @@ class Passengers extends React.Component {
             this.setState((prevState) => ({
                 adultPassengersCount: prevState.adultPassengersCount - 1,
                 totalPassengersCount: prevState.totalPassengersCount - 1
-            }));
+            }), () => {
+                this.props.setAdultPassengers(this.state.adultPassengersCount);
+            });
         }
 
         return this;
@@ -101,7 +114,9 @@ class Passengers extends React.Component {
         this.setState((prevState) => ({
             childPassengersCount: prevState.childPassengersCount + 1,
             totalPassengersCount: prevState.totalPassengersCount + 1
-        }));
+        }), () => {
+            this.props.setChildPassengers(this.state.childPassengersCount);
+        });
 
         return this;
     }
@@ -111,7 +126,9 @@ class Passengers extends React.Component {
             this.setState((prevState) => ({
                 childPassengersCount: prevState.childPassengersCount - 1,
                 totalPassengersCount: prevState.totalPassengersCount - 1
-            }));
+            }), () => {
+                this.props.setChildPassengers(this.state.childPassengersCount);
+            });
         }
 
         return this;
@@ -121,7 +138,9 @@ class Passengers extends React.Component {
         this.setState((prevState) => ({
             babyPassengersCount: prevState.babyPassengersCount + 1,
             totalPassengersCount: prevState.totalPassengersCount + 1
-        }));
+        }), () => {
+            this.props.setBabyPassengers(this.state.babyPassengersCount);
+        });
 
         return this;
     }
@@ -131,25 +150,22 @@ class Passengers extends React.Component {
             this.setState((prevState) => ({
                 babyPassengersCount: prevState.babyPassengersCount - 1,
                 totalPassengersCount: prevState.totalPassengersCount - 1
-            }));
+            }), () => {
+                this.props.setBabyPassengers(this.state.babyPassengersCount);
+            });
         }
 
         return this;
     }
 
     _selectType(type) {
-        let typeTranslated = "";
-
-        switch (type) {
-            case "economy": typeTranslated = "Эконом"; break;
-            case "business": typeTranslated = "Бизнес"; break;
-            case "comfort": typeTranslated = "Комфорт"; break;
-            default: typeTranslated = "";
-        }
-
         this.setState({
-            type: typeTranslated
+            type
+        }, () => {
+            this.props.setServiceClass(type);
         });
+
+        return this;
     }
 
     /**
@@ -272,7 +288,10 @@ class Passengers extends React.Component {
 
                     <div className="passengers__type">
                         <div className="position-relative">
-                            <label className="custom-input--radio" onClick={() => this._selectType("economy")}>
+                            <label
+                                className="custom-input--radio"
+                                onClick={() => this._selectType(this._serviceClassEnum.getEconomyAsValue())}
+                            >
                                 <input type="radio" value="Эконом" name="type" defaultChecked />
 
                                 <span className="custom-input__state">
@@ -284,7 +303,10 @@ class Passengers extends React.Component {
                         </div>
 
                         <div className="position-relative">
-                            <label className="custom-input--radio" onClick={() => this._selectType("comfort")}>
+                            <label
+                                className="custom-input--radio"
+                                onClick={() => this._selectType(this._serviceClassEnum.getComfortAsValue())}
+                            >
                                 <input type="radio" value="Комфорт" name="type" />
 
                                 <span className="custom-input__state">
@@ -296,7 +318,10 @@ class Passengers extends React.Component {
                         </div>
 
                         <div className="position-relative">
-                            <label className="custom-input--radio" onClick={() => this._selectType("business")}>
+                            <label
+                                className="custom-input--radio"
+                                onClick={() => this._selectType(this._serviceClassEnum.getBusinessAsValue())}
+                            >
                                 <input type="radio" value="Бизнес" name="type" />
 
                                 <span className="custom-input__state">
@@ -329,5 +354,12 @@ class Passengers extends React.Component {
         );
     }
 }
+
+Passengers.propTypes = {
+    setBabyPassengers: PropTypes.func.isRequired,
+    setChildPassengers: PropTypes.func.isRequired,
+    setAdultPassengers: PropTypes.func.isRequired,
+    setServiceClass: PropTypes.func.isRequired
+};
 
 export default Passengers;
