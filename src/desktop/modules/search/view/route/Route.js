@@ -42,10 +42,7 @@ class Route extends React.Component {
             },
             arrivalDate: "",
             departureDate: "",
-            adultPassengers: 1,
-            childPassengers: 0,
-            babyPassengers: 0,
-            serviceClass: ""
+            passengers: {}
         };
 
         this._getItemsByQuery = this._getItemsByQuery.bind(this);
@@ -53,11 +50,8 @@ class Route extends React.Component {
         this._setArrivalPoint = this._setArrivalPoint.bind(this);
         this._setArrivalDate = this._setArrivalDate.bind(this);
         this._setDepartureDate = this._setDepartureDate.bind(this);
-        this._setBabyPassengersCount = this._setBabyPassengersCount.bind(this);
-        this._setChildPassengersCount = this._setChildPassengersCount.bind(this);
-        this._setAdultPassengersCount = this._setAdultPassengersCount.bind(this);
-        this._setServiceClass = this._setServiceClass.bind(this);
-        this._swapPoints = this._swapPoints.bind(this);
+        this._changePassengers = this._changePassengers.bind(this);
+        this._swapDirection = this._swapDirection.bind(this);
         this._createRoute = this._createRoute.bind(this);
     }
 
@@ -119,52 +113,17 @@ class Route extends React.Component {
 
     /**
      * @private
-     * @method _setAdultPassengersCount
+     * @method _changePassengers
+     * @param passengers {Object}
      * @returns {Route}
      */
-    _setAdultPassengersCount(count) {
-        this.setState({
-            adultPassengers: count
-        });
+    _changePassengers(passengers) {
+        this.setState({passengers});
 
         return this;
     }
 
-    /**
-     * @private
-     * @method _setChildPassengersCount
-     * @returns {Route}
-     */
-    _setChildPassengersCount(count) {
-        this.setState({
-            childPassengers: count
-        });
-
-        return this;
-    }
-
-    /**
-     * @private
-     * @method _setBabyPassengersCount
-     * @returns {Route}
-     */
-    _setBabyPassengersCount(count) {
-        this.setState({
-            babyPassengers: count
-        });
-
-        return this;
-    }
-
-    _setServiceClass(serviceClass) {
-        this.setState({
-            serviceClass
-        });
-
-        return this;
-    }
-
-    _swapPoints() {
+    _swapDirection() {
         this.setState((prevState) => ({
             arrivalPoint: prevState.departurePoint,
             departurePoint: prevState.arrivalPoint
@@ -204,10 +163,10 @@ class Route extends React.Component {
                 .setDepartureDate(this.state.departureDate)
                 .setArrivalAirportCode(this.state.arrivalPoint.getCode())
                 .setArrivalDate(this.state.arrivalDate)
-                .setAdultPassengersCount(this.state.adultPassengers)
-                .setChildPassengersCount(this.state.childPassengers)
-                .setBabyPassengersCount(this.state.babyPassengers)
-                .setServiceClass(this.state.serviceClass)
+                .setAdultPassengersCount(this.state.passengers.counts.adult)
+                .setChildPassengersCount(this.state.passengers.counts.child)
+                .setBabyPassengersCount(this.state.passengers.counts.baby)
+                .setServiceClass(this.state.passengers.serviceClass)
         );
 
         return this;
@@ -233,21 +192,18 @@ class Route extends React.Component {
                                         airport={this.state.arrivalPoint}
                                     />
 
-                                    {/*<span onClick={this._swapPoints}>x</span>*/}
-
-                                    <ArrivalDate
-                                        setDate={this._setArrivalDate}
-                                    />
+                                    {/*<span onClick={this._swapDirection}>x</span>*/}
 
                                     <DepartureDate
-                                        setDate={this._setDepartureDate}
+                                        change={this._setDepartureDate}
+                                    />
+
+                                    <ArrivalDate
+                                        change={this._setArrivalDate}
                                     />
 
                                     <Passengers
-                                        setServiceClass={this._setServiceClass}
-                                        setBabyPassengers={this._setBabyPassengersCount}
-                                        setChildPassengers={this._setChildPassengersCount}
-                                        setAdultPassengers={this._setAdultPassengersCount}
+                                        change={this._changePassengers}
                                     />
                                 </div>
 

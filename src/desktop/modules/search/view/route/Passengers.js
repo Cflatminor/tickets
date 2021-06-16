@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
+import Env from "app/core/environment";
+import Resource from "app/core/resource";
+
 import Translator from "app/core/utilities/strings/translator";
 import ServiceClassEnum from "app/core/utilities/enum/serviceClass";
 
@@ -22,15 +25,18 @@ class Passengers extends React.Component {
         this.translator = this.Translator.getInstance();
 
         /**
+         * @property _stringsResource
+         * @type {Object}
+         * @private
+         */
+        this._stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
+
+        /**
          * @private
          * @property _serviceClassEnum
          * @type {Enum}
          */
         this._serviceClassEnum = ServiceClassEnum.getInstance();
-
-        // this.types = [
-        //     "economy", "comfort", "business"
-        // ];
 
         this.ref = {
             parent: React.createRef(),
@@ -38,14 +44,19 @@ class Passengers extends React.Component {
             passengers: React.createRef()
         };
 
+        this._serviceClassTranslations = {
+            [this._serviceClassEnum.getEconomyAsValue()]: this._stringsResource.economy,
+            [this._serviceClassEnum.getComfortAsValue()]: this._stringsResource.comfort,
+            [this._serviceClassEnum.getBusinessAsValue()]: this._stringsResource.business
+        }
+
         this.state = {
-            type: "economy",
+            serviceClass: this._serviceClassEnum.getEconomyAsValue(),
             isSelectingPassengers: false,
             adultPassengersCount: 1,
             childPassengersCount: 0,
             babyPassengersCount: 0,
             totalPassengersCount: 1
-            // passengersType: ""
         };
 
         this._toggleSelectPassengers = this._toggleSelectPassengers.bind(this);
@@ -57,9 +68,13 @@ class Passengers extends React.Component {
         this._decreaseChildCount = this._decreaseChildCount.bind(this);
         this._increaseBabyCount = this._increaseBabyCount.bind(this);
         this._decreaseBabyCount = this._decreaseBabyCount.bind(this);
+
+        this._changePassengers = this._changePassengers.bind(this);
     }
 
     componentDidMount() {
+        this._changePassengers();
+
         window.document.addEventListener("click", (e) => {
             let form = window.document.querySelector(".outlined-text-form.passengers");
 
@@ -67,6 +82,28 @@ class Passengers extends React.Component {
                 this._toggleSelectPassengers(false);
             }
         });
+    }
+
+    /**
+     * @method _getPassengersCount
+     * @return {{baby: number, adult: number, child: number}}
+     * @private
+     */
+    _getPassengersCount() {
+        return {
+            adult: this.state.adultPassengersCount,
+            child: this.state.childPassengersCount,
+            baby: this.state.babyPassengersCount
+        };
+    }
+
+    /**
+     * @method _getServiceClassDescription
+     * @return {string}
+     * @private
+     */
+    _getServiceClassDescription() {
+        return this._serviceClassTranslations[this.state.serviceClass];
     }
 
     _getPluralTitleOfPassengers() {
@@ -90,9 +127,7 @@ class Passengers extends React.Component {
         this.setState((prevState) => ({
             adultPassengersCount: prevState.adultPassengersCount + 1,
             totalPassengersCount: prevState.totalPassengersCount + 1
-        }), () => {
-            this.props.setAdultPassengers(this.state.adultPassengersCount);
-        });
+        }), this._changePassengers);
 
         return this;
     }
@@ -102,9 +137,7 @@ class Passengers extends React.Component {
             this.setState((prevState) => ({
                 adultPassengersCount: prevState.adultPassengersCount - 1,
                 totalPassengersCount: prevState.totalPassengersCount - 1
-            }), () => {
-                this.props.setAdultPassengers(this.state.adultPassengersCount);
-            });
+            }), this._changePassengers);
         }
 
         return this;
@@ -114,9 +147,7 @@ class Passengers extends React.Component {
         this.setState((prevState) => ({
             childPassengersCount: prevState.childPassengersCount + 1,
             totalPassengersCount: prevState.totalPassengersCount + 1
-        }), () => {
-            this.props.setChildPassengers(this.state.childPassengersCount);
-        });
+        }), this._changePassengers);
 
         return this;
     }
@@ -126,9 +157,7 @@ class Passengers extends React.Component {
             this.setState((prevState) => ({
                 childPassengersCount: prevState.childPassengersCount - 1,
                 totalPassengersCount: prevState.totalPassengersCount - 1
-            }), () => {
-                this.props.setChildPassengers(this.state.childPassengersCount);
-            });
+            }), this._changePassengers);
         }
 
         return this;
@@ -138,9 +167,7 @@ class Passengers extends React.Component {
         this.setState((prevState) => ({
             babyPassengersCount: prevState.babyPassengersCount + 1,
             totalPassengersCount: prevState.totalPassengersCount + 1
-        }), () => {
-            this.props.setBabyPassengers(this.state.babyPassengersCount);
-        });
+        }), this._changePassengers);
 
         return this;
     }
@@ -150,20 +177,30 @@ class Passengers extends React.Component {
             this.setState((prevState) => ({
                 babyPassengersCount: prevState.babyPassengersCount - 1,
                 totalPassengersCount: prevState.totalPassengersCount - 1
-            }), () => {
-                this.props.setBabyPassengers(this.state.babyPassengersCount);
-            });
+            }), this._changePassengers);
         }
 
         return this;
     }
 
-    _selectType(type) {
-        this.setState({
-            type
-        }, () => {
-            this.props.setServiceClass(type);
+    /**
+     * @method _changePassengers
+     * @return {Passengers}
+     * @private
+     */
+    _changePassengers() {
+        this.props.change({
+            counts: this._getPassengersCount(),
+            serviceClass: this.state.serviceClass
         });
+
+        return this;
+    }
+
+    _selectType(serviceClass) {
+        this.setState({
+            serviceClass
+        }, this._changePassengers);
 
         return this;
     }
@@ -194,7 +231,7 @@ class Passengers extends React.Component {
                     </p>
 
                     <p>
-                        { this.state.type }
+                        {this._getServiceClassDescription()}
                     </p>
                 </label>
 
@@ -298,7 +335,9 @@ class Passengers extends React.Component {
                                     <span className="custom-input__animation_bg" />
                                 </span>
 
-                                <span className="custom-input__name">Эконом</span>
+                                <span className="custom-input__name">
+                                    {this._stringsResource.economy}
+                                </span>
                             </label>
                         </div>
 
@@ -313,7 +352,9 @@ class Passengers extends React.Component {
                                     <span className="custom-input__animation_bg" />
                                 </span>
 
-                                <span className="custom-input__name">Комфорт</span>
+                                <span className="custom-input__name">
+                                    {this._stringsResource.comfort}
+                                </span>
                             </label>
                         </div>
 
@@ -328,7 +369,9 @@ class Passengers extends React.Component {
                                     <span className="custom-input__animation_bg" />
                                 </span>
 
-                                <span className="custom-input__name">Бизнес</span>
+                                <span className="custom-input__name">
+                                    {this._stringsResource.business}
+                                </span>
                             </label>
                         </div>
 
@@ -356,10 +399,11 @@ class Passengers extends React.Component {
 }
 
 Passengers.propTypes = {
-    setBabyPassengers: PropTypes.func.isRequired,
-    setChildPassengers: PropTypes.func.isRequired,
-    setAdultPassengers: PropTypes.func.isRequired,
-    setServiceClass: PropTypes.func.isRequired
+    change: PropTypes.func
+};
+
+Passengers.defaultProps = {
+    change: () => {}
 };
 
 export default Passengers;

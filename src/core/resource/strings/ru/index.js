@@ -120,5 +120,8 @@ export default {
     adult: "Взрослый",
     child: "Ребенок",
     baby: "Младенец",
-    ticketRules: "Правила билетов"
+    ticketRules: "Правила билетов",
+    economy: "Эконом",
+    comfort: "Комфорт",
+    business: "Бизнес"
 };

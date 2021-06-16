@@ -42,7 +42,7 @@ class ArrivalDate extends React.Component {
             // isValidDay: typeof selectedDay !== 'undefined',
             // isDisabled: modifiers.disabled === true,
         }, () => {
-            this.props.setDate(selectedDate);
+            this.props.change(input.value);
         });
     }
 
@@ -114,7 +114,7 @@ class ArrivalDate extends React.Component {
                 />
 
                 <label>
-                    Туда
+                    Обратно
                 </label>
 
                 {!this.state.selectedDate && (
@@ -143,7 +143,11 @@ class ArrivalDate extends React.Component {
 }
 
 ArrivalDate.propTypes = {
-    setDate: PropTypes.func.isRequired
+    change: PropTypes.func
+};
+
+ArrivalDate.defaultProps = {
+    change: () => {}
 };
 
 export default ArrivalDate;
