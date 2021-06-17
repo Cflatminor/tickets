@@ -5,14 +5,14 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 import Strings from "core/utilities/strings";
 
-class DepartureDate extends React.Component {
+class RouteDate extends React.Component {
     constructor(props) {
         super(props);
 
         this.strings = Strings.getInstance();
 
         this.state = {
-            selectedDate: "",
+            selectedDate: this.props.currentDate,
             isFocused: false,
             isEmpty: true
         };
@@ -114,7 +114,7 @@ class DepartureDate extends React.Component {
                 />
 
                 <label>
-                    Туда
+                    {this.props.title}
                 </label>
 
                 {!this.state.selectedDate && (
@@ -142,12 +142,16 @@ class DepartureDate extends React.Component {
     }
 }
 
-DepartureDate.propTypes = {
+RouteDate.propTypes = {
+    title: PropTypes.string,
+    currentDate: PropTypes.string,
     change: PropTypes.func
 };
 
-DepartureDate.defaultProps = {
+RouteDate.defaultProps = {
+    title: "",
+    currentDate: "",
     change: () => {}
 };
 
-export default DepartureDate;
+export default RouteDate;

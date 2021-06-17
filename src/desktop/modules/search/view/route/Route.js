@@ -6,12 +6,13 @@ import Resource from "app/core/resource";
 
 import RouteEntity from "app/core/entities/route/Route";
 
+import Strings from "core/utilities/strings";
+
 import SearchService from "app/core/services/search";
 
 import ArrivalPoint from "./ArrivalPoint";
 import DeparturePoint from "./DeparturePoint";
-import ArrivalDate from "./ArrivalDate";
-import DepartureDate from "./DepartureDate";
+import RouteDate from "./RouteDate";
 import Passengers from "./Passengers";
 
 class Route extends React.Component {
@@ -54,6 +55,13 @@ class Route extends React.Component {
 
         /**
          * @private
+         * @property _strings
+         * @type {Strings}
+         */
+        this._strings = Strings.getInstance();
+
+        /**
+         * @private
          * @property _RouteEntity
          * @type {Route}
          */
@@ -67,6 +75,10 @@ class Route extends React.Component {
         this._changePassengers = this._changePassengers.bind(this);
         this._swapDirection = this._swapDirection.bind(this);
         this._createRoute = this._createRoute.bind(this);
+    }
+
+    componentDidMount() {
+        this._setDepartureDate(this._getFormattedCurrentDate());
     }
 
     /**
@@ -102,6 +114,15 @@ class Route extends React.Component {
         });
 
         return this;
+    }
+
+    /**
+     * @method _getFormattedCurrentDate
+     * @return {string}
+     * @private
+     */
+    _getFormattedCurrentDate() {
+        return this._strings.formatShortDate(new Date());
     }
 
     /**
@@ -267,11 +288,14 @@ class Route extends React.Component {
 
                         {/*<span onClick={this._swapDirection}>x</span>*/}
 
-                        <DepartureDate
+                        <RouteDate
+                            title="Туда"
+                            currentDate={this._getFormattedCurrentDate()}
                             change={this._setDepartureDate}
                         />
 
-                        <ArrivalDate
+                        <RouteDate
+                            title="Обратно"
                             change={this._setArrivalDate}
                         />
 
