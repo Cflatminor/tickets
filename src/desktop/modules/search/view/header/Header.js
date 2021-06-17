@@ -40,11 +40,11 @@ class Header extends React.Component {
                             <p className="search__subtitle text-center">
                                 Лучший способ купить авиабилеты дёшево
                             </p>
+
+                            <Route confirm={this._searchTickets} />
                         </div>
                     </div>
                 </div>
-
-                <Route confirm={this._searchTickets} />
             </header>
         );
     }

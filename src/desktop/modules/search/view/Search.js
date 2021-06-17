@@ -28,6 +28,7 @@ class Search extends React.Component {
 
         this._getTicketsByRoute = this._getTicketsByRoute.bind(this);
         this._getTicketRules = this._getTicketRules.bind(this);
+        this._toSearchTickets = this._toSearchTickets.bind(this);
         this._selectTicket = this._selectTicket.bind(this);
         this._cancelBooking = this._cancelBooking.bind(this);
     }
@@ -173,6 +174,33 @@ class Search extends React.Component {
     }
 
     /**
+     * @method _toSearchTickets
+     * @param route {Route}
+     * @return {Search}
+     * @private
+     */
+    _toSearchTickets(route) {
+        this._clearSearchResults()._getTicketsByRoute(route);
+
+        return this;
+    }
+
+    /**
+     * @method _clearSearchResults
+     * @return {Search}
+     * @private
+     */
+    _clearSearchResults() {
+        this.setState({
+            tickets: [],
+            filter: null,
+            ticket: null
+        });
+
+        return this;
+    }
+
+    /**
      * @method _selectTicket
      * @param ticket {Ticket}
      * @returns {Search}
@@ -203,7 +231,7 @@ class Search extends React.Component {
     render() {
         return (
             <section className="search">
-                <Header searchTickets={this._getTicketsByRoute} />
+                <Header searchTickets={this._toSearchTickets} />
 
                 <div className={classNames("search__body", {loading: this.state.loading})}>
                     {!this._hasTicket() && this._hasTickets() && (
