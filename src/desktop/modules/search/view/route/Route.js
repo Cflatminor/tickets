@@ -10,8 +10,7 @@ import Strings from "core/utilities/strings";
 
 import SearchService from "app/core/services/search";
 
-import ArrivalPoint from "./ArrivalPoint";
-import DeparturePoint from "./DeparturePoint";
+import FlightPoint from "./FlightPoint";
 import RouteDate from "./RouteDate";
 import Passengers from "./Passengers";
 
@@ -259,9 +258,10 @@ class Route extends React.Component {
                 <div className="route__body d-flex">
                     <div className="d-flex w-100">
                         <div className="route__departure w-100">
-                            <DeparturePoint
+                            <FlightPoint
+                                title={this._stringsResource.fromWhere}
                                 getItemsByQuery={this._getItemsByQuery}
-                                setAirportCode={this._setDeparturePoint}
+                                change={this._setDeparturePoint}
                                 airport={this.state.departurePoint}
                             />
 
@@ -273,9 +273,10 @@ class Route extends React.Component {
                         </div>
 
                         <div className="route__arrival w-100">
-                            <ArrivalPoint
+                            <FlightPoint
+                                title={this._stringsResource.whereTo}
                                 getItemsByQuery={this._getItemsByQuery}
-                                setAirportCode={this._setArrivalPoint}
+                                change={this._setArrivalPoint}
                                 airport={this.state.arrivalPoint}
                             />
 
@@ -289,13 +290,13 @@ class Route extends React.Component {
                         {/*<span onClick={this._swapDirection}>x</span>*/}
 
                         <RouteDate
-                            title="Туда"
+                            title={this._stringsResource.thitherward}
                             currentDate={this._getFormattedCurrentDate()}
                             change={this._setDepartureDate}
                         />
 
                         <RouteDate
-                            title="Обратно"
+                            title={this._stringsResource.backward}
                             change={this._setArrivalDate}
                         />
 
@@ -309,7 +310,7 @@ class Route extends React.Component {
                         type="button"
                         onClick={this._createRoute}
                     >
-                        Найти
+                        {this._stringsResource.toFind}
                     </button>
                 </div>
             </div>

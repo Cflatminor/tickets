@@ -29,6 +29,10 @@ export default {
     contacts: "Контакты",
     next: "Далее",
     back: "Назад",
+    whereTo: "Куда",
+    fromWhere: "Откуда",
+    thitherward: "Туда",
+    backward: "Обратно",
     exit: "Выход",
     hotline: "Горячая линия",
     phone: "Телефон",
@@ -123,5 +127,6 @@ export default {
     ticketRules: "Правила билетов",
     economy: "Эконом",
     comfort: "Комфорт",
-    business: "Бизнес"
+    business: "Бизнес",
+    toFind: "Найти"
 };

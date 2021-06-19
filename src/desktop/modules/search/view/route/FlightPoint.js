@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 import Autocomplete from "core/components/autocomplete/Autocomplete";
 
-class ArrivalPoint extends React.Component {
+class FlightPoint extends React.Component {
     constructor(props) {
         super(props);
 
@@ -30,7 +30,7 @@ class ArrivalPoint extends React.Component {
     }
 
     _setEmptyItem() {
-        this.props.setAirportCode({
+        this.props.change({
             getName: () => "",
             getCode: () => "",
             getAirports: () => []
@@ -40,7 +40,7 @@ class ArrivalPoint extends React.Component {
     }
 
     _selectItem(item) {
-        this.props.setAirportCode(item);
+        this.props.change(item);
 
         return this;
     }
@@ -81,7 +81,6 @@ class ArrivalPoint extends React.Component {
             <div className={classnames("outlined-text-form", {focused: this.state.isFocused})}>
                 <Autocomplete
                     placeholder=""
-                    id="arrival-autocomplete"
                     getItemsByQuery={this._getItemsByQuery}
                     selectItem={this._selectItem}
                     onFocus={this._onFocus}
@@ -90,7 +89,7 @@ class ArrivalPoint extends React.Component {
                 />
 
                 <label>
-                    Куда
+                    {this.props.title}
                 </label>
 
                 <span className="city-code">
@@ -101,10 +100,17 @@ class ArrivalPoint extends React.Component {
     }
 }
 
-ArrivalPoint.propTypes = {
-    getItemsByQuery: PropTypes.func.isRequired,
-    setAirportCode: PropTypes.func.isRequired,
+FlightPoint.propTypes = {
+    title: PropTypes.string,
+    getItemsByQuery: PropTypes.func,
+    change: PropTypes.func,
     airport: PropTypes.instanceOf(Object).isRequired
 };
 
-export default ArrivalPoint;
+FlightPoint.defaultProps = {
+    title: "",
+    getItemsByQuery: () => {},
+    change: () => {}
+};
+
+export default FlightPoint;
