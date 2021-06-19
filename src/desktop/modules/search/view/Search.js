@@ -8,6 +8,7 @@ import Header from "./header/Header";
 import Filter from "./filter/Filter";
 import Offers from "./offers/Offers";
 import Booking from "./booking/Booking";
+import FAQ from "./faq/FAQ";
 
 class Search extends React.Component {
     constructor(props) {
@@ -250,6 +251,8 @@ class Search extends React.Component {
                         />
                     )}
                 </div>
+
+                <FAQ />
             </section>
         );
     }
