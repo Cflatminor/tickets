@@ -1,14 +1,24 @@
+import FAQ from "../fixtures/faq.json"
 import tickets from "../fixtures/tickets.json"
 import ticketRules from "../fixtures/ticketRules.json"
 
 class Repository {
     constructor(props) {
+        this._FAQ = FAQ;
         this._tickets = tickets;
         this._ticketRules = ticketRules;
 
         this.HttpClient = props.dependencies.HttpClient;
 
         this.httpClient = new this.HttpClient();
+    }
+
+    /**
+     * @method getFAQ
+     * @return {Promise}
+     */
+    getFAQ() {
+        return Promise.resolve(this._FAQ);
     }
 
     /**

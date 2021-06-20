@@ -127,6 +127,22 @@ class Search {
     }
 
     /**
+     * @method _getFAQ
+     * @param resultContainer {Object}
+     * @return {Promise}
+     * @private
+     */
+    _getFAQ(resultContainer) {
+        return new Promise((resolve) => {
+            this._Repository.getFAQ().then((items) => {
+                resultContainer.FAQ = items;
+
+                resolve();
+            }, resolve);
+        })
+    }
+
+    /**
      * @public
      * @method getTicketsByRoute
      * @param route {Route}
@@ -171,11 +187,13 @@ class Search {
      * @returns {Promise}
      */
     getInitialProps() {
-        let result = {};
+        let result = {
+            FAQ: []
+        };
 
         return new Promise((resolve) => {
             Promise.all([
-                // this._getReview(result)
+                this._getFAQ(result)
             ]).then(resolve);
         })
             .then(() => result)
@@ -192,6 +210,7 @@ class Search {
     normalizeInitialProps(initialData, pageInfo) {
         return {
             filter: new Filter(initialData.filter),
+            FAQ: initialData.FAQ,
             pageInfo
         };
     }

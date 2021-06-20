@@ -1,0 +1,153 @@
+.faq {
+  margin: 0 auto;
+  max-width: 1340px;
+
+  .faq__title {
+    margin: 0 12px 32px 12px;
+    font-size: 26px;
+    text-align: left;
+  }
+
+  .faq__body {
+    .accordion {
+      .panel {
+        border-top: none;
+      }
+    }
+
+    .panel {
+      position: relative;
+      padding: 0 16px 0 16px;
+
+      & + .panel {
+        .panel__header {
+          border-top: 1px solid $borderColorBase;
+        }
+      }
+
+      &:first-child {
+        .panel__header::before {
+          display: none;
+        }
+      }
+
+      .panel__header,
+      .panel__body {
+        text-align: left;
+      }
+
+      .panel__header {
+        align-items: flex-start;
+        padding: 16px 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+
+        .icon.icon-plus {
+          bottom: 3px;
+          left: 3px;
+          font-size: 37px;
+        }
+
+        .icon.icon-minus {
+          font-size: 31px;
+          min-width: 37px;
+          text-align: right;
+        }
+      }
+
+      .panel__body {
+        padding: 0 0 16px;
+      }
+
+      .panel__title {
+        min-height: 37px;
+        font-size: 18px;
+        font-weight: normal;
+        color: $colorBlack;
+      }
+
+      .panel__body {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      &.panel--active {
+        .panel__title {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .faq__title {
+      margin-bottom: 32px;
+      text-align: left;
+      font-size: 50px;
+    }
+
+    .faq__body {
+      .panel {
+        padding: 0 32px 0 32px;
+
+        .panel__header {
+          padding: 32px 0 32px 0;
+          transition: 0.2s height;
+
+          &::before {
+            width: calc(100% - 48px);
+          }
+        }
+
+        .panel__title {
+          display: flex;
+          align-items: center;
+          font-size: 24px;
+          line-height: 28px;
+        }
+
+        .panel__body {
+          padding: 0 0 32px;
+          font-size: 18px;
+        }
+
+        &.panel--active {
+          padding-top: 0;
+          max-height: 5000px;
+
+          .panel__header {
+            .panel__title {
+              font-weight: 400;
+            }
+          }
+        }
+
+        &:hover .panel__title {
+          color: $colorGreen;
+        }
+      }
+    }
+  }
+
+  @include xl {
+    .faq__title {
+      margin-bottom: 50px;
+    }
+  }
+
+  @include before-sm {
+    .faq__body {
+      .panel {
+        &.panel--active {
+          .panel__header {
+            padding-bottom: 14px;
+          }
+        }
+
+        .panel__title {
+          min-height: auto;
+        }
+      }
+    }
+  }
+}

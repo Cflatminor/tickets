@@ -4,11 +4,12 @@ import classNames from "classnames";
 
 import Ticket from "components/ticket/Ticket";
 
+import FAQ from "components/faq/FAQ"
+
 import Header from "./header/Header";
 import Filter from "./filter/Filter";
 import Offers from "./offers/Offers";
 import Booking from "./booking/Booking";
-import FAQ from "./faq/FAQ";
 
 class Search extends React.Component {
     constructor(props) {
@@ -19,6 +20,12 @@ class Search extends React.Component {
          * @type {Filter}
          */
         this._filter = props.options.initialData.filter;
+
+        /**
+         * @property _FAQ
+         * @type {Array}
+         */
+        this._FAQ = props.options.initialData.FAQ;
 
         this.state = {
             loading: false,
@@ -71,6 +78,15 @@ class Search extends React.Component {
      */
     _getPresenter() {
         return this.props.options.presenter;
+    }
+
+    /**
+     * @method _getFAQ
+     * @return {Array}
+     * @private
+     */
+    _getFAQ() {
+        return this._FAQ;
     }
 
     /**
@@ -234,7 +250,11 @@ class Search extends React.Component {
             <section className="search">
                 <Header searchTickets={this._toSearchTickets} />
 
-                <div className={classNames("search__body", {loading: this.state.loading})}>
+                <div
+                    className={classNames("search__body", {
+                        loading: this.state.loading
+                    })}
+                >
                     {!this._hasTicket() && this._hasTickets() && (
                         <Offers
                             filter={this.state.filter}
@@ -252,7 +272,7 @@ class Search extends React.Component {
                     )}
                 </div>
 
-                <FAQ />
+                <FAQ items={this._getFAQ()} />
             </section>
         );
     }
