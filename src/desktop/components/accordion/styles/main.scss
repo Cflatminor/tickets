@@ -3,45 +3,42 @@
 
 .accordion {
   .panel {
-    min-height: 60px;
+    min-height: 70px;
+    padding: 20px 25px;
+    border-radius: 8px;
+    background: #F7F7FC;
+
+    & + .panel {
+      margin-top: 16px;
+    }
 
     .panel__header {
-      padding: 0 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
+      cursor: pointer;
 
-    .panel__header .icon {
-      font-size: 24px;
-      color: $colorGray1;
+      .icon {
+        font-size: 35px;
+        color: $colorGray1;
+      }
     }
 
     .panel__title {
-      font-family: $fontFamilySans;
-      font-size: $fontSizeLarge;
       line-height: 21px;
-      color: $linkColor;
+      font-weight: bold;
+      font-size: $fontSizeLarge;
+      color: $colorBlack;
     }
 
     .panel__body {
-      display: none;
-      padding: 0 12px 16px 12px;
-      font-family: $fontFamilySans;
-      font-size: $fontSizeMedium;
-      line-height: 19px;
-      color: $colorBlack;
-      transition: 0.1s all;
       max-height: 0;
-      opacity: 0;
-    }
-  }
-
-  .panel {
-    border-top: 1px solid $borderColorBase;
-
-    &:last-child {
-      border-bottom: 1px solid $borderColorBase;
+      margin-top: 15px;
+      display: none;
+      line-height: 1.5;
+      font-size: $fontSizeMedium;
+      color: #4E4B66;
+      transition: 0.1s all;
     }
   }
 
@@ -50,11 +47,6 @@
       display: block;
       max-height: inherit;
       opacity: 1;
-    }
-
-    .panel__title {
-      font-weight: 500;
-      color: $colorBlack;
     }
   }
 }

@@ -59,12 +59,14 @@ class FAQ extends React.Component {
                 )}
 
                 <div className="faq__body">
-                    <div className="bg-white new-super-box-shadow">
-                        <Accordion
-                            items={this._getItems()}
-                            asHtml
-                        />
-                    </div>
+                    <Accordion
+                        items={this._getItems()}
+                        asHtml
+                        panelProps={{
+                            iconOpen: this.props.iconOpen,
+                            iconClose: this.props.iconClose
+                        }}
+                    />
                 </div>
             </section>
         );

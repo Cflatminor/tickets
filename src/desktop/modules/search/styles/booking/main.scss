@@ -56,14 +56,14 @@
       border-right: none;
     }
 
+    .flight__aircraft-identifier {
+      flex-shrink: 0;
+    }
+
     .flight__about-route {
       max-width: 100%;
     }
   }
-
-  //.passengers {
-  //  margin-top: 50px;
-  //}
 
   .person {
     .person__fields {
@@ -75,7 +75,6 @@
       margin: 16px 16px 0 0;
       flex-shrink: 0;
       flex-basis: 100%;
-      //flex-basis: calc(25% - 16px);
     }
   }
 }

@@ -2,6 +2,9 @@ import React from "react";
 
 import classNames from "classnames";
 
+import Env from "app/core/environment";
+import Resource from "app/core/resource";
+
 import Ticket from "components/ticket/Ticket";
 
 import FAQ from "components/faq/FAQ"
@@ -33,6 +36,12 @@ class Search extends React.Component {
             filter: null,
             ticket: null
         }
+
+        /**
+         * @property stringsResource
+         * @type {Object}
+         */
+        this.stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
 
         this._getTicketsByRoute = this._getTicketsByRoute.bind(this);
         this._getTicketRules = this._getTicketRules.bind(this);
@@ -272,7 +281,10 @@ class Search extends React.Component {
                     )}
                 </div>
 
-                <FAQ items={this._getFAQ()} />
+                <FAQ
+                    items={this._getFAQ()}
+                    title={this.stringsResource.frequentlyAskedQuestions}
+                />
             </section>
         );
     }

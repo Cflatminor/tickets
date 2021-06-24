@@ -6,7 +6,7 @@
   @import "flightPoint";
   @import "flightTransfer";
 
-  max-width: 900px;
+  //max-width: 900px;
   min-height: 170px;
   //border: 1px solid red;
   display: flex;
@@ -15,14 +15,13 @@
 
   .ticket__body {
     width: 100%;
-    max-width: 80%;
     display: flex;
   }
 
   .ticket__footer {
-    width: 100%;
-    max-width: 20%;
     display: flex;
+    flex-basis: 250px;
+    flex-shrink: 1.5;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -83,6 +82,7 @@
 
     .ticket__footer {
       padding: 0 24px;
+      flex-basis: 100%;
     }
 
     .ticket__flights {
