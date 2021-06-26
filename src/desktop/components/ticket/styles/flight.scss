@@ -46,6 +46,11 @@
     }
   }
 
+  .flight__aircraft-identifier {
+    display: flex;
+    flex-direction: column;
+  }
+
   .flight__about-route {
     width: 100%;
     //outline: 1px solid red;
@@ -89,7 +94,6 @@
     }
 
     .flight__about-route {
-      max-width: 200px;
       margin: 0 40px;
       //outline: 1px solid red;
     }

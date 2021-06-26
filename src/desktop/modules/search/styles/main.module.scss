@@ -33,6 +33,15 @@
     }
   }
 
+  .offers__items {
+    max-width: 950px;
+    margin: auto;
+
+    .ticket + .ticket {
+      margin-top: 20px;
+    }
+  }
+
   .faq {
     margin-top: 50px;
   }
