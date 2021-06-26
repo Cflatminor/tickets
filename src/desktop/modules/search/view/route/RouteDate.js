@@ -23,6 +23,12 @@ class RouteDate extends React.Component {
         this._toggleDatepicker = this._toggleDatepicker.bind(this);
     }
 
+    componentDidMount() {
+        this.setState((prevState) => ({
+            isEmpty: !prevState.selectedDate
+        }));
+    }
+
     _clearDate() {
         this.setState({
             selectedDate: ""
@@ -93,7 +99,11 @@ class RouteDate extends React.Component {
 
         return (
             <div
-                className={classnames("outlined-text-form arrival-date", {focused: (this.state.isFocused || !this.state.isEmpty)})}
+                className={classnames(
+                    "outlined-text-form arrival-date",
+                    this.props.className,
+                    {focused: (this.state.isFocused || !this.state.isEmpty)}
+                )}
             >
                 <DayPickerInput
                     formatDate={(date) => this.strings.formatShortDate(date)}
@@ -145,12 +155,14 @@ class RouteDate extends React.Component {
 RouteDate.propTypes = {
     title: PropTypes.string,
     currentDate: PropTypes.string,
+    className: PropTypes.string,
     change: PropTypes.func
 };
 
 RouteDate.defaultProps = {
     title: "",
     currentDate: "",
+    className: "",
     change: () => {}
 };
 

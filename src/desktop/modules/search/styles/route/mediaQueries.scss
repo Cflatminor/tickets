@@ -1,0 +1,102 @@
+.route {
+  @media screen and (max-width: $maxLGResolution) {
+    .route__body {
+      height: 100%;
+    }
+
+    .route__departure,
+    .route__arrival,
+    .route__departure-date,
+    .route__arrival-date,
+    .route__passengers {
+      height: 60px;
+      border-right: none !important;
+      margin-bottom: 0;
+    }
+
+    .route__departure,
+    .route__arrival,
+    .route__departure-date,
+    .route__arrival-date {
+      border-bottom: 1px solid #D9DBE9;
+    }
+
+    .route__departure-date {
+      border-right: 1px solid #D9DBE9 !important;
+
+      .DayPickerInput-OverlayWrapper {
+        left: 0;
+        right: auto;
+      }
+    }
+
+    .route__arrival-date {
+      border-right: 1px solid #D9DBE9 !important;
+      position: relative;
+
+      .DayPickerInput-Overlay {
+        left: auto;
+        right: calc(250px + 6%);
+      }
+    }
+
+    .route__departure {
+      border-bottom-left-radius: 0;
+
+      .form-control {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    .route__passengers.outlined-text-form {
+      .form-control {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 0;
+      }
+    }
+
+    .route__departure-date,
+    .route__arrival-date {
+      width: 50%;
+    }
+
+    .route__passengers {
+      label {
+        top: 12px !important;
+      }
+
+      .form {
+        top: 60px;
+        left: 0;
+        right: auto;
+      }
+    }
+
+    .to-search-results {
+      width: 100%;
+      margin: 12px auto 0 auto;
+    }
+
+    .outlined-text-form {
+      label {
+        left: 12px;
+      }
+
+      &.focused {
+        label {
+          top: 8px;
+          left: 8px;
+        }
+      }
+    }
+
+    .DayPickerInput {
+      input {
+        padding: 12px 12px 8px 12px;
+      }
+    }
+  }
+}

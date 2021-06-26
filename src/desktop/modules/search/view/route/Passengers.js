@@ -48,7 +48,7 @@ class Passengers extends React.Component {
             [this._serviceClassEnum.getEconomyAsValue()]: this._stringsResource.economy,
             [this._serviceClassEnum.getComfortAsValue()]: this._stringsResource.comfort,
             [this._serviceClassEnum.getBusinessAsValue()]: this._stringsResource.business
-        }
+        };
 
         this.state = {
             serviceClass: this._serviceClassEnum.getEconomyAsValue(),
@@ -79,6 +79,12 @@ class Passengers extends React.Component {
             let form = window.document.querySelector(".outlined-text-form.passengers");
 
             if (e.target.closest(".outlined-text-form.passengers") !== form) {
+                this._toggleSelectPassengers(false);
+            }
+        });
+
+        window.document.querySelector(".passengers .form-control").addEventListener("click", () => {
+            if (this.state.isSelectingPassengers) {
                 this._toggleSelectPassengers(false);
             }
         });
@@ -215,7 +221,10 @@ class Passengers extends React.Component {
             <div
                 onClick={() => this._toggleSelectPassengers(true)}
                 ref={this.ref.parent}
-                className={classnames("outlined-text-form passengers", {focused: this.state.isSelectingPassengers})}
+                className={classnames(
+                    "outlined-text-form passengers route__passengers",
+                    {focused: this.state.isSelectingPassengers}
+                )}
             >
                 <div
                     // ref={this.ref.input}
