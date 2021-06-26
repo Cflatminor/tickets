@@ -214,7 +214,7 @@ class Route extends React.Component {
             .setAdultPassengersCount(this.state.passengers.counts.adult)
             .setChildPassengersCount(this.state.passengers.counts.child)
             .setBabyPassengersCount(this.state.passengers.counts.baby)
-            .setServiceClass(this.state.passengers.serviceClass)
+            .setServiceClass(this.state.passengers.serviceClass);
     }
 
     /**
@@ -255,8 +255,8 @@ class Route extends React.Component {
     render() {
         return (
             <div className="search__route route">
-                <div className="route__body d-flex">
-                    <div className="d-flex w-100">
+                <div className="route__body d-flex flex-wrap flex-xl-nowrap">
+                    <div className="d-flex w-100 flex-wrap flex-xl-nowrap">
                         <div className="route__departure w-100">
                             <FlightPoint
                                 title={this._stringsResource.fromWhere}
@@ -290,12 +290,14 @@ class Route extends React.Component {
                         {/*<span onClick={this._swapDirection}>x</span>*/}
 
                         <RouteDate
+                            className="route__departure-date"
                             title={this._stringsResource.thitherward}
                             currentDate={this._getFormattedCurrentDate()}
                             change={this._setDepartureDate}
                         />
 
                         <RouteDate
+                            className="route__arrival-date"
                             title={this._stringsResource.backward}
                             change={this._setArrivalDate}
                         />

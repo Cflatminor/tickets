@@ -1,0 +1,20 @@
+.search {
+  @media screen and (max-width: $maxSMResolution) {
+    .search__header {
+      padding: 20px 0 65px 0;
+    }
+
+    .search__title {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .search__subtitle {
+      font-size: 18px;
+    }
+
+    .search__route {
+      margin-top: 24px;
+    }
+  }
+}
