@@ -19,12 +19,6 @@ class Search extends React.Component {
         super(props);
 
         /**
-         * @property _filter
-         * @type {Filter}
-         */
-        this._filter = props.options.initialData.filter;
-
-        /**
          * @property _FAQ
          * @type {Array}
          */

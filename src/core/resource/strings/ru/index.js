@@ -128,5 +128,8 @@ export default {
     economy: "Эконом",
     comfort: "Комфорт",
     business: "Бизнес",
-    toFind: "Найти"
+    toFind: "Найти",
+    departureAndArrivalTime: "Время вылета и прибытия",
+    departureFromTheCity: "Вылет из {0}",
+    arrivalInTheCity: "Прибытие в {0}",
 };

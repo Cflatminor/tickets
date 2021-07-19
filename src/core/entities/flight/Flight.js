@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import Entity from "app/core/entities/Entity";
 import AirlineCompany from "app/core/entities/airlineCompany/AirlineCompany";
 import FlightPoint from "app/core/entities/flight/FlightPoint";
@@ -48,12 +50,38 @@ class Flight extends Entity {
     }
 
     /**
+     * @method setDeparture
+     * @param departure {Object}
+     * @returns {Flight}
+     */
+    setDeparture(departure) {
+        if (_.isPlainObject(departure)) {
+            this.entity.departure = departure;
+        }
+
+        return this;
+    }
+
+    /**
      * @public
      * @method getDeparture
      * @returns {FlightPoint}
      */
     getArrival() {
         return new FlightPoint(this.entity.arrival);
+    }
+
+    /**
+     * @method setArrival
+     * @param arrival {Object}
+     * @returns {Flight}
+     */
+    setArrival(arrival) {
+        if (_.isPlainObject(arrival)) {
+            this.entity.arrival = arrival;
+        }
+
+        return this;
     }
 
     /**

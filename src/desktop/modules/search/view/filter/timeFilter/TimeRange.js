@@ -6,7 +6,7 @@ import Resource from "app/core/resource";
 
 import TimeSlider from "components/timeSlider/TimeSlider";
 
-class TimeFilter extends React.Component {
+class TimeRange extends React.Component {
     constructor(props) {
         super(props);
 
@@ -16,16 +16,6 @@ class TimeFilter extends React.Component {
          * @private
          */
         this._stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
-
-        this.state = {};
-    }
-
-    _getDepartureCityName() {
-        return this.props.flight.getDeparture().city.name;
-    }
-
-    _getArrivalCityName() {
-        return this.props.flight.getArrival().city.name;
     }
 
     /**
@@ -37,7 +27,7 @@ class TimeFilter extends React.Component {
         return (
             <div className="time-range">
                 <div className="time-range__header">
-                    {this._getDepartureCityName()} &#8212; {this._getArrivalCityName()}
+                    {this.props.title}
                 </div>
 
                 <div className="time-range__body">
@@ -48,14 +38,14 @@ class TimeFilter extends React.Component {
     }
 }
 
-TimeFilter.propTypes = {
-    flight: PropTypes.instanceOf(Object),
+TimeRange.propTypes = {
+    title: PropTypes.string,
     change: PropTypes.func
 };
 
-TimeFilter.defaultProps = {
-    flight: null,
+TimeRange.defaultProps = {
+    title: "",
     change: () => {}
 };
 
-export default TimeFilter;
+export default TimeRange;

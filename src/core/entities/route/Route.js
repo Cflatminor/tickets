@@ -9,22 +9,24 @@ class Route extends Entity {
 
         this.entity = {
             departure: {
+                cityName: "",
                 airport: {
                     code: ""
-                },
-                date: ""
+                }
             },
             arrival: {
+                cityName: "",
                 airport: {
                     code: ""
-                },
-                date: ""
+                }
             },
             passengers: {
                 adult: 1,
                 child: 0,
                 baby: 0
-            }
+            },
+            departureDate: "",
+            comebackDate: ""
         };
     }
 
@@ -60,6 +62,19 @@ class Route extends Entity {
     }
 
     /**
+     * @method setDepartureCityName
+     * @param name {string}
+     * @returns {Route}
+     */
+    setDepartureCityName(name) {
+        if (_.isString(name)) {
+            this.entity.departure.cityName = name;
+        }
+
+        return this;
+    }
+
+    /**
      * @method setDepartureAirportCode
      * @param code {Object}
      * @returns {Route}
@@ -74,12 +89,12 @@ class Route extends Entity {
 
     /**
      * @method setDepartureDate
-     * @param date {Object}
+     * @param date {string}
      * @returns {Route}
      */
     setDepartureDate(date) {
         if (_.isString(date)) {
-            this.entity.departure.date = date;
+            this.entity.departureDate = date;
         }
 
         return this;
@@ -92,6 +107,19 @@ class Route extends Entity {
      */
     getArrival() {
         return new FlightPoint(this.entity.arrival);
+    }
+
+    /**
+     * @method setDepartureCityName
+     * @param name {string}
+     * @returns {Route}
+     */
+    setArrivalCityName(name) {
+        if (_.isString(name)) {
+            this.entity.arrival.cityName = name;
+        }
+
+        return this;
     }
 
     /**
@@ -109,13 +137,21 @@ class Route extends Entity {
     }
 
     /**
-     * @method setArrivalDate
-     * @param date {Object}
+     * @method getComebackDate
+     * @returns {string}
+     */
+    getComebackDate() {
+        return this.entity.comebackDate || "";
+    }
+
+    /**
+     * @method setComebackDate
+     * @param date {string}
      * @returns {Route}
      */
-    setArrivalDate(date) {
+    setComebackDate(date) {
         if (_.isString(date)) {
-            this.entity.arrival.date = date;
+            this.entity.comebackDate = date;
         }
 
         return this;

@@ -63,13 +63,13 @@ class Offers extends React.Component {
                 <div className="offers__body">
                     <div className="container-fluid">
                         <div className="row">
-                            {/*<div className="col-lg-3">*/}
-                            {/*    {this._hasFilter() && (*/}
-                            {/*        <Filter filter={this.props.filter} />*/}
-                            {/*    )}*/}
-                            {/*</div>*/}
+                            <div className="col-lg-3">
+                                {this._hasFilter() && (
+                                    <Filter filter={this.props.filter} />
+                                )}
+                            </div>
 
-                            <div className="col-lg-12">
+                            <div className="col-lg-9">
                                 <div className="offers__items">
                                     {this._renderItems()}
                                 </div>

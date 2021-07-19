@@ -19,6 +19,15 @@ class Ticket extends React.Component {
     }
 
     /**
+     * @method _hasBackwardFlights
+     * @return {boolean}
+     * @private
+     */
+    _hasBackwardFlights() {
+        return Boolean( this._getItem().getBackwardFlights().length);
+    }
+
+    /**
      * @method _getItem
      * @returns {Ticket}
      * @private
@@ -114,20 +123,14 @@ class Ticket extends React.Component {
                 <div className="ticket__body">
                     <div className="ticket__flights">
                         <div className="ticket__forward-flights">
-                            {/*<div className="w-100">*/}
-                            {/*    {this._renderForwardFlights()}*/}
-                            {/*</div>*/}
-
                             {this._renderForwardFlights()}
                         </div>
 
-                        <div className="ticket__backward-flights">
-                            {/*<div className="w-100">*/}
-                            {/*    */}
-                            {/*</div>*/}
-
-                            {this._renderBackwardFlights()}
-                        </div>
+                        {this._hasBackwardFlights() && (
+                            <div className="ticket__backward-flights">
+                                {this._renderBackwardFlights()}
+                            </div>
+                        )}
                     </div>
                 </div>
 

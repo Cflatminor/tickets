@@ -1,129 +1,19 @@
-class Filter {
-    constructor(entity) {
-        this.entity = entity;
-    }
-
-    getAttributes() {
-        return this.entity.attributes.map(function (attribute) {
-            return {
-                getId() {
-                    return attribute.id || "";
-                },
-                getName() {
-                    return attribute.name || "";
-                },
-                getItems() {
-                    return attribute.items.map(function (item) {
-                        return {
-                            getId() {
-                                return item.id || "";
-                            },
-                            getName() {
-                                return item.name || "";
-                            }
-                        };
-                    });
-                }
-            };
-        });
-    }
-}
-
 class Search {
     constructor(props) {
         this._Repository = props.dependencies.Repository;
+        this._FilterBuilder = props.dependencies.FilterBuilder;
 
         this._TicketEntity = props.dependencies.TicketEntity;
     }
 
     /**
-     * @method _buildFilter
-     * @returns {Filter}
+     * @method _buildTickets
+     * @param items {Array}
+     * @return {Ticket[]}
      * @private
      */
-    _buildFilter() {
-        return new Filter({
-            attributes: [
-                {
-                    "id": "transfer",
-                    "name": "Пересадки",
-                    "items": [
-                        {
-                            "id": "direct_flight",
-                            "name": "Без пересадок"
-                        },
-                        {
-                            "id": "one_transfer",
-                            "name": "1 пересадка"
-                        },
-                        {
-                            "id": "any_quantity",
-                            "name": "Любое количество"
-                        }
-                    ]
-                },
-                {
-                    "id": "airportDeparture",
-                    "name": "Аэропорт вылета",
-                    "items": [
-                        {
-                            "id": "Борисполь",
-                            "name": "Борисполь"
-                        },
-                        {
-                            "id": "Жуляны",
-                            "name": "Жуляны"
-                        }
-                    ]
-                },
-                {
-                    "id": "airportArrival",
-                    "name": "Аэропорт прилета",
-                    "items": [
-                        {
-                            "id": "Международный аэропорт Стамбул",
-                            "name": "Международный аэропорт Стамбул"
-                        },
-                        {
-                            "id": "Сабиха-Гокен",
-                            "name": "Сабиха-Гокен"
-                        }
-                    ]
-                },
-                {
-                    "id": "baggage",
-                    "name": "Багаж",
-                    "items": [
-                        {
-                            "id": "allow",
-                            "name": "Есть багаж"
-                        },
-                        {
-                            "id": "not_allow",
-                            "name": "Нет багажа"
-                        }
-                    ]
-                },
-                {
-                    "id": "airline",
-                    "name": "Авиакомпании",
-                    "items": [
-                        {
-                            "id": "SkyUp",
-                            "name": "SkyUp"
-                        },
-                        {
-                            "id": "Pegasus",
-                            "name": "Pegasus"
-                        },
-                        {
-                            "id": "Qatar Airways",
-                            "name": "Qatar Airways"
-                        }
-                    ]
-                }
-            ]
-        });
+    _buildTickets(items) {
+        return items.map((item) => new this._TicketEntity(item));
     }
 
     /**
@@ -154,8 +44,8 @@ class Search {
         this._Repository.getTicketsByRoute(route, (items) => {
             setTimeout(() => {
                 success(
-                    items.map((item) => new this._TicketEntity(item)),
-                    this._buildFilter()
+                    this._buildTickets(items),
+                    this._FilterBuilder.buildFilter(route, this._buildTickets(items))
                 );
             }, 2000);
         }, error);
@@ -209,7 +99,6 @@ class Search {
      */
     normalizeInitialProps(initialData, pageInfo) {
         return {
-            filter: new Filter(initialData.filter),
             FAQ: initialData.FAQ,
             pageInfo
         };

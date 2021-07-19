@@ -26,16 +26,14 @@ class Route extends React.Component {
             passengers: {},
             departurePoint: {
                 getName: () => "",
-                getCode: () => "",
-                getAirports: () => []
+                getCode: () => ""
             },
             arrivalPoint: {
                 getName: () => "",
-                getCode: () => "",
-                getAirports: () => []
+                getCode: () => ""
             },
-            arrivalDate: "",
-            departureDate: ""
+            departureDate: "",
+            comebackDate: ""
         };
 
         /**
@@ -69,15 +67,15 @@ class Route extends React.Component {
         this._getItemsByQuery = this._getItemsByQuery.bind(this);
         this._setDeparturePoint = this._setDeparturePoint.bind(this);
         this._setArrivalPoint = this._setArrivalPoint.bind(this);
-        this._setArrivalDate = this._setArrivalDate.bind(this);
-        this._setDepartureDate = this._setDepartureDate.bind(this);
+        this._setFormattedDepartureDate = this._setFormattedDepartureDate.bind(this);
+        this._setComebackDate = this._setComebackDate.bind(this);
         this._changePassengers = this._changePassengers.bind(this);
         this._swapDirection = this._swapDirection.bind(this);
         this._createRoute = this._createRoute.bind(this);
     }
 
     componentDidMount() {
-        this._setDepartureDate(this._getFormattedCurrentDate());
+        this._setFormattedDepartureDate(this._getFormattedCurrentDate());
     }
 
     /**
@@ -121,13 +119,22 @@ class Route extends React.Component {
      * @private
      */
     _getFormattedCurrentDate() {
-        return this._strings.formatShortDate(new Date());
+        return this._strings.formatShortDate(this._getCurrentDate());
+    }
+
+    /**
+     * @method _getCurrentDate
+     * @return {Date}
+     * @private
+     */
+    _getCurrentDate() {
+        return new Date();
     }
 
     /**
      * @private
      * @method _setDeparturePoint
-     * @param point {Object}
+     * @param point {Airport}
      * @returns {Route}
      */
     _setDeparturePoint(point) {
@@ -154,25 +161,45 @@ class Route extends React.Component {
 
     /**
      * @private
-     * @method _setArrivalDate
+     * @method _setComebackDate
      * @param date {string}
      * @return {Route}
      */
-    _setArrivalDate(date) {
+    _setComebackDate(date) {
         this.setState({
-            arrivalDate: date
+            comebackDate: date
         });
 
         return this;
     }
 
     /**
+     * @method _getDepartureDate
+     * @return {Date|null}
      * @private
-     * @method _setDepartureDate
+     */
+    _getDepartureDate() {
+        let dateParts = this.state.departureDate.split("-").reverse(),
+            result = null;
+
+        if (this.state.departureDate) {
+            result = new Date(
+                Number(dateParts[0]),
+                dateParts[1] - 1,
+                Number(dateParts[2])
+            );
+        }
+
+        return result;
+    }
+
+    /**
+     * @private
+     * @method _setFormattedDepartureDate
      * @param date {string}
      * @return {Route}
      */
-    _setDepartureDate(date) {
+    _setFormattedDepartureDate(date) {
         this.setState({
             departureDate: date
         });
@@ -207,10 +234,12 @@ class Route extends React.Component {
      */
     _buildRoute() {
         return new this._RouteEntity()
+            .setDepartureCityName(this.state.departurePoint.getName())
             .setDepartureAirportCode(this.state.departurePoint.getCode())
             .setDepartureDate(this.state.departureDate)
+            .setArrivalCityName(this.state.arrivalPoint.getName())
             .setArrivalAirportCode(this.state.arrivalPoint.getCode())
-            .setArrivalDate(this.state.arrivalDate)
+            .setComebackDate(this.state.comebackDate)
             .setAdultPassengersCount(this.state.passengers.counts.adult)
             .setChildPassengersCount(this.state.passengers.counts.child)
             .setBabyPassengersCount(this.state.passengers.counts.baby)
@@ -292,14 +321,17 @@ class Route extends React.Component {
                         <RouteDate
                             className="route__departure-date"
                             title={this._stringsResource.thitherward}
-                            currentDate={this._getFormattedCurrentDate()}
-                            change={this._setDepartureDate}
+                            currentDate={this._getCurrentDate()}
+                            change={this._setFormattedDepartureDate}
                         />
 
                         <RouteDate
-                            className="route__arrival-date"
+                            className="route__comeback-date"
                             title={this._stringsResource.backward}
-                            change={this._setArrivalDate}
+                            currentDate={null}
+                            disableDaysBefore={this._getDepartureDate()}
+                            change={this._setComebackDate}
+                            deleteable
                         />
 
                         <Passengers

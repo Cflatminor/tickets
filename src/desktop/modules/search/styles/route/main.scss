@@ -200,9 +200,9 @@
   .DayPicker-Day {
     color: $colorBlack;
 
-    &:hover {
-      color: $colorWhite;
+    &:not(.DayPicker-Day--outside):not(.DayPicker-Day--disabled):hover {
       background: $colorGreen !important;
+      color: $colorWhite;
     }
   }
 
@@ -214,7 +214,15 @@
     color: $colorRed;
   }
 
-  //.DayPicker
+  .DayPicker-Day--selected {
+    background: $colorGreen;
+    color: $colorWhite;
+  }
+
+  .DayPicker-Day--disabled {
+    opacity: 0.8;
+    color: $colorGray;
+  }
 
   .autocomplete,
   .autocomplete__body,
