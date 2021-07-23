@@ -37,7 +37,7 @@ class Flight extends Entity {
      * @returns {Baggage}
      */
     getBaggage() {
-        return new Baggage(this.entity.baggage);
+        return new Baggage(this.entity.baggage_allowance);
     }
 
     /**

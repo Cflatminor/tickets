@@ -41,6 +41,25 @@
     }
   }
 
+  .flight__baggage {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.flight__baggage--allow {
+      .icon {
+        color: $colorGreen;
+      }
+    }
+
+    .icon {
+      margin: -2px 7px 0 0;
+      font-size: 18px;
+      color: $colorRed;
+    }
+  }
+
   .flight__aircraft-identifier {
     display: flex;
     flex-direction: column;

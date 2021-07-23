@@ -21,7 +21,13 @@
         },
         "flightNumber": "PC-1552",
         "aircraftNumber": "Airbus A321",
-        "baggage": {},
+        "baggage_allowance": {
+          "number_of_pieces": 1,
+          "max_weight": {
+            "value": 20,
+            "unit": "Kilograms"
+          }
+        },
         "departure": {
           "countryName": "Украина",
           "cityName": "Киев",
@@ -78,7 +84,7 @@
         },
         "flightNumber": "PC-1552",
         "aircraftNumber": "Airbus A321",
-        "baggage": {},
+        "baggage_allowance": {},
         "departure": {
           "countryName": "Украина",
           "cityName": "Киев",
@@ -187,7 +193,7 @@
         },
         "flightNumber": "PC-1552",
         "aircraftNumber": "Airbus A321",
-        "baggage": {},
+        "baggage_allowance": {},
         "departure": {
           "countryName": "Турция",
           "cityName": "Стамбул",
@@ -277,7 +283,7 @@
         },
         "flightNumber": "PC-1552",
         "aircraftNumber": "Airbus A321",
-        "baggage": {},
+        "baggage_allowance": {},
         "departure": {
           "countryName": "Украина",
           "cityName": "Киев",
@@ -386,7 +392,7 @@
         },
         "flightNumber": "PC-1552",
         "aircraftNumber": "Airbus A321",
-        "baggage": {},
+        "baggage_allowance": {},
         "departure": {
           "countryName": "Турция",
           "cityName": "Стамбул",

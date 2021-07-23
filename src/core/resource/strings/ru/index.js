@@ -118,6 +118,9 @@ export default {
     informed: "Ознакомлен",
     asList: "Списком",
     transfers: "Пересадки",
+    withoutTransfers: "Без пересадок",
+    oneTransfer: "1 пересадка",
+    anyQuantity: "Любое количество",
     inTransit: "В пути",
     oneWayFlight: "Рейс в одну сторону",
     roundTripFlight: "Рейс в обе сторону",
@@ -132,4 +135,10 @@ export default {
     departureAndArrivalTime: "Время вылета и прибытия",
     departureFromTheCity: "Вылет из {0}",
     arrivalInTheCity: "Прибытие в {0}",
+    baggage: "Багаж",
+    withBaggage: "Есть багаж",
+    noBaggage: "Нет багажа",
+    departureAirport: "Аэропорт вылета",
+    arrivalAirport: "Аэропорт прилета",
+    airlines: "Авиакомпании"
 };

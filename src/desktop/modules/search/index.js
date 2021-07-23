@@ -1,6 +1,7 @@
 import React from "react";
 
 import Env from "app/core/environment";
+import Resource from "app/core/resource";
 
 import TicketEntity from "app/core/entities/ticket/Ticket";
 import TicketFilterEntity from "app/core/entities/ticketFilter/TicketFilter";
@@ -35,6 +36,8 @@ let search = new Search({
             }),
             FilterBuilder: new FilterBuilder({
                 dependencies: {
+                    Env,
+                    Resource,
                     FlightEntity,
                     TicketFilterEntity
                 }

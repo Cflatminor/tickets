@@ -1,5 +1,7 @@
 class FilterBuilder {
     constructor(props) {
+        this._stringsResource = props.dependencies.Resource.getStrings(props.dependencies.Env.getInstance().getLanguage());
+
         this._TicketFilter = props.dependencies.TicketFilterEntity;
         this._FlightEntity = props.dependencies.FlightEntity;
     }
@@ -163,15 +165,15 @@ class FilterBuilder {
     _buildTransferAttributes(items) {
         let directFlight = {
                 "id": "direct_flight",
-                "name": "Без пересадок"
+                "name": this._stringsResource.withoutTransfers
             },
             oneTransfer = {
                 "id": "one_transfer",
-                "name": "1 пересадка"
+                "name": this._stringsResource.oneTransfer
             },
             anyQuantity = {
                 "id": "any_quantity",
-                "name": "Любое количество"
+                "name": this._stringsResource.anyQuantity
             },
             flights = this._getAllFlights(items),
             result = [];
@@ -256,36 +258,36 @@ class FilterBuilder {
             attributes: [
                 {
                     "id": "transfer",
-                    "name": "Пересадки",
+                    "name": this._stringsResource.transfers,
                     "items": this._buildTransferAttributes(items)
                 },
                 {
                     "id": "airportDeparture",
-                    "name": "Аэропорт вылета",
+                    "name": this._stringsResource.departureAirport,
                     "items": this._buildDepartureAirportAttributes(items)
                 },
                 {
                     "id": "airportArrival",
-                    "name": "Аэропорт прилета",
+                    "name": this._stringsResource.arrivalAirport,
                     "items": this._buildArrivalAirportAttributes(items)
                 },
                 {
                     "id": "baggage",
-                    "name": "Багаж",
+                    "name": this._stringsResource.baggage,
                     "items": [
                         {
                             "id": "allow",
-                            "name": "Есть багаж"
+                            "name": this._stringsResource.withBaggage
                         },
                         {
                             "id": "not_allow",
-                            "name": "Нет багажа"
+                            "name": this._stringsResource.noBaggage
                         }
                     ]
                 },
                 {
                     "id": "airline",
-                    "name": "Авиакомпании",
+                    "name": this._stringsResource.airlines,
                     "items": this._buildAirlineAttributes(items)
                 }
             ]

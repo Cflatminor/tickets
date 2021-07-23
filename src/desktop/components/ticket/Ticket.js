@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import classNames from "classnames";
+
 import Env from "app/core/environment";
 import Resource from "app/core/resource";
 
@@ -63,6 +65,21 @@ class Ticket extends React.Component {
                             alt={item.getAirlineCompany().getLogo().getAlt()}
                             title={item.getAirlineCompany().getLogo().getTitle()}
                         />
+                    </div>
+
+                    <div className={classNames("flight__baggage", {
+                            "flight__baggage--allow": item.getBaggage().isAllow()
+                        })}
+                    >
+                        <span className="icon icon-tag" />
+
+                        {item.getBaggage().isAllow() && (
+                            this._stringsResource.withBaggage
+                        )}
+
+                        {!item.getBaggage().isAllow() && (
+                            this._stringsResource.noBaggage
+                        )}
                     </div>
                 </div>
 
