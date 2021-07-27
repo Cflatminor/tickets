@@ -74,6 +74,11 @@ class Route extends React.Component {
         this._createRoute = this._createRoute.bind(this);
     }
 
+    /**
+     * @public
+     * @method componentDidMount
+     * @return {void}
+     */
     componentDidMount() {
         this._setFormattedDepartureDate(this._getFormattedCurrentDate());
     }
@@ -129,6 +134,35 @@ class Route extends React.Component {
      */
     _getCurrentDate() {
         return new Date();
+    }
+
+    /**
+     * @method _getItemsByQuery
+     * @param query {string}
+     * @param success {Function}
+     * @return {Route}
+     * @private
+     */
+    _getItemsByQuery(query, success) {
+        if (query && query.length > 2) {
+            this._searchService.getFlightPoint(query, (items) => {
+                let result = [];
+
+                items.forEach((item) => {
+                    result.push(item);
+
+                    item.getAirports().forEach((airport) => {
+                        result.push(airport);
+                    });
+                });
+
+                success(result);
+            }, () => {});
+        } else {
+            success([]);
+        }
+
+        return this;
     }
 
     /**
@@ -207,26 +241,6 @@ class Route extends React.Component {
         return this;
     }
 
-    _getItemsByQuery(query, success) {
-        if (query.length > 2) {
-            this._searchService.getFlightPoint(query, (items) => {
-                let result = [];
-
-                items.forEach((item) => {
-                    result.push(item);
-
-                    item.getAirports().forEach((airport) => {
-                        result.push(airport);
-                    });
-                });
-
-                success(result);
-            }, () => {});
-        } else {
-            success([]);
-        }
-    }
-
     /**
      * @method _buildRoute
      * @return {Route}
@@ -258,6 +272,11 @@ class Route extends React.Component {
         return this;
     }
 
+    /**
+     * @method _swapDirection
+     * @return {Route}
+     * @private
+     */
     _swapDirection() {
         this.setState((prevState) => ({
             arrivalPoint: prevState.departurePoint,
@@ -286,37 +305,45 @@ class Route extends React.Component {
             <div className="search__route route">
                 <div className="route__body d-flex flex-wrap flex-xl-nowrap">
                     <div className="d-flex w-100 flex-wrap flex-xl-nowrap">
-                        <div className="route__departure w-100">
-                            <FlightPoint
-                                title={this._stringsResource.fromWhere}
-                                getItemsByQuery={this._getItemsByQuery}
-                                change={this._setDeparturePoint}
-                                airport={this.state.departurePoint}
-                            />
+                        <div className="route__flight-points d-xl-flex w-100 position-relative">
+                            <div className="route__departure w-100">
+                                <FlightPoint
+                                    title={this._stringsResource.fromWhere}
+                                    getItemsByQuery={this._getItemsByQuery}
+                                    change={this._setDeparturePoint}
+                                    airport={this.state.departurePoint}
+                                />
 
-                            {this.state.validationErrors.departurePoint && (
-                                <div className="error-message error-departure-point">
-                                    {this._stringsResource.validation.mustBeCompleted}
-                                </div>
-                            )}
+                                {this.state.validationErrors.departurePoint && (
+                                    <div className="error-message error-departure-point">
+                                        {this._stringsResource.validation.mustBeCompleted}
+                                    </div>
+                                )}
+                            </div>
+
+                            <span
+                                className="route__to-swap-direction"
+                                onClick={this._swapDirection}
+                            >
+                                <span className="icon icon-arrow-left" />
+                                <span className="icon icon-arrow-right" />
+                            </span>
+
+                            <div className="route__arrival w-100">
+                                <FlightPoint
+                                    title={this._stringsResource.whereTo}
+                                    getItemsByQuery={this._getItemsByQuery}
+                                    change={this._setArrivalPoint}
+                                    airport={this.state.arrivalPoint}
+                                />
+
+                                {this.state.validationErrors.arrivalPoint && (
+                                    <div className="error-message error-arrival-point">
+                                        {this._stringsResource.validation.mustBeCompleted}
+                                    </div>
+                                )}
+                            </div>
                         </div>
-
-                        <div className="route__arrival w-100">
-                            <FlightPoint
-                                title={this._stringsResource.whereTo}
-                                getItemsByQuery={this._getItemsByQuery}
-                                change={this._setArrivalPoint}
-                                airport={this.state.arrivalPoint}
-                            />
-
-                            {this.state.validationErrors.arrivalPoint && (
-                                <div className="error-message error-arrival-point">
-                                    {this._stringsResource.validation.mustBeCompleted}
-                                </div>
-                            )}
-                        </div>
-
-                        {/*<span onClick={this._swapDirection}>x</span>*/}
 
                         <RouteDate
                             className="route__departure-date"

@@ -14,6 +14,26 @@
     color: $colorBlack;
   }
 
+  .route__flight-points {
+    flex-shrink: 0.75;
+
+    .route__departure {
+      .city-code {
+        right: 20px;
+      }
+    }
+
+    .route__arrival {
+      input {
+        padding-left: 24px;
+      }
+
+      label {
+        left: 20px;
+      }
+    }
+  }
+
   .route__departure {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -179,6 +199,38 @@
 
     &::after {
       transform: rotateZ(-45deg);
+    }
+  }
+
+  .route__to-swap-direction {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: 19px;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    border: 1px solid #D9DBE9;
+    border-radius: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: $colorWhite;
+
+    .icon {
+      position: relative;
+      display: block;
+      color: #808080;
+    }
+
+    .icon-arrow-left {
+      top: 3px;
+    }
+
+    .icon-arrow-right {
+      top: -3px;
     }
   }
 

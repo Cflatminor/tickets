@@ -110,7 +110,7 @@ class RouteDate extends React.Component {
         return (
             <div
                 className={classnames(
-                    "outlined-text-form arrival-date",
+                    "outlined-text-form",
                     this.props.className,
                     {focused: (this.state.isFocused || !this.state.isEmpty)}
                 )}

@@ -1,5 +1,5 @@
 .route {
-  @media screen and (max-width: $maxLGResolution) {
+  @include before-xl() {
     .route__body {
       height: 100%;
     }
@@ -7,7 +7,7 @@
     .route__departure,
     .route__arrival,
     .route__departure-date,
-    .route__arrival-date,
+    .route__comeback-date,
     .route__passengers {
       height: 60px;
       border-right: none !important;
@@ -17,8 +17,33 @@
     .route__departure,
     .route__arrival,
     .route__departure-date,
-    .route__arrival-date {
+    .route__comeback-date {
       border-bottom: 1px solid #D9DBE9;
+    }
+
+    .route__flight-points {
+      .route__departure {
+        .city-code {
+          right: 12px;
+        }
+      }
+
+      .route__arrival {
+        input {
+          padding-left: 8px;
+        }
+
+        label {
+          left: 12px;
+        }
+      }
+    }
+
+    .route__to-swap-direction {
+      left: 100%;
+      top: 45px;
+      margin-left: -43px;
+      transform: rotate(-90deg);
     }
 
     .route__departure-date {
@@ -30,7 +55,7 @@
       }
     }
 
-    .route__arrival-date {
+    .route__comeback-date {
       border-right: 1px solid #D9DBE9 !important;
       position: relative;
 
@@ -59,7 +84,7 @@
     }
 
     .route__departure-date,
-    .route__arrival-date {
+    .route__comeback-date {
       width: 50%;
     }
 
