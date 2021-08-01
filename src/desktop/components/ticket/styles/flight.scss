@@ -20,11 +20,6 @@
     margin-top: 20px;
   }
 
-  .flight__departure,
-  .flight__arrival {
-    flex-shrink: 0;
-  }
-
   .flight__airline-company {
     //width: 120px;
     //height: 56px;
@@ -46,14 +41,32 @@
     }
   }
 
+  .flight__baggage {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.flight__baggage--allow {
+      .icon {
+        color: $colorGreen;
+      }
+    }
+
+    .icon {
+      margin: -2px 7px 0 0;
+      font-size: 18px;
+      color: $colorRed;
+    }
+  }
+
   .flight__aircraft-identifier {
     display: flex;
     flex-direction: column;
   }
 
   .flight__about-route {
-    width: 100%;
-    //outline: 1px solid red;
+    flex-grow: 1;
   }
 
   .flight__total-time {
@@ -65,16 +78,21 @@
   }
 }
 
+@include before-md() {
+  .flight {
+    .flight-point {
+      .flight-point__body {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+
 @include md() {
   .flight {
     .flight__body {
       flex-direction: row;
-    }
-
-    .flight__body,
-    .flight__departure,
-    .flight__arrival {
-      margin-top: 0;
     }
 
     .flight__airline-company {
@@ -91,6 +109,18 @@
 
     .flight__aircraft-identifier {
       padding: 0 24px;
+    }
+
+    .flight__body,
+    .flight__departure,
+    .flight__arrival {
+      margin-top: 0;
+    }
+
+    .flight__departure,
+    .flight__arrival {
+      min-width: 70px;
+      max-width: 150px;
     }
 
     .flight__about-route {

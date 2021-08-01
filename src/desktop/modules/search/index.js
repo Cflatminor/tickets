@@ -1,13 +1,17 @@
 import React from "react";
 
 import Env from "app/core/environment";
+import Resource from "app/core/resource";
 
 import TicketEntity from "app/core/entities/ticket/Ticket";
+import TicketFilterEntity from "app/core/entities/ticketFilter/TicketFilter";
+import FlightEntity from "app/core/entities/flight/Flight";
 
 import HttpClient from "app/core/utilities/httpClient/HttpClient";
 
 import Repository from "./businessLogic/repository/Repository";
 import Presenter from "./businessLogic/Presenter";
+import FilterBuilder from "./businessLogic/FilterBuilder";
 import Search from "./businessLogic/Search";
 import View from "./view/Search";
 
@@ -28,6 +32,14 @@ let search = new Search({
                             perPage: 100
                         }
                     }
+                }
+            }),
+            FilterBuilder: new FilterBuilder({
+                dependencies: {
+                    Env,
+                    Resource,
+                    FlightEntity,
+                    TicketFilterEntity
                 }
             }),
             TicketEntity

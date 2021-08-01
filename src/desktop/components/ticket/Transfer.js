@@ -14,6 +14,15 @@ class Transfer extends React.Component {
     }
 
     /**
+     * @method _hasItems
+     * @return {boolean}
+     * @private
+     */
+    _hasItems() {
+        return Boolean(this._getItemsCount());
+    }
+
+    /**
      * @method _getItems
      * @returns {Flight[]}
      * @private
@@ -96,9 +105,11 @@ class Transfer extends React.Component {
                         <div className="flight-transfer__end-flight-point" />
                     </div>
 
-                    <div className="flight-transfer__transfer-count">
-                        {this._stringsResource.transfers}: {this._getItemsCount()}
-                    </div>
+                    {this._hasItems() && (
+                        <div className="flight-transfer__transfer-count">
+                            {this._stringsResource.transfers}: {this._getItemsCount()}
+                        </div>
+                    )}
                 </div>
             </div>
         );

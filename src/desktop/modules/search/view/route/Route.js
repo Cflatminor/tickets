@@ -26,16 +26,14 @@ class Route extends React.Component {
             passengers: {},
             departurePoint: {
                 getName: () => "",
-                getCode: () => "",
-                getAirports: () => []
+                getCode: () => ""
             },
             arrivalPoint: {
                 getName: () => "",
-                getCode: () => "",
-                getAirports: () => []
+                getCode: () => ""
             },
-            arrivalDate: "",
-            departureDate: ""
+            departureDate: "",
+            comebackDate: ""
         };
 
         /**
@@ -69,15 +67,20 @@ class Route extends React.Component {
         this._getItemsByQuery = this._getItemsByQuery.bind(this);
         this._setDeparturePoint = this._setDeparturePoint.bind(this);
         this._setArrivalPoint = this._setArrivalPoint.bind(this);
-        this._setArrivalDate = this._setArrivalDate.bind(this);
-        this._setDepartureDate = this._setDepartureDate.bind(this);
+        this._setFormattedDepartureDate = this._setFormattedDepartureDate.bind(this);
+        this._setComebackDate = this._setComebackDate.bind(this);
         this._changePassengers = this._changePassengers.bind(this);
         this._swapDirection = this._swapDirection.bind(this);
         this._createRoute = this._createRoute.bind(this);
     }
 
+    /**
+     * @public
+     * @method componentDidMount
+     * @return {void}
+     */
     componentDidMount() {
-        this._setDepartureDate(this._getFormattedCurrentDate());
+        this._setFormattedDepartureDate(this._getFormattedCurrentDate());
     }
 
     /**
@@ -121,13 +124,51 @@ class Route extends React.Component {
      * @private
      */
     _getFormattedCurrentDate() {
-        return this._strings.formatShortDate(new Date());
+        return this._strings.formatShortDate(this._getCurrentDate());
+    }
+
+    /**
+     * @method _getCurrentDate
+     * @return {Date}
+     * @private
+     */
+    _getCurrentDate() {
+        return new Date();
+    }
+
+    /**
+     * @method _getItemsByQuery
+     * @param query {string}
+     * @param success {Function}
+     * @return {Route}
+     * @private
+     */
+    _getItemsByQuery(query, success) {
+        if (query && query.length > 2) {
+            this._searchService.getFlightPoint(query, (items) => {
+                let result = [];
+
+                items.forEach((item) => {
+                    result.push(item);
+
+                    item.getAirports().forEach((airport) => {
+                        result.push(airport);
+                    });
+                });
+
+                success(result);
+            }, () => {});
+        } else {
+            success([]);
+        }
+
+        return this;
     }
 
     /**
      * @private
      * @method _setDeparturePoint
-     * @param point {Object}
+     * @param point {Airport}
      * @returns {Route}
      */
     _setDeparturePoint(point) {
@@ -154,50 +195,50 @@ class Route extends React.Component {
 
     /**
      * @private
-     * @method _setArrivalDate
+     * @method _setComebackDate
      * @param date {string}
      * @return {Route}
      */
-    _setArrivalDate(date) {
+    _setComebackDate(date) {
         this.setState({
-            arrivalDate: date
+            comebackDate: date
         });
 
         return this;
     }
 
     /**
+     * @method _getDepartureDate
+     * @return {Date|null}
      * @private
-     * @method _setDepartureDate
+     */
+    _getDepartureDate() {
+        let dateParts = this.state.departureDate.split("-").reverse(),
+            result = null;
+
+        if (this.state.departureDate) {
+            result = new Date(
+                Number(dateParts[0]),
+                dateParts[1] - 1,
+                Number(dateParts[2])
+            );
+        }
+
+        return result;
+    }
+
+    /**
+     * @private
+     * @method _setFormattedDepartureDate
      * @param date {string}
      * @return {Route}
      */
-    _setDepartureDate(date) {
+    _setFormattedDepartureDate(date) {
         this.setState({
             departureDate: date
         });
 
         return this;
-    }
-
-    _getItemsByQuery(query, success) {
-        if (query.length > 2) {
-            this._searchService.getFlightPoint(query, (items) => {
-                let result = [];
-
-                items.forEach((item) => {
-                    result.push(item);
-
-                    item.getAirports().forEach((airport) => {
-                        result.push(airport);
-                    });
-                });
-
-                success(result);
-            }, () => {});
-        } else {
-            success([]);
-        }
     }
 
     /**
@@ -207,10 +248,12 @@ class Route extends React.Component {
      */
     _buildRoute() {
         return new this._RouteEntity()
+            .setDepartureCityName(this.state.departurePoint.getName())
             .setDepartureAirportCode(this.state.departurePoint.getCode())
             .setDepartureDate(this.state.departureDate)
+            .setArrivalCityName(this.state.arrivalPoint.getName())
             .setArrivalAirportCode(this.state.arrivalPoint.getCode())
-            .setArrivalDate(this.state.arrivalDate)
+            .setComebackDate(this.state.comebackDate)
             .setAdultPassengersCount(this.state.passengers.counts.adult)
             .setChildPassengersCount(this.state.passengers.counts.child)
             .setBabyPassengersCount(this.state.passengers.counts.baby)
@@ -229,6 +272,11 @@ class Route extends React.Component {
         return this;
     }
 
+    /**
+     * @method _swapDirection
+     * @return {Route}
+     * @private
+     */
     _swapDirection() {
         this.setState((prevState) => ({
             arrivalPoint: prevState.departurePoint,
@@ -257,49 +305,60 @@ class Route extends React.Component {
             <div className="search__route route">
                 <div className="route__body d-flex flex-wrap flex-xl-nowrap">
                     <div className="d-flex w-100 flex-wrap flex-xl-nowrap">
-                        <div className="route__departure w-100">
-                            <FlightPoint
-                                title={this._stringsResource.fromWhere}
-                                getItemsByQuery={this._getItemsByQuery}
-                                change={this._setDeparturePoint}
-                                airport={this.state.departurePoint}
-                            />
+                        <div className="route__flight-points d-xl-flex w-100 position-relative">
+                            <div className="route__departure w-100">
+                                <FlightPoint
+                                    title={this._stringsResource.fromWhere}
+                                    getItemsByQuery={this._getItemsByQuery}
+                                    change={this._setDeparturePoint}
+                                    airport={this.state.departurePoint}
+                                />
 
-                            {this.state.validationErrors.departurePoint && (
-                                <div className="error-message error-departure-point">
-                                    {this._stringsResource.validation.mustBeCompleted}
-                                </div>
-                            )}
+                                {this.state.validationErrors.departurePoint && (
+                                    <div className="error-message error-departure-point">
+                                        {this._stringsResource.validation.mustBeCompleted}
+                                    </div>
+                                )}
+                            </div>
+
+                            <span
+                                className="route__to-swap-direction"
+                                onClick={this._swapDirection}
+                            >
+                                <span className="icon icon-arrow-left" />
+                                <span className="icon icon-arrow-right" />
+                            </span>
+
+                            <div className="route__arrival w-100">
+                                <FlightPoint
+                                    title={this._stringsResource.whereTo}
+                                    getItemsByQuery={this._getItemsByQuery}
+                                    change={this._setArrivalPoint}
+                                    airport={this.state.arrivalPoint}
+                                />
+
+                                {this.state.validationErrors.arrivalPoint && (
+                                    <div className="error-message error-arrival-point">
+                                        {this._stringsResource.validation.mustBeCompleted}
+                                    </div>
+                                )}
+                            </div>
                         </div>
-
-                        <div className="route__arrival w-100">
-                            <FlightPoint
-                                title={this._stringsResource.whereTo}
-                                getItemsByQuery={this._getItemsByQuery}
-                                change={this._setArrivalPoint}
-                                airport={this.state.arrivalPoint}
-                            />
-
-                            {this.state.validationErrors.arrivalPoint && (
-                                <div className="error-message error-arrival-point">
-                                    {this._stringsResource.validation.mustBeCompleted}
-                                </div>
-                            )}
-                        </div>
-
-                        {/*<span onClick={this._swapDirection}>x</span>*/}
 
                         <RouteDate
                             className="route__departure-date"
                             title={this._stringsResource.thitherward}
-                            currentDate={this._getFormattedCurrentDate()}
-                            change={this._setDepartureDate}
+                            currentDate={this._getCurrentDate()}
+                            change={this._setFormattedDepartureDate}
                         />
 
                         <RouteDate
-                            className="route__arrival-date"
+                            className="route__comeback-date"
                             title={this._stringsResource.backward}
-                            change={this._setArrivalDate}
+                            currentDate={null}
+                            disableDaysBefore={this._getDepartureDate()}
+                            change={this._setComebackDate}
+                            deleteable
                         />
 
                         <Passengers

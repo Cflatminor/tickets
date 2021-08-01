@@ -9,42 +9,22 @@ class Filter extends React.Component {
         super(props);
     }
 
+    /**
+     * @method _getForwardFlight
+     * @return {Flight}
+     * @private
+     */
     _getForwardFlight() {
-        return {
-            getDeparture() {
-                return {
-                    city: {
-                        name: "Киев"
-                    }
-                };
-            },
-            getArrival() {
-                return {
-                    city: {
-                        name: "Стамбул"
-                    }
-                };
-            }
-        };
+        return this.props.filter.getForwardFlight();
     }
 
+    /**
+     * @method _getBackwardFlight
+     * @return {Flight}
+     * @private
+     */
     _getBackwardFlight() {
-        return {
-            getDeparture() {
-                return {
-                    city: {
-                        name: "Стамбул"
-                    }
-                };
-            },
-            getArrival() {
-                return {
-                    city: {
-                        name: "Киев"
-                    }
-                };
-            }
-        };
+        return this.props.filter.getBackwardFlight();
     }
 
     /**
@@ -62,8 +42,6 @@ class Filter extends React.Component {
         return (
             <div className="search__filter filter">
                 <div className="filter__body">
-                    <strong>FILTER</strong>
-
                     <div className="filter__time">
                         <TimeFilter
                             forwardFlight={this._getForwardFlight()}

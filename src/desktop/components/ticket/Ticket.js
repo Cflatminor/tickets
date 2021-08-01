@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import classNames from "classnames";
+
 import Env from "app/core/environment";
 import Resource from "app/core/resource";
 
@@ -16,6 +18,15 @@ class Ticket extends React.Component {
         this._stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
 
         this._select = this._select.bind(this);
+    }
+
+    /**
+     * @method _hasBackwardFlights
+     * @return {boolean}
+     * @private
+     */
+    _hasBackwardFlights() {
+        return Boolean( this._getItem().getBackwardFlights().length);
     }
 
     /**
@@ -54,6 +65,21 @@ class Ticket extends React.Component {
                             alt={item.getAirlineCompany().getLogo().getAlt()}
                             title={item.getAirlineCompany().getLogo().getTitle()}
                         />
+                    </div>
+
+                    <div className={classNames("flight__baggage", {
+                            "flight__baggage--allow": item.getBaggage().isAllow()
+                        })}
+                    >
+                        <span className="icon icon-tag" />
+
+                        {item.getBaggage().isAllow() && (
+                            this._stringsResource.withBaggage
+                        )}
+
+                        {!item.getBaggage().isAllow() && (
+                            this._stringsResource.noBaggage
+                        )}
                     </div>
                 </div>
 
@@ -114,20 +140,14 @@ class Ticket extends React.Component {
                 <div className="ticket__body">
                     <div className="ticket__flights">
                         <div className="ticket__forward-flights">
-                            {/*<div className="w-100">*/}
-                            {/*    {this._renderForwardFlights()}*/}
-                            {/*</div>*/}
-
                             {this._renderForwardFlights()}
                         </div>
 
-                        <div className="ticket__backward-flights">
-                            {/*<div className="w-100">*/}
-                            {/*    */}
-                            {/*</div>*/}
-
-                            {this._renderBackwardFlights()}
-                        </div>
+                        {this._hasBackwardFlights() && (
+                            <div className="ticket__backward-flights">
+                                {this._renderBackwardFlights()}
+                            </div>
+                        )}
                     </div>
                 </div>
 

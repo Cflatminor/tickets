@@ -20,9 +20,31 @@
 
   .time-filter {
     .time-filter__header {
-      margin-bottom: 5px;
+      margin-bottom: 16px;
       font-weight: 700;
       color: $colorBlack;
+    }
+
+    .time-filter__to-forward-flight {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .time-filter__to-backward-flight {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .time-filter__to-forward-flight,
+    .time-filter__to-backward-flight {
+      width: 100%;
+      border: 1px solid $colorBlack;
+      cursor: pointer;
+
+      &.active {
+        background: $colorBlack;
+        color: $colorWhite;
+      }
     }
   }
 

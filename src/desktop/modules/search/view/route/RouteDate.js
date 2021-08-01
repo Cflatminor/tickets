@@ -29,11 +29,21 @@ class RouteDate extends React.Component {
         }));
     }
 
+    /**
+     * @method _isAvailableDeleteAction
+     * @return {boolean}
+     * @private
+     */
+    _isAvailableDeleteAction() {
+        return Boolean(this.props.deleteable && this.state.selectedDate);
+    }
+
     _clearDate() {
         this.setState({
-            selectedDate: ""
+            isEmpty: true,
+            selectedDate: null
         }, () => {
-            // console.log(this.state.selectedDate);
+            this.props.change(this.state.selectedDate);
         });
 
         return this;
@@ -100,7 +110,7 @@ class RouteDate extends React.Component {
         return (
             <div
                 className={classnames(
-                    "outlined-text-form arrival-date",
+                    "outlined-text-form",
                     this.props.className,
                     {focused: (this.state.isFocused || !this.state.isEmpty)}
                 )}
@@ -110,11 +120,18 @@ class RouteDate extends React.Component {
                     format="DD-MM-YYYY"
                     value={this.state.selectedDate}
                     onDayChange={this._handleDayChange}
-                    selectedDay={this.state.selectedDate}
                     dayPickerProps={{
                         months: MONTHS,
                         weekdaysLong: WEEKDAYS_LONG,
-                        weekdaysShort: WEEKDAYS_SHORT
+                        weekdaysShort: WEEKDAYS_SHORT,
+                        modifiers: {
+                            disabled: [
+                                {
+                                    before: this.props.disableDaysBefore
+                                }
+                            ],
+                            selected: [this.state.selectedDate],
+                        }
                     }}
                     inputProps={{
                         placeholder: "",
@@ -144,7 +161,7 @@ class RouteDate extends React.Component {
                     </span>
                 )}
 
-                {this.state.selectedDate && (
+                {this._isAvailableDeleteAction() && (
                     <span className="clear-icon" onClick={this._clearDate} />
                 )}
             </div>
@@ -153,16 +170,20 @@ class RouteDate extends React.Component {
 }
 
 RouteDate.propTypes = {
-    title: PropTypes.string,
-    currentDate: PropTypes.string,
     className: PropTypes.string,
+    title: PropTypes.string,
+    currentDate: PropTypes.instanceOf(Date),
+    deleteable: PropTypes.bool,
+    disableDaysBefore: PropTypes.instanceOf(Date),
     change: PropTypes.func
 };
 
 RouteDate.defaultProps = {
-    title: "",
-    currentDate: "",
     className: "",
+    title: "",
+    currentDate: new Date(),
+    deleteable: false,
+    disableDaysBefore: new Date(),
     change: () => {}
 };
 
