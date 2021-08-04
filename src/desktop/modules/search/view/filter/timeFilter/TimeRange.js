@@ -16,6 +16,20 @@ class TimeRange extends React.Component {
          * @private
          */
         this._stringsResource = Resource.getStrings(Env.getInstance().getLanguage());
+
+        this._change = this._change.bind(this);
+    }
+
+    /**
+     * @method _change
+     * @param range {Object}
+     * @return {TimeRange}
+     * @private
+     */
+    _change(range) {
+        this.props.change(range);
+
+        return this;
     }
 
     /**
@@ -31,7 +45,7 @@ class TimeRange extends React.Component {
                 </div>
 
                 <div className="time-range__body">
-                    <TimeSlider />
+                    <TimeSlider change={this._change} />
                 </div>
             </div>
         );

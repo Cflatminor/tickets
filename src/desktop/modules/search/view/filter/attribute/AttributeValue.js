@@ -18,10 +18,12 @@ class AttributeValue extends React.Component {
     /**
      * @private
      * @method _change
+     * @param item {Object}
+     * @param isActive {boolean}
      * @returns {AttributeValue}
      */
-    _change(item) {
-        this.props.change(item);
+    _change(item, isActive) {
+        this.props.change(item, isActive);
 
         return this;
     }
@@ -39,7 +41,7 @@ class AttributeValue extends React.Component {
                 <label className="custom-input--checkbox">
                     <input
                         type="checkbox"
-                        onChange={() => this._change(item)}
+                        onChange={(e) => this._change(item, e.target.checked)}
                     />
 
                     <span className="custom-input__state">

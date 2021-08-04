@@ -18,6 +18,12 @@ class Attribute extends React.Component {
         this._minItemsCount = 2;
 
         /**
+         * @property _currentAttributeValues
+         * @type {Array}
+         */
+        this._currentAttributeValues = [];
+
+        /**
          * @property _stringsResource
          * @type {Object}
          * @private
@@ -30,6 +36,7 @@ class Attribute extends React.Component {
         };
 
         this._toggleCollapse = this._toggleCollapse.bind(this);
+        this._change = this._change.bind(this);
     }
 
     /**
@@ -94,6 +101,72 @@ class Attribute extends React.Component {
     }
 
     /**
+     * @method _getAttributeIndex
+     * @param item {Object}
+     * @return {number}
+     * @private
+     */
+    _getAttributeIndex(item) {
+        return this._currentAttributeValues.findIndex((currentItem) => currentItem.getId() === item.getId());
+    }
+
+    /**
+     * @method
+     * @param item
+     * @param isActive
+     * @return {Attribute}
+     * @private
+     */
+    _updateAttributeValues(item, isActive) {
+        if (isActive) {
+            this._addAttributeValue(item);
+        } else {
+            this._removeAttributeValue(item);
+        }
+
+        return this;
+    }
+
+    /**
+     * @method _addAttributeValue
+     * @param item {Object}
+     * @return {Attribute}
+     * @private
+     */
+    _addAttributeValue(item) {
+        this._currentAttributeValues.push(item);
+
+        return this;
+    }
+
+    /**
+     * @method _removeAttributeValue
+     * @param item {Object}
+     * @return {Attribute}
+     * @private
+     */
+    _removeAttributeValue(item) {
+        this._currentAttributeValues.splice(this._getAttributeIndex(item), 1);
+
+        return this;
+    }
+
+    /**
+     * @method _change
+     * @param item {Object}
+     * @param isActive {boolean}
+     * @return {Attribute}
+     * @private
+     */
+    _change(item, isActive) {
+        this._updateAttributeValues(item, isActive);
+
+        this.props.change(this._currentAttributeValues, this._getAttribute());
+
+        return this;
+    }
+
+    /**
      * @method _renderItems
      * @returns {Array}
      * @private
@@ -103,7 +176,7 @@ class Attribute extends React.Component {
             <AttributeValue
                 item={item}
                 key={i}
-                change={this.props.change}
+                change={this._change}
             />
         ));
     }

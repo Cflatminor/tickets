@@ -10,6 +10,7 @@ class Offers extends React.Component {
         super(props);
 
         this._select = this._select.bind(this);
+        this._changeFilter = this._changeFilter.bind(this);
     }
 
     /**
@@ -43,6 +44,18 @@ class Offers extends React.Component {
     }
 
     /**
+     * @method _changeFilter
+     * @param attributes {Array}
+     * @return {Offers}
+     * @private
+     */
+    _changeFilter(attributes) {
+        this.props.changeFilter(attributes);
+
+        return this;
+    }
+
+    /**
      * @method _renderItems
      * @returns {Array}
      * @private
@@ -65,7 +78,10 @@ class Offers extends React.Component {
                         <div className="row">
                             <div className="col-lg-3">
                                 {this._hasFilter() && (
-                                    <Filter filter={this.props.filter} />
+                                    <Filter
+                                        filter={this.props.filter}
+                                        change={this._changeFilter}
+                                    />
                                 )}
                             </div>
 
@@ -85,13 +101,15 @@ class Offers extends React.Component {
 Offers.propTypes = {
     filter: PropTypes.instanceOf(Object),
     items: PropTypes.instanceOf(Array),
-    select: PropTypes.func
+    select: PropTypes.func,
+    changeFilter: PropTypes.func
 };
 
 Offers.defaultProps = {
     filter: null,
     items: [],
-    select: () => {}
+    select: () => {},
+    changeFilter: () => {}
 };
 
 export default Offers;

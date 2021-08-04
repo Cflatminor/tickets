@@ -15,7 +15,17 @@ class TimeFilter extends React.Component {
         super(props);
 
         this.state = {
-            forwardFlight: true
+            forwardFlight: true,
+            filter: {
+                forwardFlight: {
+                    departure: {},
+                    arrival: {}
+                },
+                backwardFlight: {
+                    departure: {},
+                    arrival: {}
+                }
+            }
         };
 
         /**
@@ -33,6 +43,11 @@ class TimeFilter extends React.Component {
 
         this._toForwardFlight = this._toForwardFlight.bind(this);
         this._toBackwardFlight = this._toBackwardFlight.bind(this);
+        this._changeTimeForDepartureForwardFlight = this._changeTimeForDepartureForwardFlight.bind(this);
+        this._changeTimeForDepartureBackwardFlight = this._changeTimeForDepartureBackwardFlight.bind(this);
+        this._changeTimeForArrivalForwardFlight = this._changeTimeForArrivalForwardFlight.bind(this);
+        this._changeTimeForArrivalBackwardFlight = this._changeTimeForArrivalBackwardFlight.bind(this);
+        this._change = this._change.bind(this);
     }
 
     /**
@@ -164,6 +179,81 @@ class TimeFilter extends React.Component {
     }
 
     /**
+     * @method _changeTimeForDepartureForwardFlight
+     * @param range {Object}
+     * @return {TimeFilter}
+     * @private
+     */
+    _changeTimeForDepartureForwardFlight(range) {
+        let filter = this.state.filter;
+
+        filter.forwardFlight.departure = range;
+
+        this.setState({filter}, this._change);
+
+        return this;
+    }
+
+    /**
+     * @method _changeTimeForDepartureBackwardFlight
+     * @param range {Object}
+     * @return {TimeFilter}
+     * @private
+     */
+    _changeTimeForDepartureBackwardFlight(range) {
+        let filter = this.state.filter;
+
+        filter.backwardFlight.departure = range;
+
+        this.setState({filter}, this._change);
+
+        return this;
+    }
+
+    /**
+     * @method _changeTimeForArrivalForwardFlight
+     * @param range {Object}
+     * @return {TimeFilter}
+     * @private
+     */
+    _changeTimeForArrivalForwardFlight(range) {
+        let filter = this.state.filter;
+
+        filter.forwardFlight.arrival = range;
+
+        this.setState({filter}, this._change);
+
+        return this;
+    }
+
+    /**
+     * @method _changeTimeForArrivalBackwardFlight
+     * @param range {Object}
+     * @return {TimeFilter}
+     * @private
+     */
+    _changeTimeForArrivalBackwardFlight(range) {
+        let filter = this.state.filter;
+
+        filter.backwardFlight.arrival = range;
+
+        this.setState({filter}, this._change);
+
+        return this;
+    }
+
+    /**
+     * @method _change
+     * @return {TimeFilter}
+     * @private
+     */
+    _change() {
+        this.props.change(this.state.filter);
+
+        return this;
+    }
+
+    /**
      * @public
      * @method render
      * @returns {React.element}
@@ -207,13 +297,13 @@ class TimeFilter extends React.Component {
                         })}
                     >
                         <TimeRange
-                            flight={this._getForwardFlight()}
                             title={this._getTitles().getForwardFlight().getDepartureCityName()}
+                            change={this._changeTimeForDepartureForwardFlight}
                         />
 
                         <TimeRange
-                            flight={this._getForwardFlight()}
                             title={this._getTitles().getForwardFlight().getArrivalCityName()}
+                            change={this._changeTimeForArrivalForwardFlight}
                         />
                     </div>
 
@@ -224,13 +314,13 @@ class TimeFilter extends React.Component {
                             })}
                         >
                             <TimeRange
-                                flight={this._getBackwardFlight()}
                                 title={this._getTitles().getBackwardFlight().getDepartureCityName()}
+                                change={this._changeTimeForDepartureBackwardFlight}
                             />
 
                             <TimeRange
-                                flight={this._getBackwardFlight()}
                                 title={this._getTitles().getBackwardFlight().getArrivalCityName()}
+                                change={this._changeTimeForArrivalBackwardFlight}
                             />
                         </div>
                     )}

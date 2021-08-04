@@ -40,6 +40,7 @@ class Search extends React.Component {
         this._getTicketsByRoute = this._getTicketsByRoute.bind(this);
         this._getTicketRules = this._getTicketRules.bind(this);
         this._toSearchTickets = this._toSearchTickets.bind(this);
+        this._changeFilter = this._changeFilter.bind(this);
         this._selectTicket = this._selectTicket.bind(this);
         this._cancelBooking = this._cancelBooking.bind(this);
     }
@@ -221,6 +222,18 @@ class Search extends React.Component {
     }
 
     /**
+     * @method _changeFilter
+     * @param filter {Object}
+     * @return {Search}
+     * @private
+     */
+    _changeFilter(filter) {
+        console.log(filter);
+
+        return this;
+    }
+
+    /**
      * @method _selectTicket
      * @param ticket {Ticket}
      * @returns {Search}
@@ -263,6 +276,7 @@ class Search extends React.Component {
                             filter={this.state.filter}
                             items={this._getTicketsFromState()}
                             select={this._selectTicket}
+                            changeFilter={this._changeFilter}
                         />
                     )}
 
