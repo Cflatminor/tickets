@@ -1,6 +1,6 @@
 import Env from "app/core/environment";
 
-import AirportEntity from "app/core/entities/airport/Airport"
+import AirportEntity from "app/core/entities/airport/Airport";
 
 import HttpClient from "app/core/utilities/httpClient/HttpClient";
 
@@ -21,7 +21,7 @@ let search = new Search({
                 getFlightPoint: {
                     domain: Env.getInstance().getSearchServiceHost(),
                     // path: "/flight-point",
-                    path: "/todos",
+                    path: "/users",
                     query: {
                         query: ""
                     }
